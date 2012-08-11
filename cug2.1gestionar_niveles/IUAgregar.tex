@@ -1,0 +1,27 @@
+\subsection{Pantalla: Agregar Nivel}
+
+\subsubsection{Objetivo}
+Permite al usuario dar de alta un nuevo Nivel, ver figura~\ref{IUAgregarNivel}. Viene de Gestionar Niveles ~\ref{IUGestNiveles}.
+
+\IUfig[0.6]{cug2.1/agregarNivel.png}{IUAgregarNivel}{Agregar Nivel.}
+
+\subsubsection{Salidas}
+\begin{itemize}
+ \item Nombre del Programa al que se le esta agregando el nivel, este campo no puede ser modificado por el usuario.
+ \item Número de posición inmediato superior al ultimo nivel asignado al Programa, este campo no puede ser modificado por el usuario. Por ejemplo; Si el último nivel tenía la posición 2, el nuevo nivel deberá ser registrado con la posición 3.
+\end{itemize}
+Se muestra el mensaje de confirmación\ref{MSG4}.
+
+\subsubsection{Entradas}
+Datos Nivel \ref{dd:Nivel}.
+\begin{itemize}
+ \item Nombre del Nivel.
+ \item Descripción del Nivel.
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Da de alta el registro del sistema siempre y cuando los datos sean correctos. De lo contrario el sistema mostrará los mensajes 1 \ref{MSG1} o 2 \ref{MSG2}.
+ \item \IUbutton{Cancelar} Cancela la operación. Lleva a la pantalla \IUref{IUGestNiveles}{Gestionar Niveles}
+\end{itemize}
+

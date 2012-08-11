@@ -1,0 +1,182 @@
+
+.project > *{
+	vertical-align: top;	
+	font-size: 10pt;	
+}
+
+.project > div{
+	display: inline-block;
+	width: 48%;
+	max-width: 48%;
+	overflow-x: scroll;
+	border-right: 0px solid gray;
+}
+
+.project table{
+	display:inline-table;
+	width: 100%;
+	max-width: 100%
+}
+
+.project tr, .project img, .project a{
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.project tbody td:hover{
+	background: #EEF
+}
+
+.project th, .project thead td{
+	color: white; 
+	height: 22px;
+	background: #26a; 
+	border: 1px solid;
+	border-color: #acf white #acf #acf;
+	padding-left: 2px;
+	padding-right: 2px
+}
+
+
+.project td{
+	color: #333;
+	height: 22px;
+	background: white; 
+	padding: 0px;
+	border: 0px solid;
+	border-left: 1px solid #acf;
+	border-bottom: 1px solid #acf;
+	padding-left: 2px;
+	padding-right: 2px;
+	text-align: left;
+}
+
+.project .tbl td{
+	overflow: hidden;
+	max-width: 350px;
+}
+.project .tbl td *{
+	vertical-align: middle;
+}
+
+.project .tbl td div{
+	float:left;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.project .tbl td div img{
+	vertical-align: top;
+}
+
+
+/* Estilo para grupos: */
+
+.gantt .grupo{
+	top: 1px;
+	height: 4px; 
+	border: 7px solid;
+	border-color: #000 #000 white #000; 
+	background-color: #888; 
+  	background-image: url("../images/project/tarea-bg.png");
+   	background-repeat: repeat-x;		
+	color: #FFF; 
+	position: relative
+}
+.gantt .grupo .avance{
+	height: 4px; 
+	border: 0px solid; 
+	background-color: #444; 
+  	background-image: url("../images/project/avance-bg.png");
+   	background-repeat: repeat-x;		
+	color: #FFF
+}
+
+.gantt .hoy{
+	height: 17px; 
+	border-left: 2px dotted #aaa;  
+	z-index: 2;
+	float: left;
+	position: relative;
+	left: 10px;
+	width: 0px;
+	top: 0px;
+}
+
+.gantt .tarea{
+	top: 2px;
+	height: 13px; 
+	width: 10px;
+	border: 1px solid;
+	border-color: #666 #bbb #bbb #666;
+  	background-image: url("../images/project/tarea-bg.png");
+   	background-repeat: repeat-x;		
+	position: relative
+}
+
+
+.gantt .tarea .mini{
+	width: 0px; 
+	height: 13px; 
+	border: 0px;
+	border-left: 1px;
+	border-style: dashed; 
+	background-color: #FFC; 
+	position: relative	
+}
+
+.gantt .tarea .avance{
+	height: 13px;
+	width: 10px; 
+	border: 0px solid #000; 
+	background-color: #DDD; 
+  	background-image: url("../images/project/avance-bg.png");
+   	background-repeat: repeat-x;		
+	position: relative	
+}
+
+/* Tarea cerrada: ya terminó. */
+.gantt .cerrada{
+	background-color: #AAF 	
+}
+
+.gantt .cerrada .avance{
+	background-color: #44F	
+}
+
+/* Tarea cancelada: ya no se realizará. */
+.gantt .cancelada{
+	background-color: #AAA 	
+}
+
+.gantt .cancelada .avance{
+	background-color: #888	
+}
+
+/* Tarea atrasada: el avance es anterior al dia de hoy. */
+.gantt .desactualizada{
+	background-color: #FAA
+}
+
+.gantt .desactualizada .avance{
+	background-color: #F44	
+}
+
+/* Tarea atrasada: el avance es anterior al dia de hoy. */
+.gantt .atrasada{
+	background-color: #FB8
+}
+
+.gantt .atrasada .avance{
+	background-color: #FB3
+}
+
+/* Tarea en tiempo: el avance es igual o posterior a la fecha actual. */
+.gantt .enTiempo{
+	background-color: #2D2 	
+}
+
+.gantt .enTiempo .avance{
+	background-color: #2A2	
+}

@@ -1,0 +1,29 @@
+\subsection{Pantalla: Modificar Eje Temático}
+
+\subsubsection{Objetivo}
+Dar la posibilidad de realizar cambios en las áreas. Vease Figura ~\ref{IUModificarEjeTematico}, viene de Gestionar Ejes Temáticos.
+
+\IUfig[0.6]{CUG3/ModificarEjeTematico.PNG}{IUModificarEjeTematico}{Modificar Eje Temático.}
+
+\subsubsection{Salidas}
+Datos de eje temático actuales \ref{dd:EjeTematico}.
+\begin{itemize}
+\item Nombre del eje temático
+\item Descripción del eje temático
+\end{itemize}
+Mostrará el MSG4 \ref{MSG4}
+
+\subsubsection{Entradas}
+Descripción del eje temático a modificar.
+\subsubsection{Controles}
+\begin{itemize}
+\item Frente al \textit{label} Descripción se encuentra un \textit{textbox} para que el usuario modifique la descripción del eje temático.
+\end{itemize}
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Actualiza los datos del eje temático que el usuario ha ingresado siempre y cuando sean correctos. Cuando los datos no cumplan con la regla de negocios  \BRref{2} mostrará el MSG1 \ref{MSG1}, si no cumple con el diccionario de datos \ref{dd:EjeTematico} mostrará el MSG2 \ref{MSG2}. Cuando se modifique el Eje temático de forma correcta mostrará el MSG3 \ref{MSG3} 
+ \item \IUbutton{Cancelar}: Al presionar este botón cancela el proceso y regresa a la página \IUref{IUGestEjesTematicos}{Gestionar Ejes Temáticos}.
+
+\end{itemize}
+
+

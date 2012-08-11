@@ -1,0 +1,208 @@
+	\begin{UseCase}{CUC1}{Gestión de Proyecto}{Gestionar los Proyectos asignados al usuario coordinador.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Coordinador.}
+		\UCitem{Propósito}{Consultar y gestionar los proyectos coordinados por el usuario.}
+		\UCitem{Resumen}{Agrupa las funcionalidades de gestión de información relacionada con los proyectos.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Ninguna.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Omar Juárez Gambino}
+		\UCitem{Referencias}{SIDAM-BESP-P2}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Coordinación}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Gestionar Proyectos} de la pantalla \IUref{IUMenuCoordinador}{Menú del Coordinador}.
+		\UCpaso Busca los Proyectos del Usuario.\Trayref{A}
+		\UCpaso Muestra la pantalla \IUref{IUGestProyectos}{Gestión de Proyectos} donde se despliegan los datos de los Proyectos y las opciones de Pre-registrar Proyecto y Registrar Proyecto.\UCExtensionPoint{CUC1.1}{Pre-registrar Proyecto}\UCExtensionPoint{CUC1.2}{Registrar Proyecto}\label{paso:CUC1MuestraDatosProyecto}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Resultado de busqueda vacía}{No se encontrarón registros.}
+		\UCpaso Muestra mensaje (MSG-5) indicando que no se encontraron Proyectos.\ref{MSG5}
+	\end{UCtrayectoriaA}
+
+%--------- Agregar Proyecto
+	\begin{UseCase}{CUC1.1}{Pre-registrar Proyecto}{El usuario Pre-registra un nuevo Proyecto.}
+			\UCitem{Versión}{1.1}
+			\UCitem{Actor(es)}{Coordinador y Empleado SMA.}
+			\UCitem{Propósito}{Brindar un mecanismo para Preregistrar un proyecto.}
+			\UCitem{Resumen}{Permite proporcionar los datos básicos para el primer paso en el proceso de registro de proyecto.}
+			\UCitem{Entradas}{Datos de {\em pre-registro del Proyecto} \ref{dd:ProyectoPreregistrado}.}
+			\UCitem{Salidas}{Mensaje de confirmación del proyecto preregistrado.}
+			\UCitem{Precondiciones}{Ninguna.}
+			\UCitem{Postcondiciones}{El Proyecto pre-registrado adquiere el estado de {\em Pendiente} hasta su validación y registro.}
+			\UCitem{Autor}{Pérez Domínguez Alberto Michel}
+			\UCitem{Referencias}{SIDAM-BESP-P1}
+			\UCitem{Tipo}{Secundario/Primario. Puede venir del \UCref{CUC1}}
+			\UCitem{Módulo}{Coordinación}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Preregistrar Proyecto} de la pantalla \IUref{IUGestProyectos}{Gestión de Proyectos} o de la pantalla de consulta ciudadana.
+			\UCpaso Muestra la pantalla \IUref{IUPreregistrarProyecto}{Preregistrar Proyecto}.
+			\UCpaso Obtiene los datos del Usuario que inicio sesión.\Trayref{A}
+			\UCpaso Coloca los datos del responsable en el formulario\ref{datosResponsable}.
+			\UCpaso Deshabilita los campos de los datos del responsable del formulario.
+			\UCpaso [\UCactor] Ingresa los datos del Proyecto .\label{paso:CUC1.1IngresaDatosProyecto} \Trayref{B}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN18}.\Trayref{C}
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos \Trayref{D}
+			\UCpaso Verifica que se cumpla con la la regla de negocio \BRref{RN32}.\Trayref{F}\Trayref{G}\Trayref{H}
+			\UCpaso Preregistra el proyecto.\label{paso:CUC1.1PreRegistraProyecto}
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Usuario aún no registrado}{El usuario no ha iniciado sesión en el sistema.}
+			\UCpaso [\UCactor] Ingresa los datos del Responsable del proyecto\ref{datosResponsable}.
+			\UCpaso [\UCactor] Ingresa los datos del Proyecto.\Trayref{B}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN18}.\Trayref{C}
+			\UCpaso Revisa que los datos correspondan con el Diccionario de Datos \Trayref{D}
+			\UCpaso Verifica que el Periodo corresponda a la regla de negocio \BRref{RN32}.\Trayref{E}\Trayref{F}\Trayref{G}
+			\UCpaso Solicita al Usuario llenar un formulario ``Captcha''.
+			\UCpaso [\UCactor] Ingresa el ``Captcha''.
+			\UCpaso Preregistra el proyecto.\label{paso:CUC1.1PreRegistraProyecto}
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar un nuevo Proyecto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUC1IdentificaUsuario}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos del proyecto incompletos}{Los datos proporcionados para el preregistro del proyecto están incompletos.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando los campos faltantes.\ref{MSG1}.
+			\UCpaso Continúa en el paso \ref{paso:CUC1.1IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Datos del Proyecto Incorrectos}{Los datos del Proyecto no corresponden con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.1IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+
+	\begin{UCtrayectoriaA}{E}{Periodo de tipo ``Determinado``}{El Usuario eligió establecer el Periodo ``Por fechas'' especificando las fechas de inicio y término.}
+			\UCpaso Calcula el número de días desde la fechas de inicio hasta la fecha de fin y asigna como ''Duración'' el valor obtenido.
+			\UCpaso Continúa en el paso \ref{paso:CUC1.1PreRegistraProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{F}{Periodo de tipo ``Relativo``}{El Usuario eligió establecer el Periodo ``Por duración`` especificando la Duración del proyecto.}
+			\UCpaso Asigna como fechas de inicio y fin un valor nulo.
+			\UCpaso Continúa en el paso \ref{paso:CUC1.1PreRegistraProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{G}{Periodo de tipo ``Indeterminado``}{El usuario no indicó la duración del proyecto ni sus fechas de inicio y término.}
+			\UCpaso Asigna como ''Duración'' y fechas de inicio-fin un valor de nulo.
+			\UCpaso Continúa en el paso \ref{paso:CUC1.1PreRegistraProyecto}.
+	\end{UCtrayectoriaA}
+
+%-------------------------Registrar Proyecto
+
+	\begin{UseCase}{CUC1.2}{Registrar Proyecto}{Registrar los Proyectos aprobados por el Administrador.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Coordinador}
+		\UCitem{Propósito}{Proporcionar los datos necesarios para el registro del Proyecto.}
+		\UCitem{Resumen}{Se muestran los datos del Proyecto pre-registrado con la posibilidad de editar los datos del Proyecto.}
+		\UCitem{Entradas}{Falta.}
+		\UCitem{Salidas}{Mensaje de confirmación del registro de proyecto.}
+		\UCitem{Precondiciones}{Se presentan las siguientes precondiciones
+		  \begin{itemize}
+		    \item Que existan Programas registrados.
+		    \item Que existan Estructuras definidas para los Programas.
+		    \item Que existan Ejes Temáticos registrados.
+		    \item Que existan Temas Transversales registrados.
+		    \item Que exista un Proyecto Pre-registrado.    
+		  \end{itemize}}
+		\UCitem{Postcondiciones}{El proyecto queda listo para definir metas, indicadores, acciones y participantes.}
+		\UCitem{Autor}{Omar Juárez Gambino}
+		\UCitem{Referencias}{SIDAM-BESP-P1}
+		\UCitem{Tipo}{Secundario. Viene del CU CUC1}
+		\UCitem{Módulo}{Coordinación}
+	\end{UseCase}
+	
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Registrar Proyecto} de la pantalla \IUref{IUGestProyectos}{Gestión de Proyectos}.
+			\UCpaso Muestra la pantalla \IUref{IURegistrarProyecto}{Registrar Proyecto}.
+			\UCpaso Obtiene los datos del Proyecto Pre-registrado.
+			\UCpaso Muestra los datos del Proyecto Pre-registrado.
+			\UCpaso Deshabilita los campos Siglas, Nombre y Datos del Responsable.
+			\UCpaso Obtiene los Ejes Temáticos registrados.
+			\UCpaso Muestra los Ejes Temáticos.
+			\UCpaso Obtiene los Temas Transversales registrados.
+			\UCpaso Muestra los Temas Transversales.
+			\UCpaso Obtiene las estructuras definidas del Programa Sectorial y de los demás Programas.
+			\UCpaso Muestra las estructuras obtenidas.
+			\UCpaso [\UCactor] Ingresa los datos del Proyecto.\label{paso:CUC1.2IngresaDatosProyecto} \Trayref{A}
+			\UCpaso [\UCactor] Activa la casilla de verificación para alinear el Proyecto con un elemento EP1N del Programa Sectorial. \Trayref{B}
+			\UCpaso [\UCactor] Selecciona el elemento EP1N del Programa Sectorial.
+			\UCpaso [\UCactor] Activa la casilla de verificación para alinear el Proyecto con un elemento EP1N de otro Programa. \Trayref{C} \label{paso:CUC1.2SeleccionaAlineacionPrograma}
+			\UCpaso [\UCactor] Selecciona el elemento EP1N de otro Programa.
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.\label{paso:CUC1.2OprimeAceptar}
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos. \Trayref{D}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN44}.\Trayref{E}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN43}.\Trayref{F}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN32}.\Trayref{G}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN33}. \Trayref{H}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN40}. \Trayref{I}
+			\UCpaso Registra el Proyecto.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no registrar un Proyecto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUC1MuestraDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Sin alineación a Programa Sectorial}{El usuario no alinea el Proyecto con el Programa Sectorial.}
+			\UCpaso[\UCactor] No activa la casilla de verificación de alineación con el Programa Sectorial.
+			\UCpaso El proyecto no se alinea con ningún elemento EP1N del Programa Sectorial.
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2SeleccionaAlineacionPrograma}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Sin alineación a otros Programas}{El usuario no alinea el Proyecto con los Programas no sectorial.}
+			\UCpaso[\UCactor] No activa la casilla de verificación de alineación con otros Programas.
+			\UCpaso El proyecto no se alinea con ningún elemento EP1N del otros Programas.
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2OprimeAceptar}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Datos del Proyecto Incorrectos}{Los datos del Proyecto no corresponden con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando que los datos ingresados son incorrectos.\ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{Datos del proyecto incompletos}{Los datos proporcionados para el Registro del proyecto están incompletos.}
+			\UCpaso Muestra el mensaje (MSG-2).\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{F}{Alineación de Proyecto}{Proyecto que se desea registrar no esta bien alineado.}
+			\UCpaso Muestra el mensaje (MSG-RN-43).\ref{MSG_RN43}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{G}{Periodo mal definido}{El periodo del Proyecto que se desea registrar no está bien definido.}
+			\UCpaso Muestra el mensaje (MSG-RN-32).\ref{MSG_RN32}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.1IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{H}{El nombre del Proyecto repetido}{El Nombre del Proyecto ya se encuentra registrado.}
+			\UCpaso Muestra el mensaje (MSG-3) \ref{MSG3}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{I}{Las siglas del Proyecto repetidas}{Las siglas del Proyecto ya se encuentra registradas.}
+			\UCpaso Muestra el mensaje (MSG-3) \ref{MSG3}
+			\UCpaso Continúa en el paso \ref{paso:CUC1.2IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

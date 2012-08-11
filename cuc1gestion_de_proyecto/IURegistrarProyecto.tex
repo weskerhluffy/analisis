@@ -1,0 +1,29 @@
+\subsection{Pantalla: Registrar Proyecto}
+
+\subsubsection{Objetivo}
+El objetivo de esta pantalla es Registrar un nuevo Proyecto pre-registrado y permite al Coordinador realizar actuazlizaciones a la información almacenada en el Pre-registro asociar al Proyecto a Ejes temáticos y Temas transversales así como Alinear el Proyecto.
+
+\IUfig[0.6]{CUC1/regProy.png}{IURegistrarProyecto}{Pantalla Registrar Proyecto.}
+
+\subsubsection{Salidas}
+\begin{itemize}
+ \item Datos del Proyecto Pre-registrado.
+ \item Lista de Ejes Temáticos.
+ \item Lista de Temas Transversales.
+ \item Lista de Programas.
+ \item El mensaje de operación exitosa una vez Re-registrado el proyecto.
+\end{itemize}
+
+\subsubsection{Entradas}
+\begin{itemize}
+ \item Datos a modificar del Proyecto Pre-registrado. Se permite la edición de los campos Resumen, Objetivo y Periodo.
+ \item Identificador del Eje Temático seleccionado.
+ \item Identificador del Tema Transversal seleccionado.
+ \item Indentificador del Programa seleccionado.
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar}: Registra los datos de un nuevo Proyecto y lleva a la pantalla \IUref{IUGestProyectos}{Gestión de Proyectos}.  el sistema mostrará los mensajes; MSG1 \ref{MSG1} en caso de datos incompletos (por la regla \BRref{RN2}), si no son correctos mostrará el mensaje MSG2 \ref{MSG2} (por validación de Diccionario de Datos\ref{dd:Proyecto}) o el mensaje MSG3\ref{MSG3} (por la regla \BRref{RN1}).
+ \item \IUbutton{Cancelar}: Regresa a la pantalla \IUref{IUGestProyectos}{Gestión de Proyectos}.
+\end{itemize}

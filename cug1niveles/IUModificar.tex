@@ -1,0 +1,31 @@
+\subsection{Pantalla: Modificar Nivel}
+
+\subsubsection{Objetivo}
+Permite al usuario modificar la información correspondiente a un Nivel seleccionado, ver figura ~\ref{IUModificarNivel}. Viene de Gestionar Niveles ~\ref{IUGestNiveles}.
+
+\IUfig[0.6]{CUD1-1/modificarNivel.png}{IUModificarNivel}{Modificar Nivel.}	
+
+\subsubsection{Entradas}
+Datos Nivel \ref{dd:Nivel}.
+\begin{itemize}
+ \item Nombre del Nivel.
+ \item Descripción del Nivel.
+\end{itemize}
+
+\subsubsection{Salidas}
+Se muestran los datos actuales del Nivel que se desea modificar.
+\begin{itemize}
+ \item Nombre del Programa, este campo no puede ser modificado por el Usuario.
+ \item Número de posición, este campo no puede ser modificado por el Usuario.
+ \item Nombre del Nivel, este campo si puede ser modificado por el Usuario.
+ \item Descripción del Nivel, este campo si puede ser modificado por el Usuario.
+\end{itemize}
+Se muestra el mensaje 4 \ref{MSG4}
+
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Modifica el registro siempre y cuando los datos sean correctos. De lo contrario el sistema mostrará el mensaje 1 \ref{MSG1} ó 2 \ref{MSG2}.
+ \item \IUbutton{Cancelar} Cancela la operación. Lleva a la pantalla \IUref{IUGestNiveles}{Gestionar Niveles}
+
+\end{itemize}

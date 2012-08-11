@@ -1,0 +1,36 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+	\begin{UseCase}{CU2.1.1}{Revisar Información de un Proyecto}{Ofrece un mecanismo para ver los datos de un proyecto registrado y tiene la opción de editar un proyecto.}
+		\UCitem{Versión}{3.0}
+		\UCitem{Estado}{Finalizado}
+		\UCitem{Actor(es)}{Coordinador}
+		\UCitem{Propósito}{Contar con un mecanismo que ayude a revisar los datos de un proyecto.}
+		\UCitem{Resumen}{Se muestran los datos de un proyecto registrado con la posibilidad de modificar.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Datos del proyecto seleccionado.}
+		\UCitem{Precondiciones}{Que exista al menos un proyecto registrado.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Hermosillo García Karen Adriana }
+		\UCitem{Referencias}{CU-P2-061011}
+		\UCitem{Tipo}{Secundario.}
+		\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Revisar Información de Proyecto} de la pantalla \IUref{IURevisarProyecto}{Menú Revisar Proyecto}.
+		\UCpaso Muestra en la pantalla \IUref{IURevisarInformacionProyecto}{Revisar Información del Proyecto} los datos bloqueados del proyecto seleccionado.\UCExtensionPoint{CUC1}{Editar Proyecto}
+		\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+		\UCpaso Continua con el paso \ref{paso:CU2.1RevisarProyecto}. 
+	\end{UCtrayectoria}
+%-------------------------------------- TERMINA descripción del caso de uso.

@@ -1,0 +1,1716 @@
+\subsection{Definiciones}
+\begin{description}
+\item [Status:]{
+\begin{lstlisting}
+[0|1]\end{lstlisting}
+}
+\item [Dígito:]{
+\begin{lstlisting}
+[0|1|2|3|4|5|6|7|8|9]\end{lstlisting}
+}
+\item [Real:]{
+\begin{lstlisting}
+1{Dígito}38 + . + 1{Dígito}38\end{lstlisting}
+}
+\item [Porcentaje:]{
+\begin{lstlisting}
+1{Dígito}3 + . + 1{Dígito}2\end{lstlisting}
+}
+\item [Horario:]{
+\begin{lstlisting}
+1{Dígito}2 + : + 1{Dígito}2\end{lstlisting}
+}
+\item [Letra:]{
+\begin{lstlisting}
+[a-z|A-Z]\end{lstlisting}
+}
+\item [Caracter:]{
+\begin{lstlisting}
+[Letra|Dígito]\end{lstlisting}
+}
+\item [Espacio:]{
+\begin{lstlisting}
+[ ]
+\end{lstlisting}
+}
+\item [Signo:]{
+\begin{lstlisting}
+[.|,|_|-|/|#]
+\end{lstlisting}
+}
+\item [Fecha:]{
+\begin{lstlisting}
+{Dígito}4 + / + [0|1] + [0|1|2] + / + [0|1|2|3] + Dígito *año/mes/día*\end{lstlisting}
+}
+\item [Dígito:]{
+\begin{lstlisting}
+[0|1|2|3|4|5|6|7|8|9]\end{lstlisting}
+}
+\end{description}
+
+
+
+
+%--------------- DD: Usuario------------------- ------------------
+\subsection{Usuario}\label{dd:Usuario}
+\begin{lstlisting}
+	Datos de Usuario = @ idUsuario + Nombre de login + Contraseña + idPerfilUsuario + Nombre + Apellido Paterno + Apellido Materno + Registro Federal de Contribuyentes + idArea + idGrupo.
+  
+ Direccion =  @ idUsuario + calle + Numero + Colonia + Codigo Postal + Delegación + Estado + país.
+ 
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{idUsuario}\label{dd:idUsuario}
+		\begin{description}
+			\item [Significado:] Nombre del identificador del usuario en la base de datos
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}11\end{lstlisting}}
+		\end{description}
+	\item \textbf{Nombre de login}\label{dd:login}
+		\begin{description}
+			\item [Significado:] Nombre de identificacion unico que registra un Usuario para entrar al sistema y distinguirlo de otros.
+			\item [Composición:]{\begin{lstlisting}
+				1{Letra}20\end{lstlisting}}
+		\end{description}
+	\item \textbf{Contraseña}\label{dd:psw}
+		\begin{description}
+  %%%%%%%%%%%%%%%%%%%%%%%%%AGEGAR REGLA DE NEGOCIO 3%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+			\item [Significado:] Contraseña de acceso al sistema registrada por el usuario.
+			\item [Composición:]{\begin{lstlisting}
+				1{Caracter}20\end{lstlisting}}
+		\end{description}
+  \item \textbf{idPerfilUsuario} \label{dd:idPerfilUsuario}
+    \begin{description}
+      			\item [Significado:] Nombre del identificador del perfil de usuario en la base de datos
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}11\end{lstlisting}}
+    \end{description}
+  \item \textbf{Nombre}\label{dd:nombre}
+    \begin{description}
+      \item [Significado:] Registro que conserva el Nombre del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+  \item \textbf{Apellido Paterno}\label{dd:apPat}
+    \begin{description}
+      \item [Significado:] Registro que conserva el primer apellido del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+  \item \textbf{Apellido Materno}\label{dd:apMat}
+    \begin{description}
+      \item [Significado:] Registro que conserva el segundo apellido del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+  \item \textbf{Cargo}\label{dd:cargo}
+    \begin{description}
+      \item [Significado:] Registro que conserva el puesto que tiene el usuario dentro de la organización.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}250\end{lstlisting}}
+	\end{description}
+  \item \textbf{Registro Federal de Contribuyentes}\label{dd:rfc}
+    \begin{description}
+      \item [Significado:] Registro que conserva el RFC del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}20\end{lstlisting}}
+    \end{description}
+  \item \textbf{idArea}\label{dd:idArea}
+    \begin{description}
+      			\item [Significado:] Nombre del identificador del área en la base de datos
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}11\end{lstlisting}}
+    \end{description}
+    %%%%%%%%%%%%%%%%%%%DIRECCION%%%%%%%%%%%%%%%%%%%%
+      \item \textbf{calle}\label{dd:calle}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la calle del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+  \item \textbf{Numero}\label{dd:no}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Numero de casa del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}10\end{lstlisting}}
+    \end{description}
+  \item \textbf{Colonia}\label{dd:colonia}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la Colonia del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+  \item \textbf{Codigo Postal}\label{dd:cp}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Codigo Postal del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Dígito}10\end{lstlisting}}
+    \end{description}
+  \item \textbf{Delegación}\label{dd:deleg}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la Delegación del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+  \item \textbf{Estado}\label{dd:edo}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Estado del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+  \item \textbf{País}\label{dd:pais}
+    \begin{description}
+      \item [Significado:] registro donde se guardan el país del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+\end{itemize}
+
+
+%---------------------------------Coordinador
+
+\subsection{Coordinador}\label{dd:Coordinador}
+\begin{lstlisting}
+	Datos de Coordinador = @ idUsuario + Nombre de login + Contraseña + Nombre + Apellido Paterno + Apellido Materno + Registro Federal de Contribuyentes.
+  
+ Direccion =  @ idUsuario + calle + Numero + Colonia + Codigo Postal + Delegación + Estado + país.
+ 
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{idUsuario}\label{dd:idUsuarioC}
+		\begin{description}
+			\item [Significado:] Nombre del identificador del usuario en la base de datos
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}11\end{lstlisting}}
+		\end{description}
+	\item \textbf{Nombre de login}\label{dd:loginC}
+		\begin{description}
+			\item [Significado:] Nombre de identificacion unico que registra un Usuario para entrar al sistema y distinguirlo de otros.
+			\item [Composición:]{\begin{lstlisting}
+				1{Letra}20\end{lstlisting}}
+		\end{description}
+	\item \textbf{Contraseña}\label{dd:pswC}
+		\begin{description}
+  %%%%%%%%%%%%%%%%%%%%%%%%%AGEGAR REGLA DE NEGOCIO 3%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+			\item [Significado:] Contraseña de acceso al sistema registrada por el usuario.
+			\item [Composición:]{\begin{lstlisting}
+				1{Caracter}20\end{lstlisting}}
+		\end{description}
+ 
+ \item \textbf{Nombre}\label{dd:nombreC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el Nombre del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Apellido Paterno}\label{dd:apPatC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el primer apellido del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Apellido Materno}\label{dd:apMatC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el segundo apellido del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+    \item \textbf{Registro Federal de Contribuyentes}\label{dd:rfcC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el RFC del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}20\end{lstlisting}}
+    \end{description}
+
+    %%%%%%%%%%%%%%%%%%%DIRECCION%%%%%%%%%%%%%%%%%%%%
+      \item \textbf{calle}\label{dd:calleC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la calle del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Numero}\label{dd:noC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Numero de casa del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}10\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Colonia}\label{dd:coloniaC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la Colonia del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Codigo Postal}\label{dd:cpC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Codigo Postal del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Dígito}10\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Delegación}\label{dd:delegC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la Delegación del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Estado}\label{dd:edoC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Estado del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{País}\label{dd:paisC}
+    \begin{description}
+      \item [Significado:] registro donde se guardan el país del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+\end{itemize}
+
+
+%--------------------------------Datos-Editables-Coordinador
+\subsection{Datos Editables de Coordinador}\label{dd:DatosEditablesCoordinador}
+\begin{lstlisting}
+	Datos de Coordinador = @ Nombre + Apellido Paterno + Apellido Materno + Registro Federal de Contribuyentes.
+  
+ Direccion =  @ idUsuario + calle + Numero + Colonia + Codigo Postal + Delegación + Estado + país.
+ 
+\end{lstlisting}
+\begin{itemize}
+ 
+ \item \textbf{Nombre}\label{dd:nombreC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el Nombre del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Apellido Paterno}\label{dd:apPatC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el primer apellido del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Apellido Materno}\label{dd:apMatC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el segundo apellido del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+    \item \textbf{Registro Federal de Contribuyentes}\label{dd:rfcC}
+    \begin{description}
+      \item [Significado:] Registro que conserva el RFC del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}20\end{lstlisting}}
+    \end{description}
+
+    %%%%%%%%%%%%%%%%%%%DIRECCION%%%%%%%%%%%%%%%%%%%%
+      \item \textbf{calle}\label{dd:calleC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la calle del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Numero}\label{dd:noC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Numero de casa del usuario registrado.
+      \item [Composición:]{\begin{lstlisting}
+        1{Caracter}10\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Colonia}\label{dd:coloniaC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la Colonia del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}50\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Codigo Postal}\label{dd:cpC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Codigo Postal del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Dígito}10\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Delegación}\label{dd:delegC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan la Delegación del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{Estado}\label{dd:edoC}
+    \begin{description}
+      \item [Significado:] Registro donde se guardan el Estado del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+
+  \item \textbf{País}\label{dd:paisC}
+    \begin{description}
+      \item [Significado:] registro donde se guardan el país del usuario registrado.
+      \item [Valores:]{\begin{lstlisting}
+        1{Caracter}30\end{lstlisting}}
+    \end{description}
+\end{itemize}
+
+
+%---------------Contactos------------------
+\subsection{Contacto}
+\label{dd:Contactos}
+\subsubsection{Datos de los Contactos}
+\begin{lstlisting}
+	Contactos = @ idContacto + Contacto + idUsuario + idTipoContacto + principal + descripcion.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{idContacto}
+		\begin{description}
+			\item [Significado:] Valor que identifica al Contacto forma única.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}10
+                                         \end{lstlisting}}
+		\end{description}
+	
+        \item \textbf{Contacto}
+		\begin{description}
+			\item [Significado:] Es el Contacto con el cual se comunican los usuarios.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Caracter| signo|espacio}100
+                                         \end{lstlisting}} 
+		\end{description}
+
+        \item \textbf{idUsuario}
+		\begin{description}
+			\item [Significado:] Es el numero Identificador del contacto de ese usuario.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}10
+                                         \end{lstlisting}} 
+		\end{description}
+
+        \item \textbf{idTipoContacto}
+		\begin{description}
+			\item [Significado:] Hace referencia al tipo de Contacto con un numero entero.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}10
+                                         \end{lstlisting}} 
+		\end{description}
+        \item \textbf{principal}
+		\begin{description}
+			\item [Significado:] Determina si un contacto es principal o no.
+			\item [Valores:]{\begin{lstlisting}
+                                           1{Status}
+                                         \end{lstlisting}} 
+		\end{description}
+
+        \item \textbf{descripcion}
+		\begin{description}
+			\item [Significado:] Breve descripción del contacto.
+			\item [Valores:]{\begin{lstlisting}
+                                           1{caracter}255
+                                         \end{lstlisting}} 
+		\end{description}
+\end{itemize}
+
+\subsubsection{Datos de los Tipos de Contacto}
+\begin{lstlisting}
+	Tipos de Contacto = @ idTipoContacto+ @ Nombre + Descripción.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{idTipoContacto}
+		\begin{description}
+			\item [Significado:] Valor que identifica al Tipo de Contacto forma única.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}3
+                                         \end{lstlisting}}
+		\end{description}
+	
+        \item \textbf{nombre}
+		\begin{description}
+			\item [Significado:] Contiene el nombre del Tipo de Contacto.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Caracter| espacio}50
+                                         \end{lstlisting}} 
+		\end{description}
+
+        \item \textbf{descripcion}
+		\begin{description}
+			\item [Significado:] Contiene una explicacion de lo que es ese Tipo de Contacto.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Caracter| espacio}250
+                                         \end{lstlisting}} 
+		\end{description}
+\end{itemize}
+
+
+%---------------Tipo de contacto------------------
+\subsection{Tipo de Contacto}\label{dd:TipoContacto}
+%\label{Datos_PlantaSeleccion}
+\subsubsection{Datos del Tipo de Contacto}
+\begin{lstlisting}
+	Tipo de Contacto = @ Id + Nombre+ Descripción.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{Id}
+		\begin{description}
+			\item [Significado:] Valor que identifica cada registro de un Tipo de Contacto de forma única.
+			\item [Valores:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{Nombre}
+		\begin{description}
+			\item [Significado:] Designación o denominación verbal que se le da a un registro de Tipo de Contacto para distinguirlo de otros registros.
+			\item [Composición:]{\begin{lstlisting}
+				1{Letra}50\end{lstlisting}}
+		\end{description}
+	\item \textbf{Descripción}
+		\begin{description}
+			\item [Significado:] Una explicación de forma generalizada acerca del registro agregado.
+			\item [Composición:]{\begin{lstlisting}
+				1{Caracter}250\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+%---------------DD: Area------------------
+\subsection{Area}
+\label{dd:Area}
+\subsubsection{Datos del Area}
+\begin{lstlisting}
+	Area = @ idArea + Datos Generales del Area.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{identificador}
+		\begin{description}
+			\item [Significado:] Número con el cual se identifica de forma única el área.
+			\item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}
+		\end{description}
+	\item \textbf{Datos Generales del Área}
+		\begin{description}
+			\item [Significado:] Atributos que conforman un área y con los que el usuario puede interactuar.
+			\item [Composición:] \ref{DatosGenerales_PS}
+		\end{description}
+\end{itemize}
+
+\subsubsection{Datos Generales del Área}
+\label{DatosGenerales_PS}
+\begin{lstlisting}
+	Datos Generales del Área = Nombre + Siglas + Descripción.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{Nombre}
+		\begin{description}
+			\item [Significado:] Es un texto con el cual el usuario va a representar de forma única un área.
+			\item [Valores:]{\begin{lstlisting}
+					  Letra + 0{Letra|Espacio}49
+					 \end{lstlisting}}
+		\end{description}
+	\item	\textbf{Siglas}
+		\begin{description}
+			\item [Significado:] Contiene las primeras letras en mayúsculas del nombre del área.
+			\item [Valores:]{\begin{lstlisting}
+Letra + 0{Letra}9\end{lstlisting}}
+		\end{description}
+	\item	\textbf{Descripción}
+		\begin{description}
+			\item [Significado:] Información que contiene las características mas importantes del área.
+			\item [Valores:]{\begin{lstlisting}
+Letra + 0{Caracter|Espacio|Signo}249\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+
+%---------------------DD: Programa de primer nivel-------------------------------------------
+\subsection{Programa de primer nivel (pp1n)}\label{dd:Pp1n}
+
+%\begin{lstlisting}
+%pp1n = @ identificador de pp1n+  nombre  + descripción + idetificador responsable+ identificador eje temático+identificador nivel+duración+fecha inicial+fecha final+tiempo deshabilitación+presupuesto solicitado+presupuesto asignado+presupuesto ejercido
+\begin{lstlisting}
+pp1n=@ id_programa + id_usuario + id_periodo + tx_siglas + nb_programa_1n + tx_resumen + st_programa_sectorial
+\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{idPrograma}
+			\begin{description}
+				\item [Significado:] Valor que identifica el pp1n de forma única.
+				\item [Valores:]{
+				  \begin{lstlisting} 
+				    1{Dígito}10 
+				  \end{lstlisting}}
+			\end{description}
+		\item \textbf{idUsuario}
+			\begin{description}
+			  \item [Significado:] Es el numero identificador del contacto de ese usuario.
+			  \item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}10
+                                         \end{lstlisting}} 
+			\end{description}
+		\item	\textbf{idPeriodo}
+		\begin{description}
+			\item [Significado:] Número con el cual se identifica de forma única al Periodo.
+			\item [Valores:]{\begin{lstlisting}
+					    1{Dígito}10
+					 \end{lstlisting}}
+		\end{description}
+		\item \textbf{txSiglas}
+			\begin{description}
+				\item [Significado:] Siglas del pp1n.
+				\item [Valores:]{
+				  \begin{lstlisting}
+				  Caracter + 1{Caracter|Espacio}255
+				  \end{lstlisting}}
+			\end{description}
+		\item \textbf{nbPrograma1n}
+			\begin{description}
+				\item [Significado:] Nombre del pp1n.
+				\item [Valores:]{
+				  \begin{lstlisting}
+				  Caracter + 1{Caracter|Espacio}255
+				  \end{lstlisting}}
+			\end{description}
+		\item \textbf{txResumen}
+			\begin{description}
+				\item [Significado:] Resumen del pp1n.
+				\item [Valores:]{
+				  \begin{lstlisting}
+				  Caracter + 1{Caracter|Espacio}500
+				  \end{lstlisting}}
+			\end{description}
+		\item \textbf{stProgramaSectorial}
+			\begin{description}
+				\item [Significado:] Valor que identifica si el pp1n es el programa sectorial.
+				\item [Valores:]{\begin{lstlisting}
+%                                            0{Status}1
+                                         \end{lstlisting}} 
+			\end{description}
+        %
+	\end{itemize}
+% 
+%---------------------DD: Proyecto-------------------------------------------
+\subsection{Proyecto}
+\label{dd:Proyecto}
+\begin{lstlisting}
+	datosProyecto = @ IdProyecto + IdEstado + Siglas + Nombre + Resumen + Objetivo General + Fecha Reregistro		
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{IdProyecto}
+		\begin{description}
+			\item[Significado:]Información unica perteneciente al Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					Integer + 1{Dígito}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{IdEstado}
+		\begin{description}
+			\item[Significado:]Información unica perteneciente a los tipos de Estado.
+			\item[Valores:]{\begin{lstlisting}
+					Integer + 1{Dígito}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Siglas}
+		\begin{description}
+			\item[Significado:]Iniciales del nombre del Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					Caracter + 1{Caracter}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Nombre}
+		\begin{description}
+			\item[Significado:]Nombre que identifica el Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Resumen}
+		\begin{description}
+			\item[Significado:]Breve descripción del Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}500\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Objetivo General}
+		\begin{description}
+			\item[Significado:]Objetivo al cual se quiere llegar.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+	\item	\textbf{Fecha registro}
+		\begin{description}
+			\item[Significado:]Fecha en el que se realizo el registro.
+			\item[Composición:]{\begin{lstlisting}
+					Fecha\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+\subsection{Proyecto Pre-registrado}
+\label{dd:ProyectoPreregistrado}
+%\begin{lstlisting}
+%	Datos Generales del  Proyecto = IdProyecto + IdResponsable + idTema + idEje + idPeriodo + IdEstado + txSiglas + nbNombre + txResumen + txObjetivoGeneral + txDatosPreregistro + fhReregistro + Duracion.
+%\end{lstlisting}
+
+% \begin{lstlisting}
+% 	Proyecto = @ idProyecto + idResponsable + idTema + idEje + idEstructura + idEstado + idPrograma + 
+% 	Datos Generales del  Proyecto = IdProyecto + IdResponsable + IdEstado + Siglas + Nombre + Resumen + Objetivo General + Datos Preregistro + Fecha %Preregistro + Duracion.
+%\end{lstlisting}
+
+\begin{lstlisting}
+	Proyecto = @ datosResponsable + datosProyecto + datosPeriodo
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{datosResponsable}\label{datosResponsable}
+		\begin{description}
+			\item[Significado:]Es la información del Usuario que fue asignado como responsable del Proyecto en caso de ser un Usuario registrado solo se deberá almacenar el idUsuario, en caso contrario los campos mencionados como \textit{``Valores''} deberán ser almacenados en un campo llamado Datos Preregistro a excepeción de; idUsuario e idTipoContacto. Para mayor información sobre la descrpción de cada campo consultar los datos de Usuario\ref{dd:Usuario}.
+			\item[Valores:]{\begin{lstlisting}
+					datosResponsable = @ Nombre + Apellido Paterno + Apellido Materno + Registro Federal de Contribuyentes + Area + Cargo + datosContacto
+					datosContacto = @ Contacto + idTipoContacto + principal + descripcion
+				\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{datosPeriodo}
+		\begin{description}
+			\item[Significado:]Información correspondiente al Periodo del Proyecto, para mayor información consultar los datos de Periodo\ref{Periodo}.
+			\item[Valores:]{\begin{lstlisting}
+					Periodo = @idPeriodo 
+				\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{datosProyecto}
+		\begin{description}
+			\item[Significado:]Información unica perteneciente al Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					datosProyecto = @ IdProyecto + IdEstado + Siglas + Nombre + Resumen + Objetivo General + Fecha Preregistro
+				\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{IdProyecto}
+		\begin{description}
+			\item[Significado:]Información unica perteneciente al Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					Integer + 1{Dígito}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{IdEstado}
+		\begin{description}
+			\item[Significado:]Información unica perteneciente a los tipos de Estado.
+			\item[Valores:]{\begin{lstlisting}
+					Integer + 1{Dígito}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Siglas}
+		\begin{description}
+			\item[Significado:]Iniciales del nombre del Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					Caracter + 1{Caracter}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Nombre}
+		\begin{description}
+			\item[Significado:]Nombre que identifica el Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Resumen}
+		\begin{description}
+			\item[Significado:]Breve descripción del Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}500\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Objetivo General}
+		\begin{description}
+			\item[Significado:]Objetivo al cual se quiere llegar.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Fecha Pre-registro}
+		\begin{description}
+			\item[Significado:]Fecha en el que se realizo el Pre-registro.
+			\item[Composición:]{\begin{lstlisting}
+					Fecha\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+%--------------------------Revisar Informacion de Proyecto-----------------------------------
+\subsection{Revisar Informacion de Proyecto}
+\label{dd:RevisarInformacionProyecto}
+
+\begin{lstlisting}
+	Proyecto = @ Siglas + Nombre + Resumen + Objetivo General + Periodo
+\end{lstlisting}
+\begin{itemize}
+
+	\item	\textbf{Siglas}
+		\begin{description}
+			\item[Significado:]Iniciales del nombre del Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					Caracter + 1{Caracter}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Nombre}
+		\begin{description}
+			\item[Significado:]Nombre que identifica el Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Resumen}
+		\begin{description}
+			\item[Significado:]Breve descripción del Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}500\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Objetivo General}
+		\begin{description}
+			\item[Significado:]Objetivo al cual se quiere llegar.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Periodo}
+		\begin{description}
+			\item[Significado:]Información correspondiente al Periodo del Proyecto, para mayor información consultar los datos de Periodo \ref{Periodo}.
+			\item[Valores:]{\begin{lstlisting}
+					Periodo = @idPeriodo 
+				\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+
+
+
+
+
+%--------------------------------------Datos Editables de Proyecto%-----------------------------------------
+
+\subsection{Datos editables de Proyecto}
+\label{dd:DatosEditablesProyecto}
+
+\begin{lstlisting}
+	Proyecto = @ Siglas + Nombre + Resumen + Objetivo General + Periodo
+\end{lstlisting}
+\begin{itemize}
+
+	\item	\textbf{Siglas}
+		\begin{description}
+			\item[Significado:]Iniciales del nombre del Proyecto.
+			\item[Valores:]{\begin{lstlisting}
+					Caracter + 1{Caracter}10\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Nombre}
+		\begin{description}
+			\item[Significado:]Nombre que identifica el Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Resumen}
+		\begin{description}
+			\item[Significado:]Breve descripción del Proyecto.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}500\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Objetivo General}
+		\begin{description}
+			\item[Significado:]Objetivo al cual se quiere llegar.
+			\item[Compuesto:]{\begin{lstlisting}
+					Caracter + 1{Caracter|Espacio}255\end{lstlisting}}
+		\end{description}
+
+	\item	\textbf{Periodo}
+		\begin{description}
+			\item[Significado:]Información correspondiente al Periodo del Proyecto, para mayor información consultar los datos de Periodo \ref{Periodo}.
+			\item[Valores:]{\begin{lstlisting}
+					Periodo = @idPeriodo 
+				\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+%---------------DD: Tema Transversal------------------
+\subsection{Tema Transversal}
+\label{dd:TemaTransversal}
+
+Tema transversal: Definen temas que se involucran con los ejes temáticos.
+\newline
+
+\subsubsection{Datos del Tema Transversal}
+\begin{lstlisting}
+	Tema Transversal = @ identificador + Nombre + Descripción.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{identificador}
+		\begin{description}
+			\item [Significado:] Valor que identifica el Tema Transversal de forma única.
+			\item [Valores:]{\begin{lstlisting}
+1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{Nombre}
+		\begin{description}
+			\item [Significado:] Nombre con el que se identifica al Tema Transvesal.
+			\item [Valores:]{\begin{lstlisting}
+Letra + 1{Letra|Espacio}254\end{lstlisting}}
+		\end{description}
+\item	\textbf{Descripción}
+		\begin{description}
+			\item [Significado:] Descripción del Tema Transversal, se indica cual es la finalidad del Tema Transversal.
+			\item [Valores:]{\begin{lstlisting}		             
+Caracter + 1{Caracter|Espacio|Signo}499\end{lstlisting}}
+
+		\end{description}
+\end{itemize}
+
+
+%--------------DD: Eje Temático------------------
+\subsection{Eje Temático}
+\label{dd:EjeTematico}
+\subsubsection{Datos del eje temático}
+\begin{lstlisting}
+	EjeTematico = @ idEjeTematico + Datos Generales del Eje Tematico.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{identificador}
+		\begin{description}
+			\item [Significado:] Número con el cual se identifica de forma única el área.
+			\item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}
+		\end{description}
+	\item \textbf{Datos Generales del EjeTematico}
+		\begin{description}
+			\item [Significado:] Atributos que conforman un área y con los que el usuario puede interactuar.
+			\item [Composición:] \ref{DatosGenerales_PS}
+		\end{description}
+\end{itemize}
+
+\subsubsection{Datos Generales del Eje Temático}
+\label{DatosGenerales_PS}
+\begin{lstlisting}
+	Datos Generales del Área = Nombre + Siglas + Descripción.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{Nombre}
+		\begin{description}
+			\item [Significado:] Es un texto con el cual el usuario va a representar de forma única un eje temático.
+			\item [Valores:]{\begin{lstlisting}
+Letra + 0{Letra|Espacio}249\end{lstlisting}}
+		\end{description}
+	\item	\textbf{Descripción}
+		\begin{description}
+			\item [Significado:] Información que contiene las características mas importantes del eje temático.
+			\item [Valores:]{\begin{lstlisting}
+Letra + 0{Caracter|Espacio|Signo}249\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+%---------------Nivel------------------
+\subsection{Nivel}
+\label{dd:Nivel}
+
+\subsubsection{Datos del Nivel}
+\begin{lstlisting}
+	Nivel = @ identificador + Posición + Datos editables de nivel.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{identificador}
+		\begin{description}
+			\item [Significado:] Valor que identifica el Nivel de forma única.
+			\item [Valores:]{\begin{lstlisting}
+1{Dígito}10\end{lstlisting}}
+		\end{description}
+\item	\textbf{Posición}
+		\begin{description}
+			\item [Significado: La profundidad del nivel].
+			\item [Valores:]{\begin{lstlisting}
+1{Dígito}10\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+\subsubsection{Datos editables de nivel}
+\label{dd:DatosEditablesNivel}
+
+\begin{lstlisting}
+	Datos editables de nivel = Nombre + Descripción.
+\end{lstlisting}
+\begin{itemize}
+	\item \textbf{Nombre}
+		\begin{description}
+			\item [Significado:] Nombre con el que se identifica al Nivel.
+			\item [Valores:]{\begin{lstlisting}
+Letra + 1{Letra|Espacio}254\end{lstlisting}}
+		\end{description}
+\item	\textbf{Descripción}
+		\begin{description}
+			\item [Significado:] Descripción del Nivel, se indica cual es la finalidad del Nivel.
+			\item [Valores:]{\begin{lstlisting}		             
+Caracter + 1{Caracter|Espacio|Signo}499\end{lstlisting}}
+
+		\end{description}
+\end{itemize}
+
+
+%--------------DD: Estructura------------------
+\subsection{Estructura}\label{dd:Estructura}
+\begin{lstlisting}
+Estructura = @ identificador de la estructura + identificador del programa + identificador del padre +  Datos estructura
+\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{identificador de estructura.}
+			\begin{description}
+				\item [Significado:] Valor que identifica la estructura de forma única.
+				\item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+		\item \textbf{Datos estructura.}\label{Datos_Estructura}
+			\begin{description}
+				\item [Significado:] Datos de la estructura.
+				\item [Valores:]{\begin{lstlisting}
+{Datos estructura}\end{lstlisting}}
+			\end{description}
+		\item \textbf{Identificador del programa}\label{Id_Porgrama}
+			\begin{description}
+				\item [Significado:] Identificador del programa al cual pertenece esta estructura. 
+				\item [Valores:]{ 
+				\begin{lstlisting}
+Caracter + 1{Caracter}254\end{lstlisting}}%checar si esq esta correcto esto
+			\end{description}
+		\item \textbf{Identificador del padre}\label{Id_Padre}
+			\begin{description}
+			\item [Significado:] Identificador de la estructura padre. 
+				\item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}
+			\end{description}
+	\end{itemize}
+
+% Estructura = @id + Datos_Estructura
+% Datos_Estructura = nombre + Datos_Editables_Estrutura
+% Datos_Editables_Estructura = descripcion + periodo;
+
+\subsection{Datos estructura}\label{dd:DatosEstructura}
+\begin{lstlisting}
+Estructura = @nombre + Datos editables estructura
+\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{Nombre.}\label{NombreEstructura}
+			\begin{description}
+				\item [Significado:] Nombre de la estructura.
+				\item [Valores:]{\begin{lstlisting}
+Caracter + 1{Caracter|Espacio}254\end{lstlisting}}
+			\end{description}
+		\item \textbf{Datos editables estructura}\label{DatosEditablesEstructura}
+			\begin{description}
+			\item [Significado:] Descripción de la estructura. 
+				\item [Valores:]{\begin{lstlisting}
+{Datos editables estructura}\end{lstlisting}}
+			\end{description}
+	\end{itemize}
+
+\subsection{Datos editables estructura}\label{dd:DatosEditablesEstructura}
+\begin{lstlisting}
+Estructura = @descripcion + Periodo
+\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{Descripcion}\label{Descripcion}
+			\begin{description}
+			\item [Significado:] Descripción de la estructura. 
+				\item [Valores:]{\begin{lstlisting}
+Caracter + 1{Caracter}254\end{lstlisting}}
+			\end{description}
+		\item \textbf{Periodo}\label{Periodo}
+			\begin{description}
+			\item [Significado:] Periodo asignado. 
+				\item [Valores:]{\begin{lstlisting}
+{Periodo}\end{lstlisting}}
+			\end{description}
+	\end{itemize}
+
+
+\subsubsection{Periodo}
+\label{Periodo}
+\begin{lstlisting}
+	Periodo = @idPeriodo + DuraciónPeriodo + FechaInicio + FechaFinal.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{idPeriodo}
+		\begin{description}
+			\item [Significado:] Número con el cual se identifica de forma única al Periodo.
+			\item [Valores:]{\begin{lstlisting}
+					    1{Dígito}10
+					 \end{lstlisting}}
+		\end{description}
+	\item	\textbf{DuraciónPeriodo}
+		\begin{description}
+			\item [Significado:] Es la duración en dias del Programa de primer nivel, Estructura o Proyecto.
+			\item [Valores:]{\begin{lstlisting}
+					    1{Dígito}10
+					 \end{lstlisting}}
+		\end{description}
+      \item	\textbf{FechaInicio}
+		\begin{description}
+			\item [Significado:] Es la fecha de inicio definida para un Programa de primer nivel, Estructura o Proyecto.
+			\item [Valores:]{ \begin{lstlisting} 
+					      Fecha 
+					  \end{lstlisting}}
+		\end{description}
+      \item	\textbf{FechaFinal}
+		\begin{description}
+			\item [Significado:] Es la fecha final definida para un Programa de primer nivel, Estructura o Proyecto.
+			\item [Valores:]{ \begin{lstlisting} 
+					      Fecha 
+					  \end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+
+
+
+%---------------Presupuestos------------------
+\subsection{Presupuesto}
+\label{dd:Presupuestos}
+\subsubsection{Datos de Presupuesto}
+\begin{lstlisting}
+	Presupuesto= @ idIndicadorFinanciero + idProyecto + DatosDeSolicitud + DatosDeEjercio + DatosDeAprobación .
+
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{idIndiicadorFinanciero}
+		\begin{description}
+			\item [Significado:] Valor que identifica al Indicador Financiero de forma única.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}3
+                                         \end{lstlisting}}
+		\end{description}
+	
+	\item	\textbf{idProyecto}
+		\begin{description}
+			\item [Significado:] Valor que identifica al proyecto al que se asocia el presupuesto.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito}3
+                                         \end{lstlisting}}
+		\end{description}
+	
+	
+	\item	\textbf{DatosDeSolicitud}
+		\begin{description}
+		 \item [Significado:] Descripción del presupuesto.
+		\item [Valores:] {\begin{lstlisting}
+		                    {DatosDeSolicitud}
+		                  \end{lstlisting}
+				}
+		\end{description}
+	\item	\textbf{DatosDeAprobación}
+		\begin{description}
+		 \item [Significado:] Descripción del presupuesto.
+		\item [Valores:] {\begin{lstlisting}
+		                    {DatosDeAprobación}
+		                  \end{lstlisting}
+				}
+		\end{description}
+
+
+        
+\end{itemize}
+
+
+
+
+%---------------Datos de Solicitud de Presupuesto------------------
+\subsection{Datos de Solicitud de Presupuesto}
+\label{dd:DEPresupuestos}
+\subsubsection{Datos de Solicitud de Presupuesto}
+\begin{lstlisting}
+	DatosDeSolicitud = FechaSolicitada + NumeroDeMontoSolicitado + NombreDeFuente.
+\end{lstlisting}
+\begin{itemize}
+
+        \item \textbf{FechaSolicitada}
+		\begin{description}
+			\item [Significado:] Fecha en la que se solicita el presupuesto.
+			\item [Valores:]{ \begin{lstlisting} 
+						Fecha 
+                                         \end{lstlisting}} 
+		\end{description}
+
+        \item \textbf{NumeroDeMontoSolicitado}
+		\begin{description}
+			\item [Significado:] Valor que indica el monto solicitado.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Dígito|.}20
+                                         \end{lstlisting}} 
+		\end{description}
+	\item \textbf{NombreDeFuente}
+		\begin{description}
+			\item [Significado:] Nombre de la insitución que aporta el presupuesto.
+			\item [Valores:]{\begin{lstlisting}
+                                            1{Caracter| espacio}255
+                                         \end{lstlisting}} 
+		\end{description}       
+
+\end{itemize}
+
+%---------------Datos de Aprobación de Presupuesto------------------
+\subsection{Datos de Aprobación de Presupuesto}
+\label{dd:DSPresupuestos}
+\subsubsection{Datos de Aprobación de Presupuesto}
+\begin{lstlisting}
+	DatosDeAprobación = FechaAprobada + NumeroDeMontoAprobado.
+\end{lstlisting}
+\begin{itemize}
+
+ \item \textbf{Fecha aprobada}
+		\begin{description}
+			\item [Significado:] Fecha en la que se aprueba el monto solicitado para el proyecto.
+			\item [Valores:]{\begin{lstlisting}
+                                         	Fecha
+                                         \end{lstlisting}} 
+		\end{description}
+
+        \item \textbf{Numero de monto aprobado}
+		\begin{description}
+			\item [Significado:] Valor que indica el monto aprobado.
+			\item [Valores:]{\begin{lstlisting}
+                                           1{Dígito|.}20
+                                         \end{lstlisting}} 
+		\end{description}
+\end{itemize}
+%---------------Restricción------------------
+\subsection{Restriccción}
+\label{dd:Restriccion}
+\subsubsection{Datos de la restricción}
+\begin{lstlisting}
+	Restriccion = @(idRegistro+idProyecto) + fechaRegistro + idRemitente + idDestinatario + descripcion.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{@(idRegistro+idproyecto)}
+		\begin{description}
+			\item [Significado:] Identificador de la restricciones.
+			\item [Valores:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{fechaRegistro}
+		\begin{description}
+			\item [Significado:] Fecha en la que se envia la reestriccion.
+			\item [Composición:]{\begin{lstlisting}
+				Fecha\end{lstlisting}}
+		\end{description}
+	\item \textbf{idRemitente}
+		\begin{description}
+			\item [Significado:] Identificador del coordinador que genera la reestriccion.
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{idDestinatario}
+		\begin{description}
+			\item [Significado:] Identificador del Gerente Encargado del proyecto.
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{descripcion}
+		\begin{description}
+			\item [Significado:] Breve explicacion del problema.
+			\item [Composición:]{\begin{lstlisting}
+				"Descripcion: "+1{Letras}113+"Solucion: "+1{Letras}116\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+%---------------Atención------------------
+\subsection{Turnar}\label{dd:Turnar}
+\subsubsection{Datos para turnar}
+\begin{lstlisting}
+	Atencion = @(idRegistro+idProyecto) + fechaRegistro + idRemitente + idDestinatario + descripcion.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{@(idRegistro+idProyecto)}
+		\begin{description}
+			\item [Significado:] Identificador de la restricciones.
+			\item [Valores:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{fechaRegistro}
+		\begin{description}
+			\item [Significado:] Fecha en la que se envia la reestriccion.
+			\item [Composición:]{\begin{lstlisting}
+				Fecha\end{lstlisting}}
+		\end{description}
+	\item \textbf{idRemitente}
+		\begin{description}
+			\item [Significado:] Identificador del coordinador que genera la reestriccion.
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{idDestinatario}
+		\begin{description}
+			\item [Significado:] Identificador del Gerente Encargado del proyecto.
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{descripcion}
+		\begin{description}
+			\item [Significado:] Descripción breve de la situación del proyecto para solicitar solución de una restricción.
+			\item [Composición:]{\begin{lstlisting}
+				1{Letras}250\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+%---------------Atención------------------
+\subsection{Atención}\label{dd:Atencion}
+\subsubsection{Datos de la atención}
+\begin{lstlisting}
+	Atencion = @(idRegistro+idProyecto) + fechaRegistro + idRemitente + idDestinatario + descripcion.
+\end{lstlisting}
+\begin{itemize}
+	\item	\textbf{@(idRegistro+idProyecto)}
+		\begin{description}
+			\item [Significado:] Identificador de la restricciones.
+			\item [Valores:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{fechaRegistro}
+		\begin{description}
+			\item [Significado:] Fecha en la que se envia la reestriccion.
+			\item [Composición:]{\begin{lstlisting}
+				Fecha\end{lstlisting}}
+		\end{description}
+	\item \textbf{idRemitente}
+		\begin{description}
+			\item [Significado:] Identificador del coordinador que genera la reestriccion.
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{idDestinatario}
+		\begin{description}
+			\item [Significado:] Identificador del Gerente Encargado del proyecto.
+			\item [Composición:]{\begin{lstlisting}
+				1{Dígito}10\end{lstlisting}}
+		\end{description}
+	\item \textbf{descripcion}
+		\begin{description}
+			\item [Significado:] Instrucciones detalladas para la solución de una restricción.
+			\item [Composición:]{\begin{lstlisting}
+				1{Letras}250\end{lstlisting}}
+		\end{description}
+\end{itemize}
+
+
+%--------------DD: Indicador Físico------------------
+\subsection{Indicador Físico}
+\label{dd:Indicador}
+\begin{lstlisting}
+Indicador = @ identificador del indicador físico + identificador de la acción + identificador del proyecto + identificador de la unidad + Datos del indicador. 
+\end{lstlisting}
+  \begin{itemize}
+    \item \textbf{Identificador de indicador.}
+      \begin{description}
+        \item [Significado:] Valor que identifica el indicador físico de forma única.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Identificador de la acción.}
+      \begin{description}
+        \item [Significado:] Valor que identifica la acción a la que pertenece el indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Identificador del proyecto.}
+      \begin{description}
+        \item [Significado:] Valor que identifica el proyecto al que pertenece el indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Datos del Indicador.}
+      \begin{description}
+        \item [Significado:] Descripción del indicador.
+        \item [Valores:]{\begin{lstlisting}
+{Datos Indicador}\end{lstlisting}}\end{description}
+\end{itemize}
+
+\subsection{Datos del Indicador}
+\label{dd:DatosIndicador}
+\begin{lstlisting}
+Indicador = Fecha del ultimo reporte + Datos editables del indicador.
+\end{lstlisting}
+  \begin{itemize}
+    \item \textbf{Fecha del ultimo reporte.}
+      \begin{description}
+        \item [Significado:] Valor que muestra la fecha del ultimo reporte de avance.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Datos Editables del indicador.}
+      \begin{description}
+        \item [Significado:] Descripción del indicador.
+        \item [Valores:]{\begin{lstlisting}
+{Datos Editables Indicador}\end{lstlisting}}\end{description}
+\end{itemize}
+
+\subsection{Datos Editables del Indicador}
+\label{dd:DatosEditablesIndicador}
+\begin{lstlisting}
+Indicador = Descripción + meta + peso + avance
+\end{lstlisting}
+  \begin{itemize}
+    \item \textbf{Descripción.}
+      \begin{description}
+        \item [Significado:] Se indica la finalidad del indicador.
+        \item [Valores:]{\begin{lstlisting}
+Caracter + 1{Caracter}254\end{lstlisting}}\end{description}
+
+    \item \textbf{Identificador de la unidad.}
+      \begin{description}
+        \item [Significado:] Valor que identifica la unidad a la que pertenece el indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Meta.}
+      \begin{description}
+        \item [Significado:] Valor que muestra la meta del indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Peso.}
+      \begin{description}
+        \item [Significado:] Valor que muestra el peso del indicador dentro de la acción.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Avance.}
+      \begin{description}
+        \item [Significado:] Valor que muestra el ultimo avance que se ha reportado.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+\end{itemize}
+
+
+%--------------DD: Indicador Físico------------------
+\subsection{Indicador Físico}
+\label{dd:Indicador}
+\begin{lstlisting}
+Indicador = @ identificador del indicador físico + identificador de la acción + identificador del proyecto + identificador de la unidad + Datos del indicador. 
+\end{lstlisting}
+  \begin{itemize}
+    \item \textbf{Identificador de indicador.}
+      \begin{description}
+        \item [Significado:] Valor que identifica el indicador físico de forma única.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Identificador de la acción.}
+      \begin{description}
+        \item [Significado:] Valor que identifica la acción a la que pertenece el indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Identificador del proyecto.}
+      \begin{description}
+        \item [Significado:] Valor que identifica el proyecto al que pertenece el indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Datos del Indicador.}
+      \begin{description}
+        \item [Significado:] Descripción del indicador.
+        \item [Valores:]{\begin{lstlisting}
+{Datos Indicador}\end{lstlisting}}\end{description}
+\end{itemize}
+
+\subsection{Datos del Indicador}
+\label{dd:DatosIndicador}
+\begin{lstlisting}
+Indicador = Fecha del ultimo reporte + Datos editables del indicador.
+\end{lstlisting}
+  \begin{itemize}
+    \item \textbf{Fecha del ultimo reporte.}
+      \begin{description}
+        \item [Significado:] Valor que muestra la fecha del ultimo reporte de avance.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Datos Editables del indicador.}
+      \begin{description}
+        \item [Significado:] Descripción del indicador.
+        \item [Valores:]{\begin{lstlisting}
+{Datos Editables Indicador}\end{lstlisting}}\end{description}
+\end{itemize}
+
+\subsection{Datos Editables del Indicador}
+\label{dd:DatosEditablesIndicador}
+\begin{lstlisting}
+Indicador = Descripción + meta + peso + avance
+\end{lstlisting}
+  \begin{itemize}
+    \item \textbf{Descripción.}
+      \begin{description}
+        \item [Significado:] Se indica la finalidad del indicador.
+        \item [Valores:]{\begin{lstlisting}
+Caracter + 1{Caracter}254\end{lstlisting}}\end{description}
+
+    \item \textbf{Identificador de la unidad.}
+      \begin{description}
+        \item [Significado:] Valor que identifica la unidad a la que pertenece el indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Meta.}
+      \begin{description}
+        \item [Significado:] Valor que muestra la meta del indicador.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Peso.}
+      \begin{description}
+        \item [Significado:] Valor que muestra el peso del indicador dentro de la acción.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{Avance.}
+      \begin{description}
+        \item [Significado:] Valor que muestra el ultimo avance que se ha reportado.
+        \item [Valores:]{\begin{lstlisting}
+1{Dígito}3\end{lstlisting}}\end{description}
+\end{itemize}
+
+\subsection{Indicador Financiero}
+\label{dd:IndicadorFinanciero}
+\begin{lstlisting}
+    Presupuesto aprobado = @(idIndicadorFinanciero+idProyecto) + nbFuente + fhSolicitado + nuMontoSolicitado + fhAprobado + nuMontoAprobado
+\end{lstlisting}
+ \begin{itemize}
+
+    \item \textbf{@(idIndicadorFinanciero+idProyecto)}
+      \begin{description}
+        \item [Significado:] Identificador del indicador financiero e identificador del proyecto al que pertenece.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{nbFuente}
+      \begin{description}
+        \item [Significado:] Nombre del quien se solicita el presupuesto.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{fhSolicitado}
+      \begin{description}
+        \item [Significado:] Fecha en que se solicito.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{nuMontoSolicitado}
+      \begin{description}
+        \item [Significado:] Monto solicitado.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{fhAprobado}
+      \begin{description}
+        \item [Significado:] Fecha de aprobación del monto aprobado.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+    
+    \item \textbf{nuMontoAprobado}
+      \begin{description}
+        \item [Significado:] Monto aprobado .
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+
+\end{itemize}
+
+\subsection{Avance Financiero}
+\label{dd:AvanceFinanciero}
+\begin{lstlisting}
+    Presupuesto aprobado = @(idAvance+idIndicadorFinanciero+idProyecto) + nbMonto + fhAvance
+\end{lstlisting}
+ \begin{itemize}
+
+    \item \textbf{@(idAvance+idIndicadorFinanciero+idProyecto)}
+      \begin{description}
+        \item [Significado:] Identificador del avance, identificador del indicador financiero al que pertenece y el identificador del proyecto al que pertenece.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3+1{Dígito}3+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{nbMonto}
+      \begin{description}
+        \item [Significado:] Cantidad de dinero gastado.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3.1{Dígito}3\end{lstlisting}}\end{description}
+ 
+    \item \textbf{fhAvance}
+      \begin{description}
+        \item [Significado:] Fecha en que se registro.
+        \item [Valores:]{\begin{lstlisting}
+	Fecha\end{lstlisting}}\end{description}
+
+\end{itemize}
+
+\subsection{Evidencia}
+\label{dd:Evidencia}
+\begin{lstlisting}
+    Evidencia = @(idEvidencia + idProyecto + idAcción + DatosEditablesEvidencia
+\end{lstlisting}
+ \begin{itemize}
+
+    \item \textbf{@idEvidencia}
+      \begin{description}
+        \item [Significado:] Valor que identifica a la evidencia de forma única.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{idProyecto}
+      \begin{description}
+        \item [Significado:] Identificador del proyecto al que se le asocia la evidencia.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3
+\end{lstlisting}}\end{description}
+ 
+\item \textbf{idAcción}
+      \begin{description}
+        \item [Significado:] Identificador de la acción a la que se la asocia la evidencia.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3
+\end{lstlisting}}\end{description}
+
+    \item \textbf{DatosEditablesEvidencia}
+      \begin{description}
+        \item [Significado:] Descripción de la evidencia.
+        \item [Valores:]{\begin{lstlisting}
+   {DatosEditablesEvidencia}
+\end{lstlisting}}\end{description}
+
+\end{itemize}
+
+\subsection{DatosEditablesEvidencia}
+\label{dd:Evidencia}
+\begin{lstlisting}
+    Evidencia = ContenidoDelArchivo + FechaGenerada + FechaDeRegistro + NombreEvidencia + DescripciónEvidencia + ClaveDocumental.
+\end{lstlisting}
+ \begin{itemize}
+  \item \textbf{DatosEditables}
+      \begin{description}
+        \item 
+      \end{description}
+\end{itemize}
+
+\subsection{DatosBloqueadosUnidad}
+\label{dd:Unidad}
+\begin{lstlisting}
+  Unidad = Id + Nombre + TipoUnidad + Descripción
+\end{lstlisting}
+
+ \begin{itemize}
+
+    \item \textbf{DatosBloqueados}
+      \begin{description}
+        \item [Significado:] Indica que el dato es de solo lectura.
+      \end{description}
+
+\end{itemize}
+
+\subsection{Datos Generales de un Proyecto}
+\label{dd:dgp}
+\begin{lstlisting}
+    DatosGeneralesProyecto = Siglas + Nombre + Resumen + ObjetivoGeneral + FechaRegistro + Estado
+\end{lstlisting}
+ \begin{itemize}
+
+    \item \textbf{Siglas}
+      \begin{description}
+        \item [Significado:] Siglas asignadas al proyecto.
+        \item [Valores:]{\begin{lstlisting}
+	1{Caracter}10\end{lstlisting}}\end{description}
+
+    \item \textbf{Nombre}
+      \begin{description}
+        \item [Significado:] Nombre que se le asigna al proyecto.
+        \item [Valores:]{\begin{lstlisting}
+	1{Caracter}255
+\end{lstlisting}}\end{description}
+ 
+\item \textbf{Resumen}
+      \begin{description}
+        \item [Significado:] Breve resumen acerca del proyecto.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}500
+\end{lstlisting}}\end{description}
+
+    \item \textbf{ObjetivoGeneral}
+      \begin{description}
+        \item [Significado:] Objetivo con el que se crea el proyecto.
+        \item [Valores:]{\begin{lstlisting}
+   1{Caracter}500
+\end{lstlisting}}\end{description}
+
+\item \textbf{FechaRegistro}
+      \begin{description}
+        \item [Significado:] Fecha en la que se registra el proyecto.
+        \item [Valores:]{\begin{lstlisting}
+   {Fecha}
+\end{lstlisting}}\end{description}
+
+\item \textbf{Estado}
+      \begin{description}
+        \item [Significado:] Estado en el que se encuentra el proyecto.
+        \item [Valores:]{\begin{lstlisting}
+   Integer + 1{Dígito}10
+\end{lstlisting}}\end{description}
+
+\end{itemize}
+
+\subsection{Presupuesto ejercido}
+\label{dd:PresupuestoEjercido}
+\begin{lstlisting}
+    PresupuestoEjercido = IdAvance + IdIndicadorFinanciero + IdProyecto + NumeroDeMonto + FechaAvance
+\end{lstlisting}
+ \begin{itemize}
+
+    \item \textbf{IdAvance}
+      \begin{description}
+        \item [Significado:] Identificador del avance al que pertenece el presupuesto ejercido.
+        \item [Valores:]{\begin{lstlisting}
+	1{Digito}10\end{lstlisting}}\end{description}
+
+    \item \textbf{IdIndicadorFinanciero}
+      \begin{description}
+        \item [Significado:] Identificador del indicador financiero (presupuesto asignado) a que pertenece el presupuesto ejercido .
+        \item [Valores:]{\begin{lstlisting}
+	1{Digito}10
+\end{lstlisting}}\end{description}
+ 
+\item \textbf{IdProyecto}
+      \begin{description}
+        \item [Significado:] Identificador del proyecto al que pertenece el presupuesto ejercido.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}10
+\end{lstlisting}}\end{description}
+
+    \item \textbf{NumeroDeMonto}
+      \begin{description}
+        \item [Significado:] Cantidad ejercida y registrada del presupuesto.
+        \item [Valores:]{\begin{lstlisting}
+   1{Figito}10
+\end{lstlisting}}\end{description}
+
+\item \textbf{FechaAvance}
+      \begin{description}
+        \item [Significado:] Fecha en la que se registra el presupuesto ejercido (avance financiero).
+        \item [Valores:]{\begin{lstlisting}
+   {Fecha}
+\end{lstlisting}}\end{description}
+
+\end{itemize}

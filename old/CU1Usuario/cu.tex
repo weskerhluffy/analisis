@@ -1,0 +1,297 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+
+\begin{UseCase}{CUA1}{Gestionar Usuarios}{Ofrece un mecanismo para Gestionar usuarios.}
+		\UCitem{Versión}{1.5}
+		\UCitem{Actor(es)}{Administrador}
+		\UCitem{Propósito}{Contar con un mecanismo que ayude a Gestionar los usuarios y sus datos que se tienen en el sistema.}
+		\UCitem{Resumen}{Se muestran los diferentes {\bf Usuarios} registrados con la posibilidad de agregar, modificar, eliminar y vizualizar.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Lista con los usuarios registrados y sus datos.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Vázquez Flores Jorge Aarón}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Administración}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Gestionar Usuarios} en el menú \IUref{IUMenuAdministrador}{Menú del Administrador}.
+		\UCpaso Busca los Usuarios registrados.\Trayref{A}\label{Paso:CUA1BuscaUsuarios}
+		\UCpaso Muestra en la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}el perfil, area y nombre completo de los usuarios registrados ordenados con flechas de navegación de pagina y las opciones para Buscar, Agregar un Usuario, Modificar los datos de un Usuario, Eliminar un Usuario y Visualizar los datos del Usuario.\UCExtensionPoint{CUA1.1}{Agregar Usuario.} \UCExtensionPoint{CUA1.2}{Modificar Usuario} \UCExtensionPoint{CUA1.3}{Eliminar Usuario} \UCExtensionPoint{CUA1.4}{Visualizar Usuario}  %\UCExtensionPoint{CU8}{Gestionar Avisos} 
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{No hay usuarios registrados.}{No se encuantran usuarios registrados en la base de datos.}
+			\UCpaso Se muestra el mensaje (MSG5) notificando al usuario que no se encontraron registros.\ref{MSG5}
+	\end{UCtrayectoriaA}
+
+%--------------------------------------------------------------- Agregar USUARIO
+	
+	\begin{UseCase}{CUA1.1}{Agregar Usuario}{El administrador agrega un nuevo Usuario.}
+			\UCitem{Versión}{1.5}
+			\UCitem{Actor(es)}{Administrador}
+			\UCitem{Propósito}{Agregar un nuevo Usuario.}
+			\UCitem{Resumen}{Se agrega un nuevo Usuario llenando los registros correspondientes.}
+			\UCitem{Entradas}{Ingresa los datos del Usuario \ref{dd:Usuario}.}
+			\UCitem{Salidas}{Mensaje de operación exitosa\ref{MSG4}.}
+			\UCitem{Precondiciones}{Debe existir almenos una área registrada, debe existir almenos telefono y correo electronico  registrados como Tipo de Contacto.}
+			\UCitem{Postcondiciones}{Nuevo Usuario agregado. El Registro de Usuario ahora está disponible para ser utilizado.}
+			\UCitem{Autor}{Vázquez Flores Jorge Aarón}%Sánchez Pérez Uriel Axel.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA1}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Agregar Nuevo Usuario} de la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+			\UCpaso Muestra la pantalla \IUref{IUAgregarUsuario}{Agregar Usuario}.
+			\UCpaso [\UCactor] Ingresa los datos del nuevo Usuario. \Trayref{A}
+			\UCpaso Busca los Contactos registrados para el Usuario especificado.\label{paso:CU2BuscarContactos}
+			\UCpaso Se despliegan en la pantalla los datos de los Contactos que actualmente tiene ese Usuario y las opciones de Agregar \IUref{IUAgregarContacto}{Agregar Contacto}, Modificar \IUref{IUModificarContacto}{Modificar  Contacto} ó Eliminar \IUref{IUEliminarContacto}{Eliminar Contacto} un Contacto.\UCExtensionPoint{CUA2.1}{Agregar Contacto} \UCExtensionPoint{CUA2.2}{Modificar Contacto} \UCExtensionPoint{CUA2.3}{Eliminar Contacto}\label{PECU2}
+
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumplan las reglas de negocio \BRref{RN2} \Trayref{C}
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos \Trayref{C}
+			\UCpaso Verifica que se cumplan las reglas de negocio \BRref{RN1} y \BRref{RN24}. \Trayref{D} \Trayref{E}
+			\UCpaso Registra el nuevo Usuario.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Regresa al paso 2 de \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar el Nuevo Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla anterior.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Falta llenar campos de Datos de Usuario}{No se han llenado todos los campos para completar el nuevo registro.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando que falta llenar campos de usuario.\ref{MSG1} 
+			\UCpaso Regresa a la pantalla \IUref{IUAgregarUsuario}{Agregar Usuario}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos del Usuario Incorrectos}{Los datos del Usuario no corresponden con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Regresa a la pantalla \IUref{IUAgregarUsuario}{Agregar Usuario}.
+	\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{D}{El Login \ref{dd:login} de Usuario ya se encuentra registrado}{El login del Nuevo Usuario que se desea agregar ya se encuentra registrado.}
+			\UCpaso Muestra el mensaje (MSG-3) indicando al Usuario que ya existe un registro con el mismo login.\ref{MSG3}
+			\UCpaso Regresa a la pantalla \IUref{IUAgregarUsuario}{Agregar Usuario}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{E}{Se debe seleccionar un Perfil de Usuario y un Área.}{El Usuario que se desea agregar no fúe asignado a un área y no se le asigno un Perfil de Usuario.}	
+			\UCpaso Notifica al actor mediante el mensaje (MSG-6) que debe seleccionar un valor para los campos Perfil de Usuario o Área.\ref{MSG6}
+		\end{UCtrayectoriaA}
+
+
+%----------------------------------------------------- Modificar
+
+	\begin{UseCase}{CUA1.2}{Modificar Usuario}{El Adiministrador modifica los datos de un Usuario registrado.}
+			\UCitem{Versión}{0.2}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Modificar los datos de un Usuario.}
+			\UCitem{Resumen}{Se muestra la información de un Usuario registrado para modificar sus datos.}
+			\UCitem{Entradas}{Identificador del Usuario seleccionado, datos del Usuario \ref{dd:Usuario}.}
+			\UCitem{Salidas}{Datos actuales del Usuario seleccionado \ref{dd:Usuario}.}
+			\UCitem{Precondiciones}{Que el Usuario que se desea modificar se encuentre registrado.}
+			\UCitem{Postcondiciones}{Se actualizan los datos del Usuario modificado.}
+			\UCitem{Autor}{Vázquez Flores Jorge Aarón}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA1}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} del Usuario a modificar de la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+			\UCpaso Muestra la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN20}. \Trayref{A} 
+			\UCpaso Busca los Contactos registrados para el Usuario especificado.\label{paso:CU2BuscarContactos}
+			\UCpaso Se despliegan en la pantalla los datos de los Contactos que actualmente tiene ese Usuario y las opciones de Agregar \IUref{IUAgregarContacto}{Agregar Contacto}, Modificar \IUref{IUModificarContacto}{Modificar  Contacto} ó Eliminar \IUref{IUEliminarContacto}{Eliminar Contacto} un Contacto.\UCExtensionPoint{CUA2.1}{Agregar Contacto} \UCExtensionPoint{CUA2.2}{Modificar Contacto} \UCExtensionPoint{CUA2.3}{Eliminar Contacto}\label{PECU2}
+
+     			\UCpaso [\UCactor] Modifica los datos del Usuario.\Trayref{B}\label{paso:CU1.2ModificaDatos}\UCExtensionPoint{CUA1.5}{Desactivar Usuario}\UCExtensionPoint{CUA1.6}{Reactivar Usuario}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}. \Trayref{C}
+			\UCpaso Revisa los datos de acuerdo al diccionario de datos. \Trayref{D}
+			\UCpaso Actualiza los datos del Usuario modificado.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Regresa al paso 2 de \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{No se pueden modificar los campos: Perfil de Usuario y Área.}{El Usuario que se desea modificar esta asociado con un proyecto.}	
+			\UCpaso Muestra la pantalla \IUref{IUModificarUsuario}{Modificar Usuario} con los campos Perfil Usuario y Área bloqueados.
+			\UCpaso Continúa en el paso \ref{paso:CU1.2ModificaDatos} del \UCref{CU1.2}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{B}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no modificar los datos del Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla anterior.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{C}{Falta llenar campos del Usuario}{No se han llenado todos los campos para completar el nuevo registro.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando los campos incompletos. \ref{MSG1}
+			\UCpaso Regresa a la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+		\end{UCtrayectoriaA}
+
+		 \begin{UCtrayectoriaA}{D}{Datos incorrectos}{Los datos ingresados del Usuario no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje MSG-2 Indicado al Usuario los datos incorrectos. \ref{MSG2}
+			\UCpaso Regresa a la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+		\end{UCtrayectoriaA}
+
+%-------------------------------------------------- Eliminar
+
+	\begin{UseCase}{CUA1.3}{Eliminar Usuario}{El usuario elimina un Usuario registrado no deseado.}
+			\UCitem{Versión}{0.2}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Eliminar un Usuario.}
+			\UCitem{Resumen}{Eliminar un Usuario desplegado por el sistema en la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}}
+			\UCitem{Entradas}{Identificador del Usuario seleccionado.}
+			\UCitem{Salidas}{Datos del Usuario a eliminar \ref{dd:Usuario}.}
+			\UCitem{Precondiciones}{Que exista el  registro del Usuario que se desea eliminar.}
+			\UCitem{Postcondiciones}{El Usuario se elimina del registro.}
+			\UCitem{Autor}{Vázquez Flores Jorge Aarón}%Sánchez Pérez Uriel Axel.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA1}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/eliminar.png}} del usuario a eliminar de la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+			\UCpaso Muestra la pantalla \IUref{IUEliminarUsuario}{Eliminar Usuario.}
+			\UCpaso Busca los Contactos registrados para el Usuario especificado.\label{paso:CU2BuscarContactos}
+			\UCpaso Se despliegan en la pantalla los datos de los Contactos que actualmente tiene ese Usuario.
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.\Trayref{A}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN19} \Trayref{B}
+			\UCpaso Elimina el Usuario seleccionado de los registros.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso 3 del \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar el Registro del Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{B}{Incumplimiento de la regla de negocio \BRref{RN19}.}{El usuario tiene un proyecto designado.}	
+			\UCpaso Muestra el mensaje (MSG-6A1) y notifica al Administrador la posibilidad de \textit{Desactivar al Usuario}.\ref{MSG-6A1}\UCExtensionPoint{CUA1.5}{Desactivar Usuario}
+			\UCpaso Regresa a la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+		\end{UCtrayectoriaA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%VISUALIZAR%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \begin{UseCase}{CUA1.4}{Visualizar Usuario}{Consultar los datos de un Usuario registrado.}
+      \UCitem{Versión}{1.0}
+      \UCitem{Actor(es)}{Administrador.}
+      \UCitem{Propósito}{Consultar todos los datos de un Usuario.}
+      \UCitem{Resumen}{Ver los todos los datos registrados de un Usuario. \IUref{IUGestUsuarios}{Géstionar Usuarios.}}
+      \UCitem{Entradas}{Identificador del Usuario seleccionado.}
+      \UCitem{Salidas}{Los datos del usuario \ref{dd:Usuario}.}
+      \UCitem{Precondiciones}{Que exista el registro del Usuario que se desea visualizar.}
+      \UCitem{Postcondiciones}{Ninguna.}
+      \UCitem{Autor}{Vázuez Flores Jorge Aarón}%Sánchez Pérez Uriel Axel.}
+      \UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+      \UCitem{Tipo}{Secundario. Viene del \UCref{CUA1}}
+      \UCitem{Módulo}{Administración}
+  \end{UseCase}
+
+  \begin{UCtrayectoria}{Principal}
+      \UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/ver.png}} en la parte inferior de la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+      \UCpaso Muestra la pantalla \IUref{IUVisualizarUsuario}{Consulta de Usuario.}
+	\UCpaso Busca los Contactos registrados para el Usuario especificado.\label{paso:CU2BuscarContactos}
+			\UCpaso Se despliegan en la pantalla los datos de los Contactos que actualmente tiene ese Usuario.
+
+      \UCpaso [\UCactor] Oprime el botón \IUbutton{OK}.
+      \UCpaso Continúa en el paso 3 del \UCref{CUA1}.
+  \end{UCtrayectoria}
+
+%===========================Desactivar Usuario==============================================================
+
+\begin{UseCase}{CUA1.5}{Desactivar Usuario}{Desactiva un Usuario del sistema.}
+		\UCitem{Versión}{1.2}
+		\UCitem{Actor(es)}{Administrador.}
+		\UCitem{Propósito}{Desactivar un Usuario impidiendole el ingreso al sistema.}
+		\UCitem{Resumen}{Desactiva un Usuario del sistema eliminando de su registro la contraseña correspondiente impidiendole el ingreso al sistema desde el login.}
+		\UCitem{Entradas}{Identificador del Usuario a Desactivar.}
+		\UCitem{Salidas}{Registro completo del Usuario a Desactivar \ref{dd:Usuario} y lista de Usuarios para reasignar el Trabajo.}
+		\UCitem{Precondiciones}{Que el Usuario que se desea desactivar se encuentre registrado..}
+		\UCitem{Postcondiciones}{Se elimina del registro la contraseña del Usuario.}
+		\UCitem{Autor}{Pérez Domínguez Alberto Michel}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Terciario. Viene del \UCref{CUA1.2} Modificar Usuario}
+		\UCitem{Módulo}{Administración}
+\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso [\UCactor]Desactiva la casilla del campo ``Activado`` de la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+			\UCpaso [\UCactor]Oprime el botón \IUbutton{Aceptar}.\Trayref{A}\label{Paso:aceptar}
+			\UCpaso Verifica la regla de negocio \BRref{RN19}.\Trayref{B}
+			\UCpaso Elimina el valor de la Contraseña correspondiente al Usuario seleccionado de los registros.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{Paso:CUA1BuscaUsuarios} del \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no Desactivar el Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.\label{cancelar}
+			\UCpaso Continua en el paso \ref{Paso:CUA1BuscaUsuarios} del \UCref{CUA1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Usuario con Trabajo asignado}{El Usuario que se pretende desactivar tiene trabajo asignado.}
+			\UCpaso Busca los Usuarios con el mismo perfil que el Usuario que se pretende desactivar y que esten activos.\Trayref{B2}
+			\UCpaso Muestra la pantalla emergente \IUref{IUReasignarTrabajo}{Reasignar Trabajo} con la lista de Usuarios activos.
+			\UCpaso Solicita al Administrador elija un nuevo Usuario al cual asignarle el trabajo asociado.
+			\UCpaso[\UCactor] Selecciona un Usuario de la lista.
+			\UCpaso Asocia el Usuario elegido con el trabajo del Usuario desactivado.
+			\UCpaso Continua en el paso \ref{Paso:aceptar} del \UCref{CUA1.5}.
+	\end{UCtrayectoriaA}
+
+
+	\begin{UCtrayectoriaA}{B2}{No hay Usuarios para asociar el trabajo.}{No se encuantrarón Usuarios con el mismo Perfil ni que se encuntren activos..}
+			\UCpaso Se muestra el mensaje (MSG5) notificando al usuario que no se encontraron registros.\ref{MSG5}
+			\UCpaso Continua en el paso \ref{cancelar} de la \Trayref{A}.
+	\end{UCtrayectoriaA}
+
+%===========================Activar Usuario==============================================================
+
+\begin{UseCase}{CUA1.6}{Activar Usuario}{Reactiva un Usuario del sistema.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Administrador.}
+		\UCitem{Propósito}{Reaactivar un Usuario y permitirle el ingreso al sistema.}
+		\UCitem{Resumen}{Reactiva un Usuario del sistema permitiendo agregar una contraseña.}
+		\UCitem{Entradas}{Identificador del Usuario a Reactivar.}
+		\UCitem{Salidas}{Registro completo del Usuario\ref{dd:Usuario} a Reactivar.}
+		\UCitem{Precondiciones}{Que el Usuario que se desea Reactivar se encuentre registrado.}
+		\UCitem{Postcondiciones}{Se agrega la contraseña del Usuario al registro.}
+		\UCitem{Autor}{Pérez Domínguez Alberto Michel}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Terciario. Viene del \UCref{CUA1.2} Modificar Usuario}
+		\UCitem{Módulo}{Administración}
+\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso [\UCactor]Activa la casilla del campo ``Activado`` de la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+			\UCpaso [\UCactor]Oprime el botón \IUbutton{Aceptar}.\Trayref{A}
+			\UCpaso Asigna el valor de la Contraseña al registro del Usuario.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{Paso:CUA1BuscaUsuarios} del \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no Desactivar el Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.\label{cancelar}
+			\UCpaso Continua en el paso \ref{Paso:CUA1BuscaUsuarios} del \UCref{CUA1}.
+	\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

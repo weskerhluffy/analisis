@@ -1,0 +1,37 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+% 
+%========Aqui se describen los casos de uso que se derivan de el caso de uso CU2.1.3 Revisar seguimiento de proyecto
+
+%--------- Atender restricción en el proyecto
+	\begin{UseCase}{CUD1.1.4.1}{Atender restricción.}{Permite enviar instrucciones al coordinador, en respuesta a una restricción, con opción para habilitar la edición del proyecto.}
+		\UCitem{Versión}{1}
+		\UCitem{Actor(es)}{Secretario.}
+		\UCitem{Propósito}{Permitir al secretario conocer las restricciones del proyecto, permitirle enviar instrucciones al coordinador y habilitar la edición de un proyecto.}
+		\UCitem{Resumen}{El secretario evaluara las restricciones las restricciones del proyecto, dara instrucciones para solucionarlas y habilitar la edición del proyecto.}
+		\UCitem{Entradas}{Instrucciones para la solución de la restricción y/o la habilitacion de la edición del proyecto.}
+		\UCitem{Salidas}{Mensaje de confirmación.\ref{MSG5}}
+		\UCitem{Precondiciones}{El proyecto debe estar en ejecución.}
+		\UCitem{Postcondiciones}{Se registra las instrucciones para la solución a la restriccion y el estado de edición del proyecto.}
+		\UCitem{Autor}{Torres Govea Miguel Angel}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CUD1.1.4}.}
+		\UCitem{Módulo}{Secretaría.}
+	\end{UseCase}
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Da clic en la opción de monitorear proyecto.
+		\UCpaso Busca los mensajes de o hacia el director \BRref{Brx}{Mensajes visibles a usuario} y los encadena por asunto \BRref{Brx}{Encadenamiento por proyecto, referencia y tipo de restricciones.}. 
+		\UCpaso Muestra la pantalla \IUref{IUConsultaBitacoraDirector}{Consulta a la bitacora del proyecto, vista del secretario.}
+		\UCpaso[\UCactor] Da clic en la opcion de atender para la restricción que se atendera.
+		\UCpaso Registra la atención.
+		\UCpaso Muestra mensaje de operacion exitosa.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no registrar la restricción.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Actualiza la pantalla removiendo la restricción ha agregar, no la registra y muestra . \IUref{IUConsultaBitacoraDirector}{Consulta a la bitacora del proyecto, vista
+del director.}
+	\end{UCtrayectoriaA}

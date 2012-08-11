@@ -1,0 +1,34 @@
+%-------------------------Registrar Proyecto
+	\begin{UseCase}{CU2.1.1}{Revisar Informacion de Proyecto}{Revisar la informacion de un Proyecto asociado a un Coordinador.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Coordinador, Gerente}
+		\UCitem{Propósito}{Revisar la informacion de un Proyecto registrado.}
+		\UCitem{Resumen}{Se muestra toda la informacion del proyecto, datos de responsable, datos de proyecto, asi como la informacion de su alineacion.}
+		\UCitem{Entradas}{Ninguno.}
+		\UCitem{Salidas}{Informacion de Proyecto \ref{dd:RevisarInformacionProyecto} .}
+		\UCitem{Precondiciones}{Se presentan las siguientes precondiciones:
+					\begin{itemize}
+					 \item Que exista un Proyecto registrado.
+					\end{itemize}
+
+}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Adrian Martinez}
+		\UCitem{Referencias}{SIDAM-BESP-P1}
+		\UCitem{Tipo}{Secundario. Viene del CU XXX}
+		\UCitem{Módulo}{Coordinación}	
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Elije el Proyecto del menu \textit{MENU DE DONDE ELIJE ESTA COSA!!!}.
+			\UCpaso Obtiene los datos del Proyecto seleccionado.
+			\UCpaso Obtiene las rutas de las alineaciones con los elementos EP1N. 
+			\UCpaso Muestra la pantalla \IUref{IURevisarInformacionProyecto}{Revisar Informacion de Proyecto} con la informacion obtenida. \label{paso:CU2.1.1MuestraInformacion}.
+	\end{UCtrayectoria}
+
+	\subsection{Puntos de Extensión}
+	\UCEPdef{Editar Datos de Proyecto}
+	{El actor decide modificar los datos actuales del Proyecto.}
+	{\ref{paso:CU2.1.1MuestraInformacion}}
+	{\UCref{CU2.1.1}}
+%-------------------------------------- TERMINA descripción del caso de uso.

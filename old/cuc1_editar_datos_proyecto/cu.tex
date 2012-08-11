@@ -1,0 +1,26 @@
+%-------------------------------------- CU2 planeacion
+
+  \begin{UseCase}{CUC2}{Planeación}{Muestra las acciones del proyecto, los presupuestos registrados, y enviar proyecto para su revision.}
+    \UCitem{Versión}{1.0}
+    \UCitem{Actor(es)}{Coordinador.}
+    \UCitem{Propósito}{Gestionar las acciones y los presupuestos del proyecto y envía proyecto para revisión.}
+    \UCitem{Resumen}{Agrupa las funcionalidades de gestión de información relacionada con los proyectos.}
+    \UCitem{Entradas}{Ninguna.}
+    \UCitem{Salidas}{Ninguna}
+    \UCitem{Precondiciones}{Al menos debe haber un proyecto registrado.}
+    \UCitem{Postcondiciones}{Ninguna.}
+    \UCitem{Autor}{Pedro Hernandez}
+    \UCitem{Referencias}{CU-P2-121111}
+    \UCitem{Tipo}{Secundario. Viene del caso de uso \UCref{CU2.1}}
+    \UCitem{Módulo}{Coordinacion}
+  \end{UseCase}
+  \begin{UCtrayectoria}{Principal}
+    \UCpaso[\UCactor] Selecciona la opción \IUbutton{Planeacion} de la pantalla \IUref{IUMenuCoordinador}{Menú del Coordinador}.
+    \UCpaso Busca los Proyectos del Usuario.\Trayref{A}
+    \UCpaso Muestra la pantalla \IUref{Planeacion}{Planeacion} donde se despliegan los datos generales de los Proyectos y las opciones para su gestión.
+  \end{UCtrayectoria}
+
+  \begin{UCtrayectoriaA}{A}{Resultado de busqueda vacía}{No se encontraron registros.}
+    \UCpaso Muestra mensaje (MSG-5) indicando que no se encontraron Proyectos.\ref{MSG5}
+  \end{UCtrayectoriaA}
+

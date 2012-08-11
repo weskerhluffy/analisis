@@ -1,0 +1,34 @@
+\subsection{Pantalla: Agregar Acción}
+
+\subsubsection{Objetivo}
+Permite al agregar una acción, ver figura~\ref{IUAgregarAccion}. Viene de Gestionar Acciones ~\ref{IUGestAccion}.
+
+\IUfig[0.6]{cuc2-2-1acciones/agregarAccion.png}{IUAgregarAccion}{Agregar Accion.}
+
+\subsubsection{Salidas}
+\begin{itemize}
+ \item Se muestra el mensaje de confirmación\ref{MSG4}.
+ \end{itemize}
+
+\subsubsection{Entradas}
+Datos Acción \ref{dd:Nivel}.
+\begin{itemize}
+ \item Nombre de la Acción, identifica la acción de forma única.
+ \item Descripción, es una serie de caracteres que permite al usuario escribir las caracteristicas de la acción.
+ \item Duración, es un entero que indica la cantidad de tiempo que durará la acción
+ \item Fecha inicio, indica la fecha en la que inicia la acción
+ \item Fecha fin, indica la fecha en la que culmina la acción
+
+\end{itemize}
+
+\subsection{Controles}
+\begin{itemize}
+ \item \textit{ComboBox} para determinar el tiempo de la duración puede ser días, semanas, etc.
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Da de alta el registro del sistema siempre y cuando los datos sean correctos. De lo contrario el sistema mostrará los mensajes 1 \ref{MSG1} o 2 \ref{MSG2}.
+ \item \IUbutton{Cancelar} Cancela la operación. Lleva a la pantalla \IUref{IUGestAcciones}{Gestionar Acciones}
+\end{itemize}
+

@@ -1,0 +1,55 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+	\begin{UseCase}{CU2.1.2}{Revisar Avances de un Proyecto}{Permite ver las acciones registradas de un proyecto, el avance de las acciones de un proyecto, los presupuestos solicitados, aprobados y ejercidos en el proyecto.}
+		\UCitem{Versión}{3.0}
+		%\UCitem{Estado}{Finalizado}
+		\UCitem{Actor(es)}{Coordinador}
+		\UCitem{Propósito}{Contar con un mecanismo que ayude a revisar los avances de un proyecto.}
+		\UCitem{Resumen}{Se muestran los datos de las acciones de un proyecto, su avance y presupuestos.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Datos del proyecto seleccionado.}
+		\UCitem{Precondiciones}{\begin{itemize}
+						\item Que exista al menos un proyecto registrado.
+						\item Que se haya obtenido el perfil de Coordinador.
+						\item Que se halla pasado pasado por \UCref{CU2.1}.
+					\end{itemize}
+  					}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Pérez Vargas Roberto}
+		\UCitem{Referencias}{CU-P2-061011}
+		\UCitem{Tipo}{Secundario. Viene de \UCref{CU2.1}}
+		\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Revisar Avances de Proyecto} del menú \IUref{IURevisarAvancesProyecto}{Menú Coordinador}.\Trayref{A}%TODO cambiar la referencia a la pantalla Menu del coordinador
+		\UCpaso Busca las Acciones registradas al Proyecto seleccionado.
+		\UCpaso Muestra en la pantalla \IUref{IURevisarAvancesProyecto}{Revisar Avances de proyecto}. los datos de las acciones registradas en el proyecto, su correspondiente diagrama de gantt y los presupuestos  que se le han asignado.
+		\UCpaso Muestra los botones \IUbutton{Visualizar avances }, \IUbutton{Indicadores}, \IUbutton{Editar} y \IUbutton{Cancelar} \Trayref{B} \UCExtensionPoint{CUC5}{Registrar Ejercicio de Presupuesto} \UCExtensionPoint{CUC6}{Reportar Avance del Proyecto} \UCExtensionPoint{CUC2.1.2.1}{Revisar Reportes de Avances de un Poyecto} \UCExtensionPoint{CUC8}{Cerrar Proyecto}
+
+%\UCExtensionPoint{CUC2.2.1}{Gestionar Acciones} \UCExtensionPoint{CUC2.2.1.4}{Gestionar Indicadores Físicos}	
+
+		%\UCpaso Muestra en la pantalla \IUref{IURevisarAvancesProyecto}{Revisar Avances del Proyecto} los datos del proyecto seleccionado con la opción \UIref{}{Indicadores} y \UIref{}{Editar} activadas.\Trayref{B} \UCExtensionPoint{CUC4}{Registrar Aprobación de Presupuesto.} \UCExtensionPoint{CUC5}{Registrar Ejercicio de Presupuesto} \UCExtensionPoint{CUC6}{Reportar Avance del Proyecto} \UCExtensionPoint{CUC2.1.2.1}{Revisar Reportes de Avances de un Poyecto} \UCExtensionPoint{CUC8}{Cerrar Proyecto}
+		%%%%%%%%%%%%%%%%%%%%%%Las referencias de CU anteriores se colocaron en base a la imagen ``analisis/images/CUcoordinador.png
+	\end{UCtrayectoria}
+	
+		\begin{UCtrayectoriaA}{A}{No hay proyectos registrados.}{No se encuentran proyectos registrados.}
+			\UCpaso Se muestra el mensaje (MSG5) notificando al usuario que no se encontraron registros.\ref{MSG5}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla \IUref{IURevisarAvancesProyecto}{Menú Coordinador}
+		\end{UCtrayectoriaA}
+
+
+		\begin{UCtrayectoriaA}{B}{Cancelar operación}{El Coordinador decide cancelar la operación}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla \IUref{IURevisarAvancesProyecto}{Menú Coordinador}
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

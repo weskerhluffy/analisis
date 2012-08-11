@@ -1,0 +1,39 @@
+
+	\begin{UseCase}{CUC6}{Reportar avance del proyecto}{Reportar avance de uno o varios indicadores de una accion.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Coordinador.}
+		\UCitem{Propósito}{Reportar avance de una accion.}
+		\UCitem{Resumen}{Se muestran los indicadores de la accion. \ref{dd:DatosIndicador}}
+		\UCitem{Entradas}{La seleccion de los indicadores a los que se modificara el avance y su avance. }
+		\UCitem{Salidas}{Mensaje \ref{MSG_CUC6}.}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Debe existir al menos un indicador cuyo avance sea menor a la meta.
+			\end{itemize}
+		 }
+		\UCitem{Postcondiciones}{Se actualizan los avances de los indicadores.}
+		\UCitem{Autor}{Ernesto Alvarado.}
+		\UCitem{Referencias}{}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CU2.1.2}}
+		\UCitem{Módulo}{Coordinación}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Reportar avance} en la interfaz \IUref{IUEstructura}{Revisar avances}.
+		\UCpaso Muestra la pantalla \IUref{IUReportarAvances}{Reportar avance} \label{paso:CU6reportarAvanceIndicador}. 
+		\UCpaso[\UCactor] El usuario selecciona los indicadores que desee modificar. \Trayref{A}
+		\UCpaso[\UCactor] El usuario introduce el avance en los indicadores que desee modificar. 
+		\UCpaso Confirma que desea modificar los indicadores. 
+		\UCpaso Valida la \BRref{RN71}. \Trayref{B}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar}{No desea modificar la estructura seleccionada.}
+		\UCpaso[\UCactor] Indica que no desea continuar con el CU.
+		\UCpaso Regresa al paso 1 del \UCref{CU2.1.2}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{No se reporto avance en algún indicador.}{El usuario no reporto ningún avance.}
+		\UCpaso Muestra el mensaje (MSG-RN-71).\ref{MSG_RN71}.
+		\UCpaso Regresa al paso \ref{paso:CU6reportarAvanceIndicador} de \UCref{CUC6}. 
+	\end{UCtrayectoriaA}
+

@@ -1,0 +1,29 @@
+\subsection{Pantalla: Modificar Tema Transversal}
+
+\subsubsection{Objetivo}
+Permite al usuario modificar la información correspondiente a un Tema Transversal seleccionado, ver figura ~\ref{IUModificarTemaTransversal}. Viene de Gestionar Temas Transversales ~\ref{IUGestTemasTransversales}.
+
+\IUfig[0.6]{CUG2/modificarTemaTransversal.png}{IUModificarTemaTransversal}{Modificar Tema Transversal.}	
+
+\subsubsection{Entradas}
+Datos Tema Transversal \ref{dd:TemaTransversal}. Se puede modificar la descripción.
+\begin{itemize}
+\item Nombre del Tema Transversal.
+\item Descripción del Tema Transversal.
+\end{itemize}
+
+\subsubsection{Salidas}
+Se muestran los datos actuales del Tema Transversal que se desea modificar.
+Se muestra el mensaje \ref{MSG4}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Modifica el registro siempre y cuando los datos sean correctos. De lo contrario el sistema mostrará el mensaje \ref{MSG1} O \ref{MSG2}.
+ \item \IUbutton{Cancelar} Cancela la operación. Lleva a la pantalla \IUref{IUGestTiposAviso}{Gestionar Tipos de Aviso}
+
+\end{itemize}
+
+\subsubsection{Mensajes}
+\begin{itemize}
+ \item MSG1: Debe ingresar todos los datos.
+\end{itemize}

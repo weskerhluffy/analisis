@@ -1,0 +1,35 @@
+% Paquete: cambiso.sty
+
+\usepackage{requerimientos}
+
+
+
+\newcommand{\actualizar}{Actualizar con base a especificación.}
+\newcommand{\eliminar}{Eliminar a partir de esta iteración.}
+\newcommand{\programar}{Programar para una iteración posterior.}
+\newcommand{\controlar}{Mantener este elemento sin cambios.}
+\newcommand{\reemplazar}[1]{Este requerimiento cambia por {\bf #1}.}
+
+% Definir un elemento para la tabla de cambios. Usar en el ambiente cambios
+% Sintaxis: \PFCitem{ID}{TIPO-DE-CAMBIO}{MODULO o CASO-DE-USO} 
+% ver TIPOS DE CAMBIO para mas información.
+% Ejemplo: \PFCitem{PFC1}{\actualizar}{CU7 Registrar cambio}
+\newcommand{\PFCitem}[3]{\par{#1} & {#2} & {#3} \\ \hline}%& {#4} \\ \hline}
+
+% Tabla para concetrar los cambios a realziar
+\newenvironment{cambios}[1][tblReqColor]
+{%
+	\arrayrulecolor{#1}%
+	\par\begin{longtable}{| p{.07\textwidth} | p{.2\textwidth} | p{.65\textwidth} |}%
+		\arrayrulecolor{#1}%
+		\hline%
+		\rowcolor{#1}%
+		\multicolumn{3}{|c|}{\bf\color{#1}Cambios al prototipo}\\%
+		\arrayrulecolor{white}%
+		\rowcolor{#1}%
+		\FRitem{\color{white}\bf Id}{\color{white}\bf CU}{\color{white}\bf Descripción}{\color{white}\bf Prob.}\endhead%
+		\arrayrulecolor{#1}%
+}{%
+	\end{longtable} %
+	\arrayrulecolor{black} %
+}

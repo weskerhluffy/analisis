@@ -1,0 +1,112 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+
+\begin{UseCase}{CUE2}{Consultar Estudios}{Ofrece un mecanismo para consultar los estudios por tema transversal o por eje temático.}
+		\UCitem{Versión}{1.5}
+		\UCitem{Actor(es)}{Ciudadano}
+		\UCitem{Propósito}{Contar con un mecanismo que permita consultar los estudios.}
+		\UCitem{Resumen}{Se muestran los diferentes {\bf Estudios} registrados con la posibilidad de consultarlos por tematransversal o por eje temático.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Lista con los estudios registrados.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Vázquez Flores Jorge Aarón}
+		\UCitem{Referencias}{Ninguna}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Consulta Ciudadana}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Consultar Estudios} en el menú \IUref{IUMenuCiudadano}{Menú del Ciudadano}.
+		\UCpaso Busca los Estudios registrados.\Trayref{A}\label{Paso:CUE2BuscaEstudios}
+		\UCpaso Muestra en la pantalla \IUref{IUConsultarEstudios}{Consultar Estudios.} los estudios registrados con las opciones para Consultar Estudios por Tema Transversal o por Eje Temático\UCExtensionPoint{CUE2.1}{Consultar Estudio por Tema Transversal} \UCExtensionPoint{CUE2.2}{Consultar Estudio por Eje Temático}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{No hay estudios registrados.}{No se encuantran estudios registrados en la base de datos.}
+			\UCpaso Se muestra el mensaje (MSG5) notificando al usuario que no se encontraron registros.\ref{MSG5}
+	\end{UCtrayectoriaA}
+
+%--------------------------------------------------------------- Consultar Estudio por Tema Transversal
+	
+	\begin{UseCase}{CUE2.1}{Consultar Estudio por Tema Transversal}{El ciudadano consulta un estudio Consultar por Tema Transversal.}
+			\UCitem{Versión}{1.5}
+			\UCitem{Actor(es)}{Ciudadano}
+			\UCitem{Propósito}{Consultar el estudio seleccionado por Tema Transversal.}
+			\UCitem{Resumen}{Se muestra la informacion del estudio seleccionado por Tema Transversal.}			
+			\UCitem{Salidas}{La información del estudio seleccionado.}
+			\UCitem{Precondiciones}{Debe existir almenos un estudio registrado.}
+			\UCitem{Postcondiciones}{Ninguna.}
+			\UCitem{Autor}{Vázquez Flores Jorge Aarón}
+			\UCitem{Referencias}{Ninguna}
+			\UCitem{Tipo}{Secundario. Viene del}
+			\UCitem{Módulo}{Consulta Ciudadana}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Consultar por Tema Transversal} de la pantalla \IUref{IUMenuCiudadano}{Géstionar Usuarios.}.
+			\UCpaso Muestra la pantalla \IUref{IUConsultarPorTema}{Consulta por Tema Transversal}.
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumplan las reglas de negocio \BRref{RN2} 
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos 
+			\UCpaso Verifica que se cumplan las reglas de negocio \BRref{RN1} y \BRref{RN24}.  \Trayref{E}
+			\UCpaso Registra el nuevo Usuario.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Regresa al paso 2 de \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar el Nuevo Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla anterior.
+	\end{UCtrayectoriaA}
+
+
+
+
+%----------------------------------------------------- Consultar Estudio por Eje Tematico
+
+	\begin{UseCase}{CUE2.2}{Consultar Estudio por Eje Temático}{El ciudadano consulta un estudio Consultar por Eje Temático.}
+			\UCitem{Versión}{0.2}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Modificar los datos de un Usuario.}
+			\UCitem{Resumen}{Se muestra la información de un Usuario registrado para modificar sus datos.}
+			\UCitem{Entradas}{Identificador del Usuario seleccionado, datos del Usuario \ref{dd:Usuario}.}
+			\UCitem{Salidas}{Datos actuales del Usuario seleccionado \ref{dd:Usuario}.}
+			\UCitem{Precondiciones}{Que el Usuario que se desea modificar se encuentre registrado.}
+			\UCitem{Postcondiciones}{Se actualizan los datos del Usuario modificado.}
+			\UCitem{Autor}{Vázquez Flores Jorge Aarón}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA1}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} del Usuario a modificar de la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+			\UCpaso Muestra la pantalla \IUref{IUModificarUsuario}{Modificar Usuario}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN20}. \Trayref{A} 
+     			\UCpaso [\UCactor] Modifica los datos del Usuario.
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}.
+			\UCpaso Revisa los datos de acuerdo al diccionario de datos.
+			\UCpaso Actualiza los datos del Usuario modificado.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Regresa al paso 2 de \UCref{CUA1}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar el Nuevo Usuario.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla anterior.
+	\end{UCtrayectoriaA}
+

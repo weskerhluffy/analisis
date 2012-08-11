@@ -1,0 +1,37 @@
+\subsection{Pantalla: Consultar bitacora coordinador}
+
+\subsubsection{Objetivo}
+  Mostrar los mensajes acerca de restricciones del proyecto de o hacia el coordinador y permitir registrar restricciones al proyecto.
+
+\subsubsection{Diseño}
+\IUfig[0.8]{CUC2/consultaBitacoraCoordinador.png}{IUConsultaBitacoraCoordinador}{Consulta bitacora, vista del coordinador.}
+\IUfig[0.8]{CUC2/consutlaBitacoraCoordinador_registraRestriccion.png}{IURegistraRestriccionBitacoraCoordinador}{Registra restricción en la bitacora, vista del coordinador.}
+
+\subsubsection{Salidas}
+  En esta pantalla se muestran los mensajes entre el coordinador con los demas usuarios agrupados por asunto y estan ordenados de forma descendente con respecto a la fecha de los asuntos.
+  Para la vista se usara un acordeon para expandir/contrare los mensajes de cada asunto.
+
+  Tipos de mensajes
+  
+  Describir orden: Primero las gestiones y luego los avisos. Las gestiones se ordenan por estatus, primero las turnadas, luego las que estan pendientes y por ultimas las que estan atendidas. Al interior cada una se ordenara por fecha de ultima atencion descendente.
+
+  Los avisos se ordenan por fecha en orden descendente.
+
+\subsubsection{Controles}
+\begin{itemize}
+ \item Expandir y contraer mensajes: Esta opción permite al coordinador ver a detalle los datos de la restricción u ocultarlos para poder ver otras restricciones.
+\end{itemize}
+
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Registrar Restricción}: El sistema actualizara la pantalla \IUref{IUConsultaBitacoraCoordinador}{Consulta bitacora, vista del coordinador.} para poder registrar los datos de la restricción.
+ \item \IUbutton{Registrar} El sistema actualizara la pantalla \IUref{IURegistraRestriccionBitacoraCoordinador}{Registra restricción en la bitacora, vista del coordinador.} para poder registrar la restricción siempre que los campos esten completos y mostrará el MSG4. En otro caso el sistema mostrará el MSG2 (por la regla \BRref{RN1})). 
+ \item \IUbutton{Cancelar}: El sistema actualizara la pantalla \IUref{IURegistraRestriccionBitacoraCoordinador}{Registra restricción en la bitacora, vista del coordinador.} para eliminar los campos de registrar restriccion y no registrarla.
+\end{itemize}
+
+\subsubsection{Mensajes}
+\begin{itemize}
+  \item MSG2: Debe ingresar todos los datos.
+  \item MSG4: El registro se ha realizado exitosamente.
+\end{itemize}

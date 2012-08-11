@@ -1,0 +1,40 @@
+\subsection{Pantalla: Consultar bitacora gerente}
+
+\subsubsection{Objetivo}
+  Mostrar los mensajes acerca de restricciones del proyecto de o hacia el gerente y permitir atender restricciones o turnar atencion a restricciones.
+
+\subsubsection{Diseño}
+\IUfig[0.8]{CUG1/consultaBitacoraGerente.png}{IUConsultaBitacoraGerente}{Consulta bitacora, vista del gerente.}
+\IUfig[0.8]{CUG1/consultaBitacoraGerente_atenderRestriccion.png}{IUConsultaBitacoraGerenteAtenderRestriccion}{Atiende restricción en la bitacora, vista del gerente.}
+\IUfig[0.8]{CUG1/consultaBitacoraGerente_turnarRestriccion.png}{IUConsultaBitacoraGerenteTurnarRestriccion}{Turnar restricción en la bitacora, vista del gerente.}
+
+\subsubsection{Salidas}
+  En esta pantalla se muestran los mensajes entre el gerente con los demas usuarios agrupados por asunto y estan ordenados de forma descendente con respecto a la fecha de los asuntos.
+  Para la vista se usara un acordeon para mostrar/ocultar los mensajes de cada asunto.
+
+  Tipos de mensajes
+  
+  Describir orden: Primero las gestiones y luego los avisos. Las gestiones se ordenan por estatus, primero las turnadas, luego las que estan pendientes y por ultimas las que estan atendidas. Al interior cada una se ordenara por fecha de ultima atencion descendente.
+
+  Los avisos se ordenan por fecha en orden descendente.
+
+\subsubsection{Controles}
+\begin{itemize}
+ \item Expandir y contraer mensajes: Esta opción permite al coordinador ver a detalle los datos de la restricción u ocultarlos para poder ver otras restricciones.
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \includegraphics[width=.05\textwidth]{images/CUG1/Atender.png}: El sistema muestra actualizara la pantalla \IUref{IUConsultaBitacoraGerente}{Consulta bitacora, vista del gerente.} para poder agregar las instrucciones para la solución de la restricción.
+ \item \IUbutton{Turnar}: El sistema muestra actualizara la pantalla \IUref{IUConsultaBitacoraGerente}{Consulta bitacora, vista del gerente.} para poder agregar la descripción de la restricción y poder turnarla.
+ \item \IUbutton{Atender Restricción}: El sistema muestra actualizara la pantalla \IUref{IUConsultaBitacoraGerenteAtenderRestriccion}{Atiende restricción en la bitacora, vista del gerente.} para registrar las instrucciones.
+ \item \IUbutton{Habilitar Edición}: El sistema actualizara la pantalla \IUref{IUConsultaBitacoraGerenteAtenderRestriccion}{Atiende restricción en la bitacora, vista del gerente.} para poder habilitar la edición del proyecto.
+ \item \IUbutton{Turnar Restricción}: El sistema muestra actualizara la pantalla \IUref{IUConsultaBitacoraGerenteTurnarRestriccion}{Turnar restricción en la bitacora, vista del gerente.} para registrar la descripción de la restriccion y poner pendiente la restricción.
+ \item \IUbutton{Cancelar}: El sistema muestra actualizara las pantallas \IUref{IUConsultaBitacoraGerenteAtenderRestriccion}{Atiende restricción en la bitacora, vista del gerente.} / \IUref{IUConsultaBitacoraGerenteTurnarRestriccion}{Turnar restricción en la bitacora, vista del gerente.} para eliminar los campos de atender/turnar y no registrar cualquiera de las dos acciones.
+\end{itemize}
+
+\subsubsection{Mensajes}
+\begin{itemize}
+  \item MSG1: Debe ingresar todos los datos.
+  \item MSG4: La operación se relizo exitosamente..
+\end{itemize}

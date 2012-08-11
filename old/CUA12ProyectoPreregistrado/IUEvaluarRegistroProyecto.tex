@@ -1,0 +1,28 @@
+\subsection{Pantalla: Evaluar Pre-registro de Proyecto y Consolidar Usuario}
+Esta pantalla permite evaluar el Pre-registro de los Proyectos registrados por Usuarios sin cuenta de Usuario dentro del sistema, permitiendo al administrador Aceptar o Rechazar el Pre-registro así como crear la nueva cuenta de Usuario o asociar el Proyecto a un Usuario ya registrado.
+
+\subsubsection{Objetivo}
+ Evaluar el Pre-registro de un Proyecto cambiando su estado de ``Pre-registrado'' a ``Edición''(o en edición) o ``Cancelado''.
+\begin{itemize}
+\item Para el caso de ``Crear nueva cuenta de Usuario'' ver Figura~\ref{IUCrearCuenta} esta pantalle viene de Gestión de Proyectos Pre-registrados.
+
+\IUfig[0.6]{CUA12/evaluarProyectoSinLogin1.png}{IUCrearCuenta}{Evaluar Proyecto y Crear una nueva Cuenta de Usuario.}
+
+\item Para el caso de ``Utilizar cuenta de Usuario existente'' ver Figura~\ref{IUUsarCuenta} esta pantalle viene de Gestión de Proyectos Pre-registrados.
+
+\IUfig[0.6]{CUA12/evaluarProyectoSinLogin2.png}{IUUsarCuenta}{Evaluar Proyecto y usar Cuenta de Usuario existente}.
+
+\end{itemize}
+
+\subsubsection{Salidas}
+En esta pantalla se muestran los datos del Proyecto seleccionado. Los campos del registros estan bloqueados para impedir su alteración.
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IURadioButton Crear cuenta de Usuario: Esta opción permite al Administrador crear una nueva cuenta de Usuario tomando los datos del Pre-registro.
+ \item \IURadioButton Utilizar cuenta de Usuario existente: Esta opción permite al Administrador asociar el proyecto con un Usuario ya registrado en el sistema.
+ \item \IURadioButtonAceptado: Modifica el Estado del Proyecto a ``Edición'' y regresa a la pantalla \IUref{IUGestProyectosPreregistrados}{Gestionar Proyectos Preregistrados}. En caso de que la Aprobación haya sido exitosa el Proyecto no aparecerá en la tabla.
+ \item \IURadioButtonRechazado: Regresa a la pantalla \IUref{IUGestProyectosPreregistrados}{Gestionar Proyectos Preregistrados}.
+ \item \IUbutton{Enviar}: Cambia el estado del Proyecto según la opción que se haya seleccionado ``Aceptado'' o ``Rechazado'' y envía las observaciones al correo electrónico principal del Usuario.
+ \item \IUbutton{Regresar}: Regresa a la pantalla \IUref{IUGestProyectosPreregistrados}{Gestionar Proyectos Preregistrados}.
+\end{itemize}

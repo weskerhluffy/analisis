@@ -1,0 +1,41 @@
+	\begin{UseCase}{CU2.1.2}{Revisar Avances de un Proyecto}{Permite ver las acciones registradas de un proyecto, el avance de las acciones de un proyecto, los presupuestos solicitados, aprobados y ejercidos en el proyecto.}
+		\UCitem{Versión}{3.0}
+		\UCitem{Actor(es)}{Coordinador, Secretario, Gerente y/o Director General.}
+		\UCitem{Propósito}{Contar con un mecanismo que ayude a revisar los avances de un proyecto.}
+		\UCitem{Resumen}{Se muestran los datos de las acciones de un proyecto, su avance y presupuestos.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Datos del proyecto seleccionado.}
+		\UCitem{Precondiciones}{\begin{itemize}
+						\item Que exista al menos un proyecto registrado.
+						\item Que se haya obtenido el perfil de Coordinador.
+					\end{itemize}
+  					}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Felipe.}
+		\UCitem{Referencias}{CU-P2-061011.}
+		\UCitem{Tipo}{Secundario. Viene de \UCref{CU2.1}}
+		\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+	
+	%TODO cambiar la referencia a la pantalla Menu del coordinadores y cálculos realizados por el sistema
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Avances} de la pantalla \IUref{IURevisarProyectos}{Revisar Proyecto}.\Trayref{A}.
+		\UCpaso Busca las acciones registradas al Proyecto seleccionado.
+		\UCpaso Calcula los avances de cada acción. \BRref{RN81}.
+		\UCpaso Genera las alertas con base en los avances y la fecha actual. \BRref{RN79}.
+		\UCpaso Calcula el total de gestiones atendidas, pendientes y turnadas.
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN68}.
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN69}.
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN70}.
+		\UCpaso Busca los presupuestos registrados y sus ejercicios.
+		\UCpaso Calcula el monto disponible y ejercido por presupuesto y total del proyecto con base en los ejercicios y montos aprobados.\BRref{RN80} y \BRref{RN81}, \BRref{RN82}.
+		\UCpaso Muestra en la pantalla \IUref{IURevisarAvancesProyecto}{Revisar Avances de proyecto}. los datos de las acciones registradas en el proyecto, su correspondiente diagrama de gantt, los presupuestos, los ejercicios y los restos calculados.
+		\UCExtensionPoint{CUC4}{Dictaminar  Presupuesto}\UCExtensionPoint{CUC5}{Registrar Ejercicio de Presupuesto} \UCExtensionPoint{CUC6}{Reportar Avance del Proyecto} \UCExtensionPoint{CUC2.1.2.1}{Revisar Reportes de Avances de un Proyecto} \UCExtensionPoint{CUC8}{Cerrar Proyecto}
+		\Trayref{A} \UCExtensionPoint{CUC5}{Registrar Ejercicio de Presupuesto} 		
+	\end{UCtrayectoria}	
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El Coordinador decide cancelar la operación}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla \IUref{IURevisarAvancesProyecto}{Menú Coordinador}. 
+		\end{UCtrayectoriaA}

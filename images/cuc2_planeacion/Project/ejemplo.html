@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link href="styles/main.css" type="text/css" rel="stylesheet"/>
+    <link href="styles/project.css" media="screen" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="scripts/project.js"><!--
+    //--></script>
+	<title>Banco de Estudio y Seguimiento de Proyectos</title>
+  </head>
+  <body>
+	<div id="pageHeader">
+		<div class="banner"><img src="images/banner/sirs.png" /></div>
+	</div>
+	<div id="pageMain">
+		<div id="pageMenu">
+			<h3>Ayuda</h3>
+			<a class="reporte" href="as"> Manual de usuario</a><br />
+			<a class="planta"  href="as"> Preguntas frecuentes</a><br />
+			<h4>Soporte</h4>
+			<a class="cerrar"  href="as"> Reportar un problema</a><br />
+			<a class="cerrar"  href="as"> Solicitar cuenta</a><br />
+		</div>
+		<div id="pageContent">
+			<h2>Administrar actividades</h2>
+			<h3>Agenda Ambiental</h3>
+
+		<div class="project"><div class="tbl">
+			<table border="0" cellspacing="0" cellpadding="0" >
+			<tr>
+				<th></th>
+				<th>Nombre</th>
+				<th>Inicia</th>
+				<th>Termina</th>
+				<th>Avance</th>
+				<th>Responsable</th>
+			</tr>
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div>
+				<img id="imgExpact_1" src="images/project/colapse.png" onclick="javascript:alert('Contraer')"/>
+				Programa de reordenamiento</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+		</tr>			
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td>
+				<div><img src="images/project/vertt.png" /><img id="imgExpact_1" src="images/project/colapse.png" />Programa de contencion de mancha urbana</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>			
+
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div title="Programa de contencion de mancha urbana">
+				<img src="images/project/vert.png" /><img src="images/project/vertt.png" /><img src="images/project/blank.png" />
+				Programa de contencion de mancha urbanaPrograma de contencion de mancha urbanaPrograma de contencion de mancha urbana
+			</div></td><td>
+				34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+		</tr>				
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div>
+			<img src="images/project/vert.png" /><img src="images/project/ele.png" /><img src="images/project/blank.png" />
+			Programa de contencion de mancha urbana. Programa de contencion de mancha urbana Programa de contencion de</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>	
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div title="&nbsp;&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana.&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana">
+			<img src="images/project/vertt.png" /><img id="imgExpact_1" src="images/project/blank.png" />
+				Programa de contencion de mancha urbana. Programa de contencion de mancha urbana Programa de contencion de mancha urbana</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>	
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div title="&nbsp;&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana.&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana">
+			<img src="images/project/ele.png" /><img id="imgExpact_1" src="images/project/expand.png" />
+				Programa de contencion de mancha urbana. Programa de contencion de mancha urbana Programa de contencion de mancha urbana</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>	
+		<tr class="resumen">
+			<td colspan="6">Total de proyectos: 7</td>	
+			</tr>	
+		</table>
+		</div><div class="gantt">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<th class="periodo">
+					<span class="hoy" style="left: 30px"></span>
+					<div>
+							<div>2008-2011</div>
+					</div>
+					
+				</th>
+			<tr>
+				<td class="ganttCell">
+					<span class="hoy"></span>
+					<div class="grupo atrasada" style="width:200px; left:0px">
+						<div class="avance" style="width:143px"></div>
+					</div>
+				</td>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<span class="hoy"></span>
+					<div class="tarea enTiempo" style="width:200px; left:0px">
+						<div class="avance" style="width:160px"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:100px;">
+					<div class="tarea atrasada" style="width:80px; left:0px">
+						<div class="avance" style="width:30px"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<div class="tarea cerrada" style="width:100px; left:20px">
+						<div class="avance" style="width:80px"></div>
+					</div>
+				</td>
+			<tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<div class="tarea desactualizada" style="width:130px; left:60px">
+						<div class="avance" style="width:80px"></div>
+					</div>
+				</td>
+			<tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<div class="tarea cancelada" style="width:120px; left:40px">
+						<div class="avance" style="width:50px"></div>
+					</div>
+				</td>
+			<tr class="resumen">
+				<td>Proyectos en tiempo: 5, atrasados: 3 terminados: 2</td>
+			</tr>			
+		</table>		
+		</div>
+		</div>
+
+			<div id="pageFooter">
+				<h2>Secretaría del Medio Ambiente</h2>
+				<!--<h2>Dirección de ...</h2>-->
+				<p>Agricultura No. 21, Piso 3, Col. Escandón, C.P. 11800, Delegación Miguel Hidalgo<br />
+					Tel. 52 78 99 31 ext. 6384,6386 ó 6389.
+				</p>
+				e-mail: <a href="mailto:jhernandez@sma.df.gob.mx">jhernandez@sma.df.gob.mx</a>
+			</div>
+
+  </body>
+</html>
+</jsp:root>

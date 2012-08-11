@@ -1,0 +1,301 @@
+
+@import "forms.css";
+
+body{
+	text-align: center;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+  	background-image: url("../images/fondo.png");
+  	background-repeat: repeat;
+  	font-family: Helvetica;
+}
+
+
+h1, h2, h3, h4, h5, h6{
+    color: #05a;
+}
+
+a{
+	color: #05a
+}
+
+#pageHeader {
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+	font-size: 11px;
+  	background-image: url("../images/banner/fondo.png");
+  	background-repeat: repeat-x;
+  	min-height:100px;
+  	max-height:100px;
+}
+
+#pageHeader *{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+  	min-height:100px;
+  	max-height:100px;
+}
+
+.banner{
+    background-image: url("../images/banner/banner.png");
+    background-position: bottom left;
+	text-align: right;
+	margin: 0px;
+	padding:0px;
+	border:0px;
+    min-width:800px;
+    min-height:100px;
+    background-repeat: no-repeat;
+}
+
+#pageMain, pageHMenu{
+	display: table-row;	
+	width: 100%;
+	min-height:600px;
+	height:400px;
+  	min-width:790px;
+}
+
+#pageMenu{
+	font-variant: small-caps; 
+	display: table-cell;
+	vertical-align: top;
+	text-align: left;
+	background-color: #DEF;
+	padding: 5px;
+	border: 1px dashed;
+	border-color: #8ad;
+	font-size: small;
+	width: 210px;	
+	max-width: 210px;
+	min-width: 210px;
+}
+
+#pageMenu h3{
+	background-color: #26D;
+  	background-image: url("../images/title-bg.png");
+   	background-repeat: repeat-x;	
+   	padding: 2px;
+	margin-bottom: 5px;
+	color: white		
+}
+
+#pageMenu h4{
+	background-color: #48F;
+  	background-image: url("../images/title-bg.png");
+   	background-repeat: repeat-x;	
+   	padding: 2px;
+	margin-bottom: 5px;
+	color: white		
+}
+
+#pageMenu ul{
+	text-indent: 0px;
+}
+
+#pageMenu a{
+	padding:2px;
+	line-height:150%;
+	text-decoration:none;	
+	color: #038;
+	border: 1px dashed #def;
+}
+
+#pageMenu a:hover{
+	color: #38A;
+	border: 1px dashed #38A;
+}
+
+#pageMenu .area:before{
+	content: url("../images/icons/menu/area.png")
+}
+
+#pageMenu .delegacion:before{
+	content: url("../images/icons/menu/delegacion.png")
+}
+
+#pageMenu .planta:before{
+	content: url("../images/icons/menu/planta.png")
+}
+
+#pageMenu .punto:before{
+	content: url("../images/icons/menu/punto.png")
+}
+
+#pageMenu .tiradero:before{
+	content: url("../images/icons/menu/tiradero.png")
+}
+
+#pageMenu .vehiculo:before{
+	content: url("../images/icons/menu/vehiculo.png")
+}
+
+#pageMenu .ruta:before{
+	content: url("../images/icons/menu/ruta.png")
+}
+
+#pageMenu .asignacion:before{
+	content: url("../images/icons/menu/asignacion.png")
+}
+
+#pageMenu .barrido:before{
+	content: url("../images/icons/menu/barrido.png")
+}
+
+#pageMenu .cerrar:before{
+	content: url("../images/icons/menu/cerrar.png")
+}
+
+#pageMenu .reporte:before{
+	content: url("../images/icons/menu/reporte.png")
+}
+
+#pageMenu .material:before{
+	content: url("../images/icons/menu/material.png")
+}
+
+#pageMenu .peso:before{
+	content: url("../images/icons/menu/peso.png")
+}
+
+#pageMenu .estacion:before{
+	content: url("../images/icons/menu/estacion.png")
+}
+
+#pageMenu .proceso:before{
+	content: url("../images/icons/menu/proceso.png")
+}
+
+#pageMenu .vialidad:before{
+	content: url("../images/icons/menu/vialidad.png")
+}
+
+#pageMenu .infraestructura:before{
+	content: url("../images/icons/menu/infraestructura.png")
+}
+
+#pageMenu .medida:before{
+	content: url("../images/icons/menu/medida.png")
+}
+
+#pageMenu .tipo:before{
+	content: url("../images/icons/menu/tipo.png")
+}
+
+#pageMenu .subprograma:before{
+	content: url("../images/icons/menu/subprograma.png")
+}
+
+#pageMenu .combustible:before{
+	content: url("../images/icons/menu/combustible.png")
+}
+
+#pageMenu .password:before{
+	content: url("../images/icons/menu/password.png")
+}
+
+#pageMenu .subproducto:before{
+	content: url("../images/icons/menu/subproducto.png")
+}
+
+
+#pageHMenu{
+	font-variant: small-caps; 
+	vertical-align: top;
+	text-align: left;
+	background-color: #def;
+	font-size: small;
+}
+
+#pageContent {
+	background-color: #fff;
+	padding: 0px;
+	text-align: center;
+  	background-position: bottom right;
+  	background-repeat: no-repeat;
+  	display: table-cell;
+  	width: 100%;
+  	min-width:578px;
+}
+
+
+#pageSession{
+	display: table-cell;
+	padding: 5px;
+	border: 1px solid;
+	border-color:#AAA #888 #888 #AAA;
+	font-size: small;
+	font-variant: normal;
+	text-align: left;
+	vertical-align: top;
+	margin: 5px;
+	color: #079;
+}
+
+#pageSession .nombre:before{
+	content: url("../images/icons/menu/user.png")
+}
+
+
+#sepMenu{
+	display: table-cell;
+}
+
+#sepMenu .sep{
+	display:table-cell;
+	border: 2px solid #269;
+	background: #ACF;
+	color: #269;
+	text-align: center;
+	vertical-align: middle;
+	width: 100px	
+}
+
+#sepMenu .selected{
+	border: 2px solid #ACF;
+	background: #269;
+	color: white;
+}
+
+
+
+#pageFooter {
+	background-color: #ffffff;
+	vertical-align: middle;
+	text-align: center;
+  font-size:10px;
+  padding: 5px;
+  padding-top:33px;
+ 	min-width:790px;
+	color: #468;
+  min-height: 110px;
+  background-image: url("../images/rule.png");
+  background-position: top center;
+  background-repeat: repeat-x;
+}
+
+#pageFooter img {
+	border: 0px;
+}
+
+
+
+.button{
+	border: 1px solid;	
+	border-color: #8cF #26D #26D #8CF;
+	padding: 2px;
+	background-color: white;		
+}
+
+.track{
+	
+	text-align:left;
+	padding:10px;
+	font-family: monospace;
+	color: #48C	
+	
+}
+

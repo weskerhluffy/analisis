@@ -1,0 +1,217 @@
+	\begin{UseCase}{CUS1}{Gestionar Programas}{Gestiona un catálogo en el que se puede realizar Altas, Bajas y Cambios de los Programas.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Secretario.}
+		\UCitem{Propósito}{Mantener organizada la información con respecto a los Programas así como visualizar los Programas registrados.}
+		\UCitem{Resumen}{Se muestran los Programas registrados con la posibilidad de agregar, modificar y eliminar un Programa.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Despliegue de los Programas registrados o el mensaje MSG5\ref{MSG5}.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Saucedo Almazán Rodolfo. Ernesto Alvarado Gaspar.}
+		\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Secretaría}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y c\'alculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexi\'on, etc.
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el bot\'on \IUbutton{Gestionar Programas} en el men\'u \IUref{IUMenuDirector}{Menú para Secretarios.}
+		\UCpaso Busca los Programas registrados.\label{paso:CUS1buscarProgramas1N}\Trayref{A}
+		\UCpaso Muestra la pantalla \IUref{IUGestProgramas1N}{Gestionar Programas1N} donde se muestran los datos de los Programas1N registrados y las opciones para Agregar, Modificar y Eliminar Programas.\UCExtensionPoint{CUS1.1}{Agregar Programa} \UCExtensionPoint{CUS1.2}{Modificar Programa} \UCExtensionPoint{CUS1.3}{Eliminar Programa}
+	\end{UCtrayectoria}
+
+         \begin{UCtrayectoriaA}{A}{No hay Programas}{No se encuentra ningún Programas registrado.}
+		\UCpaso Muestra el mensaje (MSG-5) notificando al Usuario que no se han encontrado registros de Programa de primer nivel.\ref{MSG5}
+	\end{UCtrayectoriaA}
+	  
+%--------- Agregar Programa1N
+	\begin{UseCase}{CUS1.1}{Agregar Programa}{El usuario registra un nuevo Programa con sus respectivos datos.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Secretario.}
+		\UCitem{Propósito}{Agregar un nuevo Programa.}
+		\UCitem{Resumen}{Se agrega un Programa registrando sus datos correspondientes.}
+		\UCitem{Entradas}{Datos del Programa \ref{dd:Pp1n}.}
+		\UCitem{Salidas}{Nuevo registro del Programa o el mensaje MSG-4\ref{MSG4}.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Nuevo Programa registrado. El Programa está disponible para ser utilizado.}
+		\UCitem{Autor}{Omar Juarez. Ernesto Alvarado Gaspar}
+		\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CUS1}}
+		\UCitem{Módulo}{Secretaría}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el bot\'on \IUbutton{\includegraphics[scale=0.1]{images/icons/agregar.png}} en la p\'agina \IUref{IUGestProgramas1N}{Gestionar Programas}.
+		\UCpaso Busca los Programas registrados \label{paso:CUS1.1buscaProgramas1N}.
+		\UCpaso Muestra la pantalla \IUref{IUAgregarPrograma1N}{Agregar Programa}.
+		\UCpaso Verifica si un Programa ha sido marcado como programa sectorial según la regla de negocio \BRref{42}.
+		\UCpaso Desactiva la casilla de verificaci\'on de programa sectorial. \Trayref{A}
+		\UCpaso [\UCactor] Ingresa los datos del Programa.\label{paso:CUS1.1ingresaDatosPrograma1N} \Trayref{B}
+		\UCpaso [\UCactor] Oprime el bot\'on \IUbutton{Aceptar}.
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}.\Trayref{C}
+		\UCpaso Verifica que los datos correspondan con la definici\'on en el diccionario de datos \ref{dd:Pp1n}. \Trayref{D}
+		\UCpaso Verifica que se cumplan las reglas de negocio \BRref{RN1}. \Trayref{E}
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN32}. \Trayref{F} 
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN7}. \Trayref{G} 
+		\UCpaso Registra el Programa1N.
+                \UCpaso Muestra mensaje (MSG-4) de operacion exitosa.\ref{MSG4}
+		\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Programa sectorial no marcado}{Ning\'un Programa ha sido marcado como programa sectorial.}
+		\UCpaso Activa la casilla de verificaci\'on de programa sectorial.
+		\UCpaso Contin\'ua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N} del \UCref{CUS1}.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{B}{Cancelar operaci\'on}{El usuario abandona el Caso de Uso.}
+		\UCpaso[\UCactor] Decide ya no agregar un nuevo Programa.
+		\UCpaso[\UCactor] Oprime el bot\'on \IUbutton{Cancelar}.
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos incompletos}{Algunos datos del Programa no han sido capturados.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando al usuario que los datos est\'an incompletos.\ref{MSG1}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N} del \UCref{CUS1.1}.
+	\end{UCtrayectoriaA}
+		
+	\begin{UCtrayectoriaA}{D}{Error de datos}{Los datos del Programa no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N} del \UCref{CUS1.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{Nombre repetido}{El nombre que se desea asignar al Programa ya se encuentra registrado.}
+			\UCpaso Muestra el mensaje (MSG-3) indicando al usuario que el nombre ya ha sido registrado.\ref{MSG3}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N} del \UCref{CUS1.1}.
+	\end{UCtrayectoriaA}
+
+\begin{UCtrayectoriaA}{E}{Periodo mal definido}{El periodo que se pretende dar al nuevo programa no esta bien definido.}
+		\UCpaso Muestra el mensaje (MSG-RN-32).\ref{MSG_RN32}.
+		\UCpaso Continua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{F}{Periodo invalido}{El periodo que se pretende dar al nuevo programa es invalido.}
+		\UCpaso Muestra el mensaje (MSG-RN-7).\ref{MSG_RN7}.
+		\UCpaso Continua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N}.
+	\end{UCtrayectoriaA}
+
+%--------- Modificar Programa1N
+	\begin{UseCase}{CUS1.2}{ModificarPrograma1N}{El usuario selecciona un Programa registrado para modificar sus datos.}
+			\UCitem{Versi\'on}{1.0}
+			\UCitem{Actor(es)}{Secretario.}
+			\UCitem{Prop\'osito}{Modificar los datos de un Programa y actualizar su registro en el sistema.}
+			\UCitem{Resumen}{El sistema muestra los datos de un Programa seleccionado para la modificaci\'on de sus datos.}
+			\UCitem{Entradas}{Identificador del Programa seleccionado. Nuevos datos para el Programa1N seleccionado \ref{dd:Pp1n}.}
+			\UCitem{Salidas}{Datos del Programa seleccionado \ref{dd:Pp1n} o el mensaje \ref{MSG4}.}
+			\UCitem{Precondiciones}{Que exista el registro del Programa seleccionado}
+			\UCitem{Postcondiciones}{Se actualizan los datos del Programa seleccionado.}
+			\UCitem{Autor}{Omar Juarez. Ernesto Alvarado Gaspar}
+			\UCitem{Referencias}{SIDAM-BESP-P0-Especificaci\'on de Cat\'alogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUS1}}
+			\UCitem{M\'odulo}{Secretaría}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+                       \UCpaso[\UCactor] Oprime el bot\'on \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} del registro seleccionado de la pantalla \IUref{IUGestProgramas1N}{Gestionar Programas}.
+                         \UCpaso [\UCactor] Busca el Programa a modificar.
+			\UCpaso Muestra la pantalla \IUref{IUModificarPrograma1N}{Modificar Programa} con los datos del Programa seleccionado.
+			\UCpaso Verifica que el Programa seleccionado no ha sido marcado como programa sectorial.\Trayref{A}
+			\UCpaso [\UCactor] Ingresa los datos del Programa.\label{paso:CUS1.2ingresaDatosPrograma1N}
+			\UCpaso [\UCactor] Oprime el bot\'on \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}.\Trayref{B}
+			\UCpaso Verifica que los datos est\'en de acuerdo al diccionario de datos \ref{dd:Pp1n}. \Trayref{C}
+			\UCpaso Verifica que se cumplan las reglas de negocio\BRref{RN42}. \Trayref{D}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN32}. \Trayref{E} 
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN7}. \Trayref{F} 
+			\UCpaso Actualiza el registro del Programa.\label{paso:CUS1.2ActualizaDatosPrograma1N}
+                        \UCpaso Muestra mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Programa marcado como programa sectorial}{El Programa1N seleccionado est\'a marcado como programa sectorial.}
+			\UCpaso Se desactiva la casilla de verificaci\'on de programa sectorial.
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.2ingresaDatosPrograma1N} del \UCref{CUS1}.
+		\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operaci\'on}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no modificar los datos del Programa.
+			\UCpaso[\UCactor] Oprime el bot\'on \IUbutton{Cancelar}.
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+	\end{UCtrayectoriaA}
+		
+	\begin{UCtrayectoriaA}{B}{Datos incompletos}{Algunos datos del Programa no han sido capturados.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando al usuario que los datos est\'an incompletos.\ref{MSG1}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N} del \UCref{CUS1.1}.
+	\end{UCtrayectoriaA}
+		
+	\begin{UCtrayectoriaA}{C}{Error de datos}{Los datos del Programa no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N} del \UCref{CUS1.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Cambio de programa sectorial}{El usuario marca a un nuevo Programa como programa sectorial}
+                        \UCpaso El Programa marcado anteriormente como programa sectorial se desmarca.
+			\UCpaso Marca el Programa seleccionado como programa sectorial.
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1.2ActualizaDatosPrograma1N}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{Periodo mal definido}{El periodo que se pretende dar al nuevo programa no esta bien definido.}
+		\UCpaso Muestra el mensaje (MSG-RN-32).\ref{MSG_RN32}.
+		\UCpaso Continua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{F}{Periodo invalido}{El periodo que se pretende dar al nuevo programa es invalido.}
+		\UCpaso Muestra el mensaje (MSG-RN-7).\ref{MSG_RN7}.
+		\UCpaso Continua en el paso \ref{paso:CUS1.1ingresaDatosPrograma1N}.
+	\end{UCtrayectoriaA}
+
+%--------- Eliminar Programa1N
+	\begin{UseCase}{CUS1.3}{Eliminar Programa}{El usuario elimina un Programa registrado.}
+			\UCitem{Versi\'on}{1.0}
+			\UCitem{Actor(es)}{Secretario.}
+			\UCitem{Prop\'osito}{Eliminar un Programa.}
+			\UCitem{Resumen}{El sistema muestra los Programas registrados y permite seleccionar un Programa1N para eliminarlo.}
+			\UCitem{Entradas}{Identificador del Programa seleccionado.}
+			\UCitem{Salidas}{Datos del Programa seleccionado \ref{dd:Pp1n} o el mensaje\ref{MSG4}.}
+			\UCitem{Precondiciones}{Que exista el registro del Programa seleccionado.}
+			\UCitem{Postcondiciones}{El Programa se elimina de los registros.}
+			\UCitem{Autor}{Saucedo Almaz\'an Rodolfo.}
+			\UCitem{Referencias}{SIDAM-BESP-P0-Especificaci\'on de Cat\'alogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUS1}}
+			\UCitem{M\'odulo}{Secretaría}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+                        \UCpaso[\UCactor] Oprime el bot\'on \IUbutton{\includegraphics[scale=0.1]{images/icons/eliminar.png}} del registro seleccionado de la pantalla \IUref{IUGestProgramas1N}{Gestionar Programas}.
+                        \UCpaso [\UCactor] Busca el Programa a eliminar.
+			\UCpaso Muestra la pantalla \IUref{IUEliminarPrograma1N}{Eliminar Programa} con los datos del Programa seleccionado.
+			\UCpaso [\UCactor] Oprime el bot\'on \IUbutton{Aceptar}. \Trayref{A}
+                        \UCpaso Verifica que se cumplan la regla de negocio \BRref{RN13}\Trayref{B} 
+			\UCpaso Verifica que se cumplan la regla de negocio \BRref{RN45}\Trayref{C} 
+			\UCpaso El Programa seleccionado se elimina.
+                        \UCpaso Muestra mensaje (MSG-4) de operacion exitosa.\ref{MSG4}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operaci\'on}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar el Programa. \label{Datos_Asoc_Equipo}
+			\UCpaso[\UCactor] Oprime el bot\'on \IUbutton{Cancelar}.
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+		\end{UCtrayectoriaA}
+
+                \begin{UCtrayectoriaA}{B}{Programa con proyectos asociados}{El Programa tiene proyectos asociados.}
+			\UCpaso Muestra mensaje de error (MSG-6G1).\ref{MSG-6G1} \label{Datos_Asoc_Equipo}
+			\UCpaso[\UCactor] Oprime el bot\'on \IUbutton{Aceptar}.
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+		\end{UCtrayectoriaA}
+		
+		\begin{UCtrayectoriaA}{C}{Programa marcado como sectorial}{El Programa est\'a marcado como programa sectorial.}
+			\UCpaso Muestra el mensaje de error (MSG-6G1.1).\ref{MSG-6G1.1}
+			\UCpaso Contin\'ua en el paso \ref{paso:CUS1buscarProgramas1N} del \UCref{CUS1}.
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripci\'on del caso de uso.

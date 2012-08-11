@@ -1,0 +1,23 @@
+\subsection{Pantalla: Eliminar Tema Transversal}
+
+\subsubsection{Objetivo}
+Permite al usuario eliminar un Tema Transversal seleccionado, ver figura ~\ref{IUEliminarTemaTransversal}. Viene de Gestionar Temas Transversales ~\ref{IUGestTemasTransversales}.
+
+\IUfig[0.6]{CUG2/eliminarTemaTransversal.png}{IUEliminarTemaTransversal}{Eliminar Tema Transversal}	
+
+\subsubsection{Salidas}
+  Datos del Tema Transversal que se desea eliminar \ref{dd:TemaTransversal}.
+\begin{itemize}
+\item Nombre del Tema Transversal.
+\item Descripción del Tema Transversal. 
+Se muestra el mensaje \ref{MSG4}
+\end{itemize}
+
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Elimina el registro del Tema Transversal y regresa a la pantalla \IUref{IUGestTemasTransversales}{Gestionar Temas Transversales} siempre y cuando no haya datos asociados, de lo
+contrario mostrará un mensaje de que existen datos asociados..
+ \item \IUbutton{Cancelar} Cancela la operación. Lleva a la pantalla \IUref{IUGestTemasTransversales}{Gestionar Temas Transversales} y no elimina el registro.
+
+\end{itemize}

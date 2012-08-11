@@ -1,0 +1,76 @@
+  	\begin{UseCase}{CU0}{Iniciar Sesión}{Permite acceder al sistema.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Administrador, Coordinador, Gerente y Director}
+		\UCitem{Propósito}{Restringir el acceso al sistema a solo personal autorizado.}
+		\UCitem{Resumen}{Autentica los usuarios registrados.}
+		\UCitem{Entradas}{Nombre de login y Contraseña\ref{dd:Usuario}.}
+		\UCitem{Salidas}{Menú de la Sesión iniciada.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{El actor inicia sesión.}
+		\UCitem{Autor}{Vargas Chávez Alejandro. // Jessica Nayeli Ramos Gonzalez}
+		\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Control de acceso}
+
+	\end{UseCase}	
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso [\UCactor] Ingresa al Sistema.
+		\UCpaso Muestra la pantalla \IUref{IULoggueo}{Iniciar Sesión}. 
+		\UCpaso [\UCactor] Ingresa el login y contraseña.\label{paso:CU0ingresarDatos}
+		\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+		\UCpaso Valida los datos ingresados.\Trayref{A}
+		\UCpaso Obtiene el perfil del usuario.
+		\UCpaso Muestra el menú correspondiente al perfil obtenido.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Datos Incorrectos}{Los datos ingresados no son correctos.}
+			\UCpaso Muestra el mensaje (MSG2-2) indicando que los datos ingresados no son correctos.\ref{MSG2-2}
+			\UCpaso Continúa con el paso \ref{paso:CU0ingresarDatos}.
+		\end{UCtrayectoriaA}
+
+	\subsection{Puntos de Extensión}
+	\UCEPdef{Recuperar Contraseña}
+	{El actor ha olvidado su contraseña}
+	{\ref{paso:CU0ingresarDatos}}
+	{\UCref{CU0}}
+
+	\begin{UseCase}{CU0.1}{Recuperar Contraseña}{El actor decide recuperar su contraseña.}
+			\UCitem{Versión}{1.0}
+			\UCitem{Actor(es)}{Administrador, Coordinador, Gerente y Director}
+			\UCitem{Propósito}{Recuperar Contraseña.}
+			\UCitem{Resumen}{El sistema manda un correo electrónico a la dirección de correo principal proporcionando el usuario y password del usuario ingresado.}
+			\UCitem{Entradas}{Login de Usuario.}
+			\UCitem{Salidas}{Mensaje de confirmación.}
+			\UCitem{Precondiciones}{Que el usuario tenga acceso al sistema.}
+			\UCitem{Postcondiciones}{Correo electrónico enviado.}
+			\UCitem{Autor}{Vargas Chávez Alejandro.}
+			\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del caso de uso \UCref{CU0}}
+			\UCitem{Módulo}{Control de acceso}
+		\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el vínculo \underline{¿Ha olvidado su contraseña?} en la página \IUref{IULoggueo}{Iniciar Sesión}.
+			\UCpaso Muestra la pantalla \IUref{IURecuperarPassword}{Recuperar Contraseña}	
+			\UCpaso [\UCactor] Introduce el usuario.\Trayref{A}\label{paso:CU0.1recpass}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar} 
+			\UCpaso Busca los datos asociados al usuario ingresado.\Trayref{B}
+			\UCpaso Envía un correo electrónico al e-mail asociado al usuario ingresado.\Trayref{C}
+			\UCpaso Muestra un mensaje indicando que se ha enviado un mensaje a su correo electrónico.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El actor decide ya no recuperar su contraseña}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Regresar}.
+			\UCpaso Continúa en el paso \ref{paso:CU0ingresarDatos} del \UCref{CU0}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{B}{Datos Incorrectos}{El usuario ingresado no existe.}
+			\UCpaso Muestra el mensaje (MSG2-3) indicando que el usuario ingresado no existe.\ref{MSG2-3}
+			\UCpaso Continúa en el paso \ref{paso:CU0.1recpass}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{C}{E-mail no valido}{La cuenta de correo electrónico asociado al usuario ingresado no es correcto.}
+			\UCpaso Muestra un mensaje indicando que ha ocurrido un error con la cuenta de correo electrónico.
+			\UCpaso Continúa en el paso \ref{paso:CU0.1recpass}.
+		\end{UCtrayectoriaA}

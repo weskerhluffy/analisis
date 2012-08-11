@@ -1,0 +1,73 @@
+
+.projectac > *{
+float: left;
+	vertical-align: top;	
+	font-size: 10pt;	
+}
+
+.projectac > div{
+	display: inline-block;
+	width: 48%;
+	max-width: 48%;
+	overflow-x: hidden;
+	border-right: 0px solid gray;
+}
+
+.projectac table{
+	float: left;
+	display:inline-table;
+	width: 100%;
+	max-width: 100%
+}
+
+.projectac tr, .projectac img, .projectac a{
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.projectac tbody td:hover{
+	background: #EEF
+}
+
+.projectac th, .projectac thead td{
+	color: white; 
+	height: 22px;
+	background: #26a; 
+	border: 1px solid;
+	border-color: #acf white #acf #acf;
+	padding-left: 2px;
+	padding-right: 2px
+}
+
+
+.projectac td{
+	color: #333;
+	height: 22px;
+	background: white; 
+	padding: 0px;
+	border: 0px solid;
+	border-left: 1px solid #acf;
+	border-bottom: 1px solid #acf;
+	padding-left: 2px;
+	padding-right: 2px;
+	text-align: left;
+}
+
+.projectac .tbl td{
+	overflow: hidden;
+	max-width: 350px;
+}
+.projectac .tbl td *{
+	vertical-align: middle;
+}
+
+.projectac .tbl td div{
+	float:none;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.projectac .tbl td div img{
+	vertical-align: top;
+}

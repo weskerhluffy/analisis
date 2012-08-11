@@ -1,0 +1,161 @@
+
+%  
+	\begin{UseCase}{CUDG2}{Gestión de Coordinadores}{Gestiona un catálogo en el que se pueden realizar Altas, Bajas y Cambios de Coordinadores de la direccion correspondiente.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Director general.}
+		\UCitem{Propósito}{Permitir al Director General poder gestionar altas, bajas y cambios de Coordinadores.}
+		\UCitem{Resumen}{Se muestran los Coordinadores de la dirección correspondiente, con la posibilidad de agregar, modificar y eliminar.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Lista de Coordinadores de la dirección correspondiente.}
+		\UCitem{Precondiciones}{Deben existir Coordinadores registrados.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		\UCitem{Autor}{Adrian Martínez.}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Dirección General.}
+	\end{UseCase}
+	
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción Gestión de Coordinadores del menú \IUref{IUMenuDirector}{Menú de Director}.
+		\UCpaso Busca todos los Coordinadores registrados de la dirección correspondiente. \Trayref{A}\label{paso:CUDG2BuscaCoords}
+		\UCpaso Muestra la pantalla \IUref{IUGestionCoordinadores}{Gestion de Coordinadores} con los datos de los Coordinadores encontrados de la dirección correspondiente.
+	\end{UCtrayectoria}
+	
+	\begin{UCtrayectoriaA}{A}{No hay datos que mostrar}{No se encontraron Coordinadores registrados}
+			\UCpaso Muestra el mensaje (MSG-5) \ref{MSG5} indicando que no se encontraron Coordinadores registrados.
+	\end{UCtrayectoriaA}
+
+%--------- Agregar Coordinador
+	\begin{UseCase}{CUDG2.1}{Agregar Coordinador}{El Director General registra un nuevo Coordinador.}
+			\UCitem{Versión}{1.0}
+			\UCitem{Actor(es)}{Director General.}
+			\UCitem{Propósito}{Agregar un nuevo Coordinador.}
+			\UCitem{Resumen}{Se registra un nuevo Coordinador.}
+			\UCitem{Entradas}{Datos del Coordinador. \ref{dd:Coordinador}}
+			\UCitem{Salidas}{Mensaje de operación exitosa (MSG-4) \ref{MSG4}.}
+			\UCitem{Precondiciones}{Ninguna.}
+			\UCitem{Postcondiciones}{El Coordinador queda registrado con la información proporcionada.}
+			\UCitem{Autor}{Adrian Martinez.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}%duda con la referencia
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUDG2}.}
+			\UCitem{Módulo}{Dirección General.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Selecciona la opción \IUbutton{\includegraphics[scale=0.15]{images/icons/agregar.png}} de la pantalla \IUref{IUGestionCoordinadores}{Gestion de Coordinadores}.
+			\UCpaso Establece la Direccion del Director General.
+			\UCpaso Muestra la pantalla \IUref{IUAgregarCoordinador}{Agregar Coordinador}.
+			\UCpaso [\UCactor] Ingresa los datos del Coordinador. \Trayref{A}\label{paso:CUDG2.1IngresaDatos}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2} \Trayref{B}
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos \ref{dd:Coordinador} \Trayref{C}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN1} \Trayref{D}
+			\UCpaso Registra el nuevo Coordinador.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El actor abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar un nuevo Coordinador.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2}.
+	\end{UCtrayectoriaA}
+		.
+	\begin{UCtrayectoriaA}{B}{Datos incompletos}{Hay campos vacíos para completar el nuevo registro.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando que falta llenar campos .\ref{MSG1} 
+			\UCpaso Continúa en el paso \ref{paso:CUDG2.1IngresaDatos} del \UCref{CUDG2.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos incorrectos}{Los datos no corresponden con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUDG2.1IngresaDatos} del \UCref{CUDG2.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{El Login \ref{dd:loginC} de Coordinador ya se encuentra registrado}{El login del nuevo Coordinador que se desea agregar ya se encuentra registrado.}
+			\UCpaso Muestra el mensaje (MSG-3) indicando que ya existe un registro con el mismo login.\ref{MSG3}
+			\UCpaso Continúa en el paso \ref{paso:CUDG2.1IngresaDatos} del \UCref{CUDG2.1}.
+	\end{UCtrayectoriaA}
+
+%--------- Modificar Coordinador
+	\begin{UseCase}{CUDG2.2}{Modificar Coordinador}{El Director General selecciona un Coordinador registrado para modificar sus datos.}
+			\UCitem{Versión}{1.0}
+			\UCitem{Actor(es)}{Director General.}
+			\UCitem{Propósito}{Modificar los datos de un Coordinador y actualizar el registro en el sistema.}
+			\UCitem{Resumen}{El sistema permite seleccionar un Coordinador para modificar sus datos y guardar los cambios.}
+			\UCitem{Entradas}{Datos editables de Coordinador \ref{dd:DatosEditablesCoordinador}.}
+			\UCitem{Salidas}{Mensaje de operación exitosa (MSG-4) \ref{MSG4}}
+ 			\UCitem{Precondiciones}{Deben existir Coordinadores registrados.}
+			\UCitem{Postcondiciones}{El Coordinador queda registrado con los nuevos datos.}
+			\UCitem{Autor}{Adrian Martínez.} 
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUDG2}.}
+			\UCitem{Módulo}{Dirección General.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}			
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} del Coordinador que desea modificar en la pantalla \IUref{IUGestionCoordinadores}{Gestión de Coordinadores} del \UCref{CUDG2}.	
+			\UCpaso Muestra la pantalla \IUref{IUModificarCoordinador}{Modificar Coordinador} con los datos editables del Coordinador seleccionado.%duda con la regla de negocio RN20
+                        \UCpaso [\UCactor] Ingresa los datos editables del Coordinador.\label{paso:CUDG2.2IngresaDatos}\Trayref{A}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumplan las reglas de negocio \BRref{RN2} \Trayref{B}
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos \ref{dd:Coordinador} \Trayref{C}
+			\UCpaso Guarda los nuevos datos del Coordinador.
+			\UCpaso Muestra el mensaje (MSG-4) \ref{MSG4} indicando que se ha modificado correctamente el registro.
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no modificar los datos del Coordinador.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2.1}.
+		\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Datos incompletos}{Hay campos vacios para actualizar registro.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando que falta llenar campos .\ref{MSG1} 
+			\UCpaso Continúa en el paso \ref{paso:CUDG2.2IngresaDatos} del \UCref{CUDG2.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos incorrectos}{Los datos no corresponden con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUDG2.2IngresaDatos} del \UCref{CUDG2.1}.
+	\end{UCtrayectoriaA}
+
+%--------- Eliminar Tipos Aviso
+	\begin{UseCase}{CUDG2.3}{Eliminar Coordinador}{El usuario elimina un Coordinador registrado.}
+			\UCitem{Versión}{1.0}
+			\UCitem{Actor(es)}{Director General.}
+			\UCitem{Propósito}{Eliminar un Coordinador registrado.}
+			\UCitem{Resumen}{El sistema permite seleccionar un Coordinador para eliminar el registro.}
+			\UCitem{Entradas}{Selección del Coordinador a eliminar.}
+			\UCitem{Salidas}{Mensaje de operacion exitosa (MSG-4). \ref{MSG4}}
+			\UCitem{Precondiciones}{Deben existir Coordinadores registrados.}
+			\UCitem{Postcondiciones}{El estado del Coordinador queda como inactivo.}
+			\UCitem{Autor}{Adrian Martínez.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUDG2}.}
+			\UCitem{Módulo}{Dirección General.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/eliminar.png}} del Coordinador que desea eliminar en la pantalla \IUref{IUGestionCoordinadores}{Gestión de Coordinadores}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN19}.\Trayref{A} %alguna RN q diga algo de los contactos!?!?
+			\UCpaso Muestra la pantalla \IUref{IUEliminarCoordinador}{Eliminar Coordinador} con los datos del Coordinador seleccionado. 
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{B}
+			\UCpaso El estado del Coordinador pasa a Inactivo.
+			\UCpaso Muestra el mensaje (MSG-4) \ref{MSG4} indicando que se ha eliminado correctamente el registro.
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2.1}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{No se puede eliminar el Coordinador seleccionado}{El Coordinador que ha sido seleccionado tiene Proyectos asignados.}
+			\UCpaso Muestra el mensaje (MSG-6A1) indicando que no se puede eliminar el Coordinador seleccionado.\ref{MSG-6A1}
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{B}{Cancelar operación}{El actor abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar el Coordinador seleccionado.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUDG2BuscaCoords} del \UCref{CUDG2}.
+		\end{UCtrayectoriaA}
+
+%-------------------------------------- TERMINA descripción del caso de uso.

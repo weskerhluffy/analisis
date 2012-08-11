@@ -1,0 +1,30 @@
+\subsection{Pantalla: Recuperar Contraseña}
+\subsubsection{Objetivo}
+Recuperar la contraseña del usuario en caso de olvido.Vease Figura~\ref{IURecuperarPassword}
+
+\IUfig[0.6]{cu0/RecuperarPassword.png}{IURecuperarPassword}{Recuperar Contraseña.}
+
+\subsubsection{Entradas}
+Para poder recuperar la contraseña se necesita: 
+\begin{itemize}
+\item Login de usuario.
+\end{itemize}
+
+\subsection{Salidas}
+Se manda al usuario un correo electrónico con los siguientes datos:
+\begin{itemize}
+ \item Login de usuario.
+ \item Contraseña.
+\end{itemize}
+
+
+\subsubsection{Controles}
+\begin{itemize}
+ \item Se encuentra un \textit{textbox} para ingresar el login del usuario.
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Recupera la contraseña del usuario.
+ \item \IUbutton{Regresar} Regresa a la pantalla
+\end{itemize}
