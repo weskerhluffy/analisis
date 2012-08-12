@@ -8,3 +8,13 @@
 *.pdf
 
 *.toc
+
+.DS_Store
+
+*.synctex
+
+TSWLatexianTemp_000002.tex
+
+images/.DS_Store
+
+TSWLatexianTemp_analisis.tex
