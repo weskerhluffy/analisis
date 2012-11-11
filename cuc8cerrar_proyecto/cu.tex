@@ -1,0 +1,42 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+% 
+%========Aqui se describen los casos de uso que se derivan de el caso de uso CU2.1.3 Revisar seguimiento de proyecto para el modulo de secretaría
+
+%--------- Atender restricción en el proyecto
+	\begin{UseCase}{CUC8}{Cerrar proyecto.}{Permite al coordinador cerrar el proyecto, es decir, se dará por finalizado dicho proyecto, por lo que dejará de estar en ejecución y ya no se permitirá modificarlo.}
+		\UCitem{Versión}{1.5}
+		\UCitem{Actor(es)}{Coordinador.}
+		\UCitem{Propósito}{Indicar que el proyecto ya no estará en estado de ejecución y no se podrá volver a modificar.}
+		\UCitem{Resumen}{Se cerrarará el proyecto.}
+ 		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Datos del proyecto}
+		\UCitem{Precondiciones}{El estado del proyecto no debe estar como finalizado}.
+		\UCitem{Postcondiciones}{Se registra el estado del proyecto como finalizado, es decir, ya no estará en ejecución y no se modificará.}
+		%\UCitem{Autor}{Torres Govea Miguel Angel}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CU2.1.1}.}
+		\UCitem{Módulo}{Coordinador.}
+	\end{UseCase}
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Da clic en la opción \IUbutton{Cerrar proyecto} en la pantalla \IUref{IURevisarAvancesProyecto}{Revisar Avances de Proyecto.}.
+		\UCpaso Verifica que se cumpla las regla de negocio para poder cerrar el proyecto.\BRref{RN74} \BRref{RN75}. \Trayref{B}
+		\UCpaso Muestra la pantalla \IUref{IUCerrarProyecto}{Cerrar proyecto.}\label{paso:CUC8cerrarProyecto}
+		\UCpaso [\UCactor] Da clic en el boton \IUbutton{Cerrar proyecto}.\Trayref{A}
+		\UCpaso Actualiza la pantalla para cerrar el proyecto.
+		\UCpaso El estado del proyecto pasa a finalizado. El proyecto ya no estará en ejecución y no se podrá volver a modificar.
+		\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+	\end{UCtrayectoria}
+		
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no registrar la atención.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla \IUref{IUConsultaBitacoraSecretario}{Revisar Avances de Proyecto.}
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Presupuesto disponible}{El proyecto seleccionado no puede cerrarse porque tiene un presupuesto disponible.}
+			\UCpaso Muestra el mensaje (MSG-C8-2) indicando al usuario verificar el estado del proyecto.\ref{MSG-C8-2}
+			\UCpaso Continúa en el paso \ref{paso:CUC8cerrarProyecto} del \UCref{CUC8}.
+	\end{UCtrayectoriaA}

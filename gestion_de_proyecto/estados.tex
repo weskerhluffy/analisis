@@ -1,0 +1,16 @@
+\newpage
+\chapter{Modelo de comportamiento: Diagramas de Estados}
+\section{Estados de un Proyecto}
+\subsubsection{Objetivo}
+El diagrama de estados ilustrado en la Figura~\ref{IUEstadoProyecto} muestra el progreso de un Proyecto.
+
+\IUfig[0.9]{CUC1/EstadosProyecto.png}{IUEstadoProyecto}{Estados de un Proyecto.}
+
+\subsubsection{Estados}
+\begin{itemize}
+ %\item Pre-registrado. Un coordinador o un Usuario no registrado puede Pre-registrar un Proyecto, ver caso de uso \UCref{CUC1.1}.
+ \item Edición. Este estado depende si el Administrador decidió Aceptar el Pre-registro de Proyecto. En este estado el Coordinador podrá modificar la información del Proyecto segun se requiera así como incluir Acciones e Indicadores a los Proyectos.
+ \item Cancelado. Este estado depende si el Administrador decidió Cancelar el Pre-registro de Proyecto.
+ \item Revisión. En este estado el Director es el encargado de verificar la información del Proyecto con la posibilidad de Aprobar o No aprobar el Proyecto.
+ \item Ejecución. Este estado no permite modificaciones a la información del Proyecto, solo se permite el reporte de avances.
+\end{itemize}

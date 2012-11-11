@@ -1,0 +1,124 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+%  
+	\begin{UseCase}{CUC2.2.2}{Gestionar Presupuesto}{Gestiona un catálogo en el cual se pueden realizar Altas y Bajas de presupuestos.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Coordinador.}
+		\UCitem{Propósito}{Mantener organizada la información con respecto a los presupuestos}
+		\UCitem{Resumen}{Se muestran los presupuestos registrados con la posibilidad de agregar y eliminar.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{Lista de presupuestos registrados.}
+		\UCitem{Precondiciones}{Debe existir al menos un proyecto registrado}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Hermosillo García Karen Adriana}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario}
+		\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción ``Planeacion'' del proyecto deseado en el menú \IUref{IUacciones}{Proyectos Disponibles} 
+		\UCpaso Busca los Presupuestos registrados en el Proyecto seleccionado.\Trayref{A} \label{paso:CUC2.2.2buscarPresupuestos}
+		\UCpaso Muestra en la pantalla \IUref{IUGestPresupuestos}{Gestionar Presupuestos} los datos de los presupuestos registrados en el proyecto y cuenta con las opciones para Agregar o Eliminar un Presupuesto.\UCExtensionPoint{CUC2.2.2.1}{Agregar Presupuesto}  \UCExtensionPoint{CUC2.2.2.2}{Eliminar Presupuesto}.
+	\end{UCtrayectoria}
+	
+	\begin{UCtrayectoriaA}{A}{No existen datos de Presupuestos}{No se encontraron presupuestos registrados}
+			\UCpaso[\UCactor] Muestra el mensaje (MSG-5) indicando que no se encontrarón presupuestos registrados.\ref{MSG5}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2buscarPresupuestos} del \UCref{CUC2.2.2}.
+	\end{UCtrayectoriaA}
+
+%--------- Agregar Presupuesto
+	\begin{UseCase}{CUC2.2.2.1}{Agregar Presupuesto}{El Coordinador registra un presupuesto a un Proyecto existente.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Coordinador.}
+			\UCitem{Propósito}{Agregar un presupuesto al Proyecto seleccionado por el Coordinador.}
+			\UCitem{Resumen}{Se agrega un presupuesto registrando los datos correspondientes.}
+			\UCitem{Entradas}{Datos Generales del presupuesto \ref{dd:Presupuestos}.}
+			\UCitem{Salidas}{Mensaje de operación exitosa.}
+			\UCitem{Precondiciones}{Que el proyecto esté en modo de edicion.}
+			\UCitem{Postcondiciones}{Nuevo presupuesto agregado al proyecto.}
+			%\UCitem{Autor}{Hermosillo García Karen Adriana.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Terciario. Viene del \UCref{CUC2.2.2}.}
+			\UCitem{Módulo}{Coordinación}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Selecciona la opción \IUbutton{Agregar Fuente} de la pantalla \IUref{IUGestPresupuestos}{Gestionar Presupuestos}.
+			\UCpaso Muestra la pantalla \IUref{IUAgregarPresupuesto}{Agregar Fuente de financiamiento}.
+			\UCpaso [\UCactor] Ingresa los datos del Presupuesto. \Trayref{A}\label{paso:CUC2.2.2.1ingresaDatosPresupuesto}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}. \Trayref{B} 
+			\UCpaso Revisa que los datos correspondan con el Diccionario de Datos. \ref{dd:Presupuestos}. \Trayref{C}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN57}. \Trayref{D} 
+			\UCpaso Registra el nuevo presupuesto.
+			\UCpaso Muestra el mensaje (MSG-4) indicando que se ha agregado correctamente el registro.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2buscarPresupuestos} del \UCref{CUC2.2.2}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar el presupuesto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2buscarPresupuestos} del \UCref{CUC2.2.2}.
+	\end{UCtrayectoriaA}
+		
+	\begin{UCtrayectoriaA}{B}{Datos del Presupuesto Incompletos}{Algunos campos del presupuesto no han sido capturados.}
+			\UCpaso Muestra el mensaje (MSG-1).\ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2.1ingresaDatosPresupuesto} del \UCref{CUC2.2.2.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos del presupuesto Incorrectos}{Los datos del presupuesto no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2).\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2.1ingresaDatosPresupuesto} del \UCref{CUC2.2.2.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Monto inválido}{El monto del presupuesto no cumple con la regla de negocios \BRref{RN57}}
+			\UCpaso Muestra el mensaje  {MSG-RN-57}. \ref{MSG_RN57}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2.1ingresaDatosPresupuesto} del \UCref{CUC2.2.2.1}.
+	\end{UCtrayectoriaA}
+
+
+
+%--------- Eliminar Tipos Aviso
+	\begin{UseCase}{CUC2.2.2.2}{Eliminar Presupuesto}{El usuario tiene la posibilidad de eliminar presupuestos que aún no hayan sido aprobados}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Coordinador}
+			\UCitem{Propósito}{Eliminar un presupuesto}
+			\UCitem{Resumen}{El sistema despliega los Datos de los presupuestos registrados y permite seleccionar un presupuesto para eliminarlo.}
+			\UCitem{Entradas}{Ninguna}
+			\UCitem{Salidas}{Datos del presupuesto seleccionado \ref{dd:Presupuestos}. Mensaje de operación exitosa}
+			\UCitem{Precondiciones}{Que exista al menos un presupuesto registrado}
+			\UCitem{Postcondiciones}{El presupuesto se elimina permanente}
+			%\UCitem{Autor}{Hermosillo García Karen Adriana}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CU2.2.2}.}
+			\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Presiona el boton \IUbutton{Eliminar} del registro que desea eliminar en la pantalla \IUref{IUGestPresupuestos}{Gestionar Presupuestos}.
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN58}. \Trayref{A}
+			\UCpaso Muestra la pantalla \IUref{IUEliminarPresupuesto}{Eliminar Presupuesto} con los datos del presupuesto seleccionado. \label{paso:CUC2.2.2.2eliminarDatosPresupuesto}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{B}
+			\UCpaso Se elimina el presupuesto.
+			\UCpaso Muestra el mensaje (MSG-4) indicando que se ha eliminado correctamente el registro.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2buscarPresupuestos} del \UCref{CUC2.2.2}.
+	\end{UCtrayectoria}
+
+
+		
+		\begin{UCtrayectoriaA}{A}{Presupuesto aprobado}{El presupuesto que desea eliminar no cumple con la regla de negocio \BRref{RN58}}
+			\UCpaso Muestra mensaje  {MSG-RN-58}. \ref{MSG_RN58}
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2.2eliminarDatosPresupuesto} del \UCref{CUC2.2.2.2}.
+		\end{UCtrayectoriaA}%-------------------------------------- TERMINA descripción del caso de uso.
+		\begin{UCtrayectoriaA}{B}{Cancelar operación}{El coordinador abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar el presupuesto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUC2.2.2buscarPresupuestos} del \UCref{CUC2.2.2}.
+		\end{UCtrayectoriaA}

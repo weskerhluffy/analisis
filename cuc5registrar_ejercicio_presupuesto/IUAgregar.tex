@@ -1,0 +1,31 @@
+\subsection{Pantalla: Ejercer presupuesto}
+
+\subsubsection{Objetivo}
+Permitir ejercer un presupuesto registrado.  Vease Figura ~\ref{IUEjercerPresupuesto}
+
+\IUfig[0.6]{cuc5/ejercer.png}{IUEjercerPresupuesto}{Ejercer Presupuesto}
+
+%\IUfig[0.6]{GestionArea.PNG}{IUPCAdmin}{Administrar Equipos.}
+
+\subsubsection{Entradas}
+En esta pantalla se solicitan los siguientes datos: \ref{dd:AvanceFinanciero}.
+\begin{itemize}
+ \item Monto. Cantidad solicitada al registrar un ejercicio del proyecto en cuestión.
+ \item Fecha. Fecha en la que se registra el ejercicio del proyecto en cuestión.
+\end{itemize}
+
+
+\subsubsection{Salidas}
+Mostrará el MSG1 en caso de haber datos nulos \ref{MSG1}
+Mostrará el MSG2 en caso de haber datos incorrectos \ref{MSG2}
+Mostrará el MSG3 en caso de que el monto sea incorrecto \ref{MSG3}
+Mostrará el MSG4 en caso de ser una operación existosa \ref{MSG4}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Guarda los datos del presupuesto ejercido
+ \item \IUbutton{Cancelar}: Al presionar este botón cancela el proceso y regresa a la página \IUref{IURevAvanceProy}{Revisar avance de un Proyecto}.
+
+\end{itemize}
+
+

@@ -1,0 +1,52 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+%  
+
+%========Aqui se describen los casos de uso que se derivan de el caso de uso CU2.1.3 Revisar seguimiento de proyecto para el modulo de coordinación
+
+%--------- Reportar restricción en el proyecto
+	\begin{UseCase}{CUC3}{Registrar restricción en el proyecto.}{Permite registrar una restricción para algún proyecto.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Coordinador.}
+		\UCitem{Propósito}{El Gerente Encargado esté enterado de un asunto que requiere atención especial en el proyecto.}
+		\UCitem{Resumen}{El coordinador  enviará detalles de alguna situación que requiera atención en forma de mensaje.}
+		\UCitem{Entradas}{Datos de la restriccion.\ref{dd:Restriccion}}
+		\UCitem{Salidas}{Mensaje de confirmacion.\ref{MSG4}}
+		\UCitem{Precondiciones}{El proyecto debe estar en ejecución.}
+		\UCitem{Postcondiciones}{Se registra la restriccion en estado de pendiente.}
+		%\UCitem{Autor}{Torres Govea Miguel Angel}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CUC2.1.3}.}
+		\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Da clic en la opción \IUbutton{Registrar restricción.} de la pantalla \IUref{IUConsultaBitacoraCoordinador}{Bitacora del seguimiento del proyecto, vista
+del coordinador.}.
+		\UCpaso Actualiza la pantalla para el registro de restricción.\IUref{IURegistraRestriccionBitacoraCoordinador}{Bitacora del seguimiento del proyecto, vista
+del coordinador, registrar restricción.}
+		\UCpaso [\UCactor] Agrega los detalles de la restricción y la propuesta de solución.\label{paso:CUC3ingresaDatosRestriccion}
+		\UCpaso [\UCactor] Da clic en la opción de registrar en la pantalla \Trayref{A}
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}. \Trayref{B}
+		\UCpaso Verifica que el registro coincida con la definición en el diccionario de datos \ref{dd:Restriccion}. \Trayref{C}
+		\UCpaso Registra la restricción con estatus pendiente.
+		\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+	\end{UCtrayectoria}
+		
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no registrar la restricción.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Actualiza la pantalla removiendo la restricción ha agregar y no la registra. \IUref{IUConsultaBitacoraCoordinador}{Bitacora del seguimiento del proyecto, vista
+del coordinador.}
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Datos de la Restricción Incompletos.}{Algunos campos del formulario no han sido capturados.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando al usuario verifique que todos los campos hayan sido capturados.\ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUC3ingresaDatosRestriccion} del \UCref{CUC3}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos de la Restricción Inconsistentes.}{Algunos datos  no son validos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando al usuario verifique que todos los campos son validos.\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUC3ingresaDatosRestriccion} del \UCref{CUC3}.
+	\end{UCtrayectoriaA}

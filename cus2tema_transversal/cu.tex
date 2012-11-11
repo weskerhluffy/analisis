@@ -1,0 +1,161 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+	\begin{UseCase}{CUA6}{Gestionar Tema Transversal}{En el menú para Administradores, existe un catálogo en el que se pueden realizar Altas, Bajas y Cambios de los Temas transversales, dicho de otra forma, nos sirve para la gestión de los mismos, también nos permite visualizarlos.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Administrador.}
+		\UCitem{Propósito}{Mantener organizada la información con respecto a los Temas transversales, así como visualizar los Temas transversales registrados.}
+		\UCitem{Resumen}{Se muestran los Temas transversales registrados con la posibilidad de agregar, modificar y eliminar.}
+		\UCitem{Entradas}{Ninguna}
+		\UCitem{Salidas}{Lista de los Temas transversales registrados.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Reyes De los Santos Miguel Ángel.}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Dirección.}
+	\end{UseCase}
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Gestión de Temas Transversales} en el menú \IUref{IUMenuDirector}{Menú para Administradores.}.
+		\UCpaso Busca los Temas transversales registrados. \label{paso:CUS2buscarTemasTransversales} 
+		\UCpaso Muestra en la pantalla \IUref{IUGestTemasTransversales}{Gestionar Tema Transversal} los datos de los temas transversales registrados ordenados por nombre y las opciones para Agregar, Modificar o Eliminar un registro seleccionado.\UCExtensionPoint{CUA6.1}{Agregar Tema Transversal} \UCExtensionPoint{CUA6.2}{Modificar Tema Transversal} \UCExtensionPoint{CUA6.3}{Eliminar Tema Transversal}  \Trayref{A}
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{No existen datos de Tema Transversal}{No se encontraron Temas Transversales registrados}
+			\UCpaso Muestra el mensaje (MSG-5).\ref{MSG5}			
+	\end{UCtrayectoriaA}
+	  	
+%--------- Agregar Tipo de Aviso
+	\begin{UseCase}{CUA6.1}{Agregar Tema Transversal}{El Administrador registra un nuevo Tema Transversal con sus respectivos datos.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Agregar un nuevo Tema Transversal.}
+			\UCitem{Resumen}{Se agrega un Tema Transversal registrando sus datos correspondientes.}
+			\UCitem{Entradas}{Datos del Tema Transversal \ref{dd:TemaTransversal}.}
+			\UCitem{Salidas}{Nuevo registro del Tema Transversal y el mensaje de operación exitosa MSG4\ref{MSG4}.}
+			\UCitem{Precondiciones}{Ninguna}
+			\UCitem{Postcondiciones}{Tema Transversal registrado. El Tema Transversal está disponible para ser utilizado.}
+			%\UCitem{Autor}{Reyes De los Santos Miguel Ángel.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA6}.}
+			\UCitem{Módulo}{Secretaría.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Selecciona la opción \IUbutton{Nuevo Tema Transversal} de la pantalla \IUref{IUGestTemasTransversales}{Gestionar Tema Transversal}.
+			\UCpaso Muestra la pantalla \IUref{IUAgregarTemaTransversal}{Agregar Tema Transversal}.
+			\UCpaso [\UCactor] Ingresa los datos del Tema Transversal. \Trayref{A} \label{paso:CUS2.1ValidacionDatos_TemaTransversal}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla las regla de negocio \BRref{RN2}. \Trayref{B} 
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos \ref{dd:TemaTransversal}. \Trayref{C}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN1}. \Trayref{D} 
+			\UCpaso Registra el nuevo Tema Transversal.
+			\UCpaso Muestra el mensaje (MSG-4) indicando que se ha agregado correctamente el registro.\ref{MSG4}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar un nuevo Tema Transversal.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUS2buscarTemasTransversales} del \UCref{CUA6}.
+	\end{UCtrayectoriaA}
+		
+	\begin{UCtrayectoriaA}{B}{Datos del Tema Transversal Incompletos}{Existen campos nulos en el formulario de registro.}
+			\UCpaso Muestra un mensaje (MSG-1) indicando que los datos ingresados estan incompletos.\ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUS2.1ValidacionDatos_TemaTransversal} del \UCref{CUA6.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos del Tema Transversal Incorrectos}{Los datos del Tema Transversal no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra un mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUS2.1ValidacionDatos_TemaTransversal} del \UCref{CUA6.1}.
+	\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{D}{El Tema Transversal ya se encuentra registrado}{El nombre del Tema Transversal que se desea agregar ya se encuentra registrado.}
+			\UCpaso Muestra un mensaje (MSG-3) indicando que el Nombre ya existe.\ref{MSG3}
+			\UCpaso Continúa en el paso \ref{paso:CUS2.1ValidacionDatos_TemaTransversal} del \UCref{CUA6.1}.
+		\end{UCtrayectoriaA}
+
+
+%--------- Modificar Tipos Aviso
+	\begin{UseCase}{CUA6.2}{Modificar Tema Transversal}{El sistema despliega los Datos de los Temas Transversales registrados y permite seleccionar un Tema Transversal para modificar sus datos, guardando los cambios.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Modificar los datos de un Tema Transversal y actualizar el registro en el sistema.}
+			\UCitem{Resumen}{El Administrador selecciona un Tema Transversal registrado para modificar sus datos.}
+			\UCitem{Entradas}{Identificador del Tema Transversal seleccionado. Datos a actualizar del Tema Transversal \ref{dd:TemaTransversal}.}
+			\UCitem{Salidas}{Datos del Tema Transversal seleccionado \ref{dd:TemaTransversal}.}
+			\UCitem{Precondiciones}{Que exista el registro del Tema Transversal seleccionado.}
+			\UCitem{Postcondiciones}{El Tema Transversal seleccionado se actualiza.}
+			%\UCitem{Autor}{Reyes De los Santos Miguel Ángel.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA6}.}
+			\UCitem{Módulo}{Secretaría.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}			
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} de la fila del registro que desea modificar en la pantalla \IUref{IUGestTemasTransversales}{Gestionar Tema Transversal}.	
+			\UCpaso Muestra la pantalla \IUref{IUModificarTemaTransversal}{Modificar Tema Transversal} con los datos del Tema Transversal seleccionado.
+                        \UCpaso [\UCactor] Ingresa los datos del Tema Transversal.\label{paso:CUS2.2ingresaDatosTemaTransversal}\Trayref{A}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que se cumpla las regla de negocio \BRref{RN2}. \Trayref{B} 
+			\UCpaso Revisa los datos de acuerdo al diccionario de datos \ref{dd:TemaTransversal}. \Trayref{C}
+			\UCpaso Actualiza los datos del Tema Transversal.
+			\UCpaso Muestra el mensaje (MSG-4).\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUS2buscarTemasTransversales} del \UCref{CUA6}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no modificar los datos del Tema Transversal.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUS2buscarTemasTransversales} del \UCref{CUA6}.
+		\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Datos del Tema Transversal Incompletos}{Existen campos nulos en el formulario de registro.}
+			\UCpaso Muestra un mensaje (MSG-1).\ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUS2.1ValidacionDatos_TemaTransversal} del \UCref{CUA6.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos del Tema Transversal Incorrectos}{Los datos del Tema Transversal no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra un mensaje (MSG-2) indicando que los datos ingresados son incorrectos.\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUS2.1ValidacionDatos_TemaTransversal} del \UCref{CUA6.1}.
+	\end{UCtrayectoriaA}
+
+%--------- Eliminar Tipos Aviso
+	\begin{UseCase}{CUA6.3}{Eliminar Tema Transversal}{El sistema despliega los Datos de los Temas Transversales registrados y permite seleccionar un Tema Transversal  para eliminarlo.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Eliminar un Tema Transversal.}
+			\UCitem{Resumen}{El Administrador elimina un Tema Transversal registrado.}
+			\UCitem{Entradas}{Identificador del Tema Transversal seleccionado.}
+			\UCitem{Salidas}{Datos del Tema Transversal seleccionado \ref{dd:TemaTransversal}.}
+			\UCitem{Precondiciones}{Que exista el registro del Tema Transversal seleccionado.}
+			\UCitem{Postcondiciones}{El Tema Transversal se elimina de los registros.}
+			%\UCitem{Autor}{Reyes De los Santos Miguel Ángel.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA6}.}
+			\UCitem{Módulo}{Secretaría.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/eliminar.png}} de la fila del registro que desea eliminar en la pantalla \IUref{IUGestTemasTransversales}{Gestionar Tema Transversal}.	
+			\UCpaso Muestra la pantalla \IUref{IUEliminarTemaTransversal}{Eliminar Tema Transversal} con los datos del Tema Transversal seleccionado. 
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{A}
+			\UCpaso Verifica que no hay datos asociados. \Trayref{B}
+			\UCpaso El Tema Transversal seleccionado se elimina.
+			\UCpaso Muestra el mensaje (MSG-4) indicando que se ha eliminado correctamente el registro.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUS2buscarTemasTransversales} del \UCref{CUA6}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar el Tema Transversal.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUS2buscarTemasTransversales} del \UCref{CUA6}.
+		\end{UCtrayectoriaA}
+		
+		\begin{UCtrayectoriaA}{B}{Datos Asociados}{El Tema Transversal que se desea eliminar tiene datos que están asociados.}
+			\UCpaso Muestra un mensaje (MSG-6G2) indicando que no se puede eliminar porque tiene datos asociados.\ref{MSG-6G2}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUS2buscarTemasTransversales} del \UCref{CUA6}.
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

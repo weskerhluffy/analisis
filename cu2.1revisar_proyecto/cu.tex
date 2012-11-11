@@ -1,0 +1,68 @@
+%-------------------------------------- CU2.1 Revisión de proyectos.
+
+
+	\begin{UseCase}{CU2.1}{Revisión de Proyecto}{Visualizar y/o gestionar la definición de un proyecto según el perfil del actor, otorga la funcionalidad para consulta de información relacionada con un proyecto previamente definido.}
+		\UCitem{Versión}{1.0}
+
+		\UCitem{Actor(es)}{Coordinador, Secretario, Gerente.}
+		\UCitem{Propósito}{Consultar la definición de un proyecto.}
+		\UCitem{Resumen}{Consulta de información relacionada con un proyecto.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Ninguna.}
+		\UCitem{Precondiciones}{
+			Para el coordinador:
+			\begin{itemize}
+ 				\item Haber pasado por el \UCref{CU0} y obtenido perfil de Coordinador.
+ 				\item Que exista un proyecto cuyo responsable sea el Coordinador.
+			\end{itemize}
+			Para el Secretario y el Gerente:
+			\begin{itemize}
+				\item Haber pasado por el \UCref{CU2}.
+			\end{itemize}
+		}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Felipe López Hernández}
+		\UCitem{Referencias}{Ninguna.}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CU2}.}
+		\UCitem{Módulo}{Coordinación, Secretaría y Gerencia.}
+	\end{UseCase}
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona el proyecto del \IUref{IUMenuCoordinador}{Menú del Coordinador}. \Trayref{A} \Trayref{B} \Trayref{C} \Trayref{D}
+% 		\UCpaso[\UCactor] Selecciona el proyecto dependiendo del perfil de usuario:
+% 		\begin{itemize}
+% 		    \item El Coordinador selecciona el proyecto del \IUref{IUMenuCoordinador}{Menú del Coordinador}. % que se muestra de lado izquierdo en pantalla.
+% 		    \item El Gerente selecciona el proyecto del diagrama de gantt en la pantalla \IUref{IURevisarProyectoPerfilGerente}{Revisar Programa del perfil Gerente}.
+% 		    \item El Secretario selecciona el proyecto del diagrama de gantt en la pantalla \IUref{IURevisarProyectoPerfilSecretario}{Revisar Programa del perfil Secretario}.
+% 		\end{itemize} 
+% 		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Revisar Proyecto}.
+% 		%\UCpaso[\UCactor] Selecciona la opción \IUbutton{Revisar Proyecto}.
+% 		\UCpaso Busca datos del proyecto seleccionado.
+% 		\UCpaso Muestra los datos en la pantalla \IUref{IURevisarProyectos}{Revisión de Proyectos} donde se despliegan los datos generales del proyecto y las opciones para su gestión según el perfil del usuario. \UCExtensionPoint{CU2.1.1}{Revisar información de un proyecto}, \UCExtensionPoint{CUC2}{Planeación}, \UCExtensionPoint{CU2.1.3}{Revisar seguimiento del proyecto}, \UCExtensionPoint{CU2.1.2}{Revisar avances de un proyecto}, \UCExtensionPoint{CUG1}{Revisión de proyectos}
+
+	\end{UCtrayectoria}
+	\begin{UCtrayectoriaA}{A}{El proyecto no esta registrado.}{El actor que se ha iniciado el caso de uso es un Coordinador}
+		\UCpaso Busca datos del proyecto seleccionado.
+	 	\UCpaso Muestra la pantalla \IUref{IURevisarInformacionProyecto}{Revisar Información de Proyecto} con la información obtenida y las opciones para su gestión. \UCExtensionPoint{CU2.1.1}{Revisar información de un proyecto}, \UCExtensionPoint{CUC2}{Planeación}, \UCExtensionPoint{CU2.1.3}{Revisar seguimiento del proyecto}.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{B}{El proyecto esta registrado.}{El actor que se ha iniciado el caso de uso es un Coordinador}
+		\UCpaso Busca datos del proyecto seleccionado.
+	 	\UCpaso Muestra la pantalla \IUref{IURevisarProyectoReg}{Revisar Proyecto Registrado.} con la información obtenida y la opción  \UCExtensionPoint{CU2.1.1}{Revisar información de un proyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Selecciona el proyecto del diagrama de gantt en la pantalla \IUref{IURevisarProyectoPerfilGerente}{Revisar Programa del perfil Gerente}}{El actor que se ha iniciado el caso de uso es un Gerente}
+	 	\UCpaso[\UCactor] Selecciona la opción \IUbutton{Revisar Proyecto}.
+		\UCpaso Busca datos del proyecto seleccionado.
+ 		\UCpaso Muestra los datos en la pantalla \IUref{IURevisarProyectos}{Revisión de Proyectos} donde se despliegan los datos generales del proyecto y las opciones para su gestión dependiendo del estado del proyecto. \UCExtensionPoint{CU2.1.1}{Revisar información de un proyecto}, \UCExtensionPoint{CU2.1.3}{Revisar seguimiento del proyecto}, \UCExtensionPoint{CU2.1.2}{Revisar avances de un proyecto}, \UCExtensionPoint{CUG1}{Revisión de proyectos}
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Selecciona el proyecto del diagrama de gantt en la pantalla \IUref{IURevisarProyectoPerfilSecretario}{Revisar Programa del perfil Secretario}}{El actor que se ha iniciado el caso de uso es un Secretario}
+	 	\UCpaso[\UCactor] Selecciona la opción \IUbutton{Revisar Proyecto}.
+		\UCpaso Busca datos del proyecto seleccionado.
+ 		\UCpaso Muestra los datos en la pantalla \IUref{IURevisarProyectos}{Revisión de Proyectos} donde se despliegan los datos generales del proyecto y las opciones para su gestión. \UCExtensionPoint{CU2.1.1}{Revisar información de un proyecto}, \UCExtensionPoint{CU2.1.3}{Revisar seguimiento del proyecto}.
+	\end{UCtrayectoriaA}
+
+
+
+	

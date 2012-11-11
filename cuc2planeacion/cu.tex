@@ -1,0 +1,49 @@
+%-------------------------------------- CU2 planeacion
+
+  \begin{UseCase}{CUC2}{Planeación}{Gestión de las acciones del proyecto y de los presupuestos registrados, así como la opción para enviar el proyecto para su aprobación.}
+    \UCitem{Versión}{2.0}
+    \UCitem{Actor(es)}{Coordinador.}
+    \UCitem{Propósito}{Gestionar las acciones y los presupuestos del proyecto y/o enviar proyecto para revisión.}
+    \UCitem{Resumen}{Agrupa las funcionalidades de gestión de información de planeación de un proyecto.}
+    \UCitem{Entradas}{Ninguna.}
+    \UCitem{Salidas}{Ninguna}
+    \UCitem{Precondiciones}{
+	\begin{itemize}
+	 	\item Haber pasado por el \UCref{CU2.1} con perfil coordinador.
+	 	\item Que el proyecto este en estado de edición.
+	\end{itemize}
+	}
+    \UCitem{Postcondiciones}{Ninguna.}
+   % \UCitem{Autor}{Pedro Hernandez}
+    \UCitem{Referencias}{Ninguna.}
+    \UCitem{Tipo}{Secundario. Viene del caso de uso \UCref{CU2.1}}
+    \UCitem{Módulo}{Coordinación}
+  \end{UseCase}
+
+  \begin{UCtrayectoria}{Principal}
+    \UCpaso[\UCactor] Selecciona la opción \IUbutton{Planeación} de la pantalla \IUref{IUMenuCoordinador}{Revisar proyecto}.
+    \UCpaso Busca las acciones y presupuestos registrados del proyecto. \label{paso:CUC2.planeacion}
+    \UCpaso Calcula los presupuestos disponibles del proyecto. \BRref{RN82} \ref{dd:PresupuestoEjercido}  %TODO DD de presupuesto disponible
+    \UCpaso Muestra la pantalla \IUref{IUPlaneacion}{Planeación de proyecto} donde se despliegan los nombres de las acciones, así como su duración en un diagrama de GANTT. También los datos de solicitud \ref{dd:DEPresupuestos}, dictamen \ref{dd:DSPresupuestos} y ejercicio de cada presupuesto.
+  \end{UCtrayectoria}
+
+\subsection{Puntos de Extensión}
+	\UCEPdef{Gestión de acciones}
+	{El usuario decide modificar las acciones de un proyecto.}
+	{CUC2.2.1 Gestionar Acciones}
+	{\UCref{CUC2.2.1}}
+
+	\UCEPdef{Gestión de presupuesto}
+	{El usuario decide modificar el presupuesto de un proyecto.}
+	{paso:CU2.2.2 Gestionar presupuesto}
+	{\UCref{CUC2.2.2}}
+
+	\UCEPdef{Enviar proyecto para aprobación}
+	{El usuario pide la aprobación del proyecto.}
+	{paso:CUC2.2 Enviar Proyecto para Aprobación}
+	{\UCref{CUC2.2}}
+
+  \begin{UCtrayectoriaA}{A}{Resultado de búsqueda vacía}{No se encontraron registros.}
+    \UCpaso Muestra mensaje (MSG-5) indicando que no se encontraron Proyectos.\ref{MSG5}
+  \end{UCtrayectoriaA}
+

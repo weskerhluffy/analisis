@@ -1,0 +1,24 @@
+\subsection{Pantalla: Modificar Unidad}
+
+\subsubsection{Objetivo}
+	Mantener actualizada la información de las Unidades, ver Figura~\ref{IUModificarUnidad}. Viene de Gestionar Unidades.
+
+\IUfig[0.6]{cua4/ModificarUnidad.png}{IUModificarUnidad}{Modificar Unidad.}
+
+\subsubsection{Salidas}
+	Se muestran los datos actuales de la Unidad que se desea modificar.
+
+\subsubsection{Entradas}
+	Se puede modificar el nombre, el tipo y la descripción de la unidad.
+
+\subsubsection{Comandos}
+\begin{itemize}
+ 	\item \IUbutton{Aceptar}: Si los datos son correctos según las reglas de negocio \BRref{RN1} y \BRref{RN2} actualiza los datos de la Unidad y regresa a la pantalla \IUref{IUGestUnidades}{Gestionar Unidades}. En caso contrario, muestra los mensajes MSG1 y MSG2 según sea el caso.
+ 	\item \IUbutton{Cancelar}: Cancela los cambios del registro seleccionado y regresa a la pantalla \IUref{IUGestUnidades}{Gestionar Unidades} sin realizar cambios.
+\end{itemize}
+
+\subsubsection{Mensajes}
+\begin{itemize}
+ 	\item MSG1: Ya existe una Unidad registrada con el mismo nombre.
+ 	\item MSG2: Debe ingresar todos los datos.
+\end{itemize}

@@ -1,0 +1,32 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+%  
+
+%========Aqui se describen los casos de uso que se derivan de el caso de uso CU2.1 Revisar proyecto
+
+	\begin{UseCase}{CU2.1.3}{Revisar seguimiento de proyecto.}{Se visualizan aquellos mensajes enviados por el actor o que le fueron enviados y así, poder generar restricciones del proyecto.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Coordinador, Gerente o Secretario.}
+		\UCitem{Propósito}{Llevar el registro de las observaciones, restricciones, atenciones y/o derivaciones del proyecto.}
+		\UCitem{Resumen}{Se muestran todos los mensajes recibidos para el usuario, y aquellos enviados por él mismo del proyecto seleccionado.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Los mensajes enviados por el actor o que le fueron enviados a él. \BRref{RN65}.}
+		\UCitem{Precondiciones}{El proyecto debe estar registrado, cancelado, en ejecución, en edición, cerrado o en revisión.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Torres Govea Miguel Angel.}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos.}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CU2.1}}
+		\UCitem{Módulo(s)}{Coordinación, Gerencia y/o Secretaría.}
+	\end{UseCase}
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Seguimiento} en la pantalla \IUref{IURevisarProyectos}{Revisar Proyecto}.
+		\UCpaso Busca los mensajes de o hacia el actor \BRref{RN65} y los encadena por asunto \BRref{RN67}.
+		\UCpaso Muestra la pantalla de la bitácora dependiendo del perfil de usuario.
+		\begin{itemize}
+		    \item Para el Coordinador muestra  \IUref{IUConsultaBitacoraCoordinador}{Bitácora del seguimiento del proyecto, vista del coordinador.} Con posibilidad de registrar una restricción \UCExtensionPoint{CUC3}{Registrar restricción en el proyecto.}.
+		    \item Para el Gerente muestra  \IUref{IUConsultaBitacoraGerente}{Bitácora del seguimiento del proyecto, vista del gerente.} Con posibilidad de turnar una restricción \UCExtensionPoint{CUG3}{Turnar restricción.} o atender una restricción \UCExtensionPoint{CUG1.4.1}{Atender restricción.}. 
+		    \item Para el Secretario muestra  \IUref{IUConsultaBitacoraSecretario}{Bitácora del seguimiento del proyecto, vista del secretario.} Con posibilidad de atender una restricción \UCExtensionPoint{CUS1.4}{Atender restricción.}.
+		\end{itemize}
+	\end{UCtrayectoria}

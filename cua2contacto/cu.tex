@@ -1,0 +1,195 @@
+      \begin{UseCase}{CUA2}{Gestionar Contactos}{Cada usuario registrado que se encuentra en el sistema cuenta con un determinado número de Contactos,para éste catálogo de contactos contamos con un mecanismo que nos ayuda a realizar altas, bajas y cambios en cada uno de dichos contactos que tiene asignado el usuario.Este proceso es aplicable para cada usuario registrado en el sistema.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Administrador}
+		\UCitem{Propósito}{Mantener organizada la información de los Contactos asi como visualizar registrados para cada Usuario.}
+		\UCitem{Resumen}{Se muestran los Contactos registrados con la posibilidad de agregar, modificar y eliminar un  Contactos a un Usuario determinado.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Despliegue de los Contactos de un Usuario específico.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Sánchez Pacheco Humberto.}
+		\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario.Viene del caso CUX Gestionar Usuarios}
+		\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Gestión Usuarios} de la pantalla
+		\IUref{IUMenuAdministrador}{Menú del Administrador}.
+		\UCpaso Muestra la pantalla \IUref{IUGestUsuarios}{Gestionar usuario}.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} del algùn Usuario de la pantalla \IUref{IUGestUsuarios}{Gestionar Usuarios.}.
+		\UCpaso Busca los Contactos registrados para el Usuario especificado.\label{paso:CU2BuscarContactos}
+		\UCpaso Muestra la pantalla \IUref{IUGesContactos}{Gestionar Contactos} donde se despliegan los de datos de los Contactos que actualmente tiene ese Usuario y las opciones de Agregar \IUref{IUAgregarContacto}{Agregar Contacto}, Modificar \IUref{IUModificarContacto}{Modificar  Contacto} ó Eliminar \IUref{IUEliminarContacto}{Eliminar Contacto} un Contacto..\UCExtensionPoint{CUA2.1}{Agregar Contacto} \UCExtensionPoint{CUA2.2}{Modificar Contacto} \UCExtensionPoint{CUA2.3}{Eliminar Contacto}\label{PECU2}
+	\end{UCtrayectoria}
+	
+%--------- Agregar Contacto
+	\begin{UseCase}{CUA2.1}{Agregar Contacto}{El administrador decide agregar un nuevo Contacto de acuerdo al llenado de sus datos correspondientes, posteriormente se actualiza el sistema con la información del nuevo contacto registrado.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador}
+			\UCitem{Propósito}{Agregar un nuevo Contacto a un Usuario.}
+			\UCitem{Resumen}{Se agrega un nuevo Contacto  a un Usuario registrando sus datos correspondientes.}
+			\UCitem{Entradas}{Datos del Contacto \ref{dd:Contactos}.}
+			\UCitem{Salidas}{Mensaje de operación exitosa.}
+			\UCitem{Precondiciones}{Que exista el registro del Usuario al que se le desea agregar Contactos.}
+			\UCitem{Postcondiciones}{Contacto registrado.Se puede localizar al Usuario por medio de ese Contacto}
+			%\UCitem{Autor}{Sánchez Pacheco Humberto.}
+			\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CU2}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Agregar Contacto} en la página \IUref{IUGesContactos}{Gestionar Contactos}.
+                        \UCpaso Busca los Tipos de Contacto registrados en el Sistema.
+			\UCpaso Muestra la pantalla \IUref{IUAgregarContacto}{Agregar Contacto}.
+		        \UCpaso [\UCactor] Ingresa los datos del Contacto.\label{paso:CU2ValidacionDatosNuevosContactos} 
+                	\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.\Trayref{A}\label{PECU5}
+                        \UCpaso Valida de acuerdo a la regla de negocio \BRref{RN2}. \Trayref{B} 
+                        \UCpaso Valida de acuerdo al diccionario de datos. \Trayref{C} \ref{dd:Contactos}. 
+                        \UCpaso Valida de acuerdo a la regla de negocio \BRref{RN1}. \Trayref{D}
+			\UCpaso Valida de acuerdo a la regla de negocio \BRref{RN26}.\Trayref{E} 
+			\UCpaso Agrega el Contacto.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CU2BuscarContactos}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El Administrador abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar un nuevo Contacto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{PECU2} del \UCref{CU2}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{B}{Reglas de Negocio RN2: El Administrador intentó agregar datos nulos}{Los datos ingresados infringe la regla de negocio RN2.}
+                        \UCpaso Muestra que el Administrador no ingreso datos, manda el mensaje (MSG-1).\ref{MSG1}
+			\UCpaso[\UCactor] Ingresa los datos correspondientes.
+			\UCpaso Continúa en el paso \ref{PECU5} del \UCref{CU2.1}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{C}{Diccionario de datos: El Administrador ingresó datos inválidos de acuerdo con el diccionario de datos}{Los datos ingresados no concuerdan con el diccionario de datos}
+                        \UCpaso Muestra el mensaje (MSG-2) indicando que los datos no concuerdan con el diccionario de datos.\ref{MSG2}
+			\UCpaso[\UCactor] Ingresa los datos correspondientes.
+			\UCpaso Continúa en el paso \ref{PECU5} del \UCref{CU2.1}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{D}{Regla de negocio RN1: el Administrador intentó agregrar un contacto ya registrado}{El nombre del contacto ya existe}
+                        \UCpaso Muestra mensaje (MSG-3) indicando que el contacto ya esta registrado (incluso el contacto puede pertenecer a otro Usuario).\ref{MSG3}
+			\UCpaso[\UCactor] Ingresa otro contacto que no este registrado.
+			\UCpaso Continúa en el paso \ref{PECU5} del \UCref{CU2.1}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{E}{Regla de Negocio N26: El Administrador intentó ingresar otro contacto principal }{Contacto principal}
+                        \UCpaso Muestra el mensaje (MSG-6A) al administrador que el usuario ya tiene un Contacto principal del Tipo de Contacto seleccionado..\ref{MSG6A}
+			\UCpaso[\UCactor] Corrige la prioridad del Contacto.
+			\UCpaso Continúa en el paso \ref{PECU5} del \UCref{CU2.1}
+	\end{UCtrayectoriaA}
+
+%--------- Modificar Contacto
+	\begin{UseCase}{CUA2.2}{Modificar Contacto}{El Administrador accede a los datos del Contacto de un Usuario registrado y realiza los cambios necesarios,se actualizan los datos del contacto registrado en el sistema.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador}
+			\UCitem{Propósito}{Modificar los datos de un Contacto de un Usuario y actualizar el registro en el sistema.}
+			\UCitem{Resumen}{El sistema despliega los Datos de los Contactos registrados de un Usuario en específico y permite seleccionar un Contacto para modificar sus datos, guardando los cambios.}
+			\UCitem{Entradas}{Identificador del contacto seleccionado y los datos a modificar del Contacto \ref{dd:Contactos}.}
+			\UCitem{Salidas}{Registro con los datos actuales del Contacto \ref{dd:Contactos}.}
+			\UCitem{Precondiciones}{Que exista el registro del Contacto que se desea modificar.}
+			\UCitem{Postcondiciones}{El Usuario y su Contacto seleccionado se actualiza.}
+			%\UCitem{Autor}{Sánchez Pacheco Humberto}
+			\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CU2}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.2]{images/icons/Modify.jpg}} en la pantalla \IUref{IUGesContactos}{Gestionar Contactos}.
+			\UCpaso Muestra la pantalla \IUref{IUModificarContacto}{Modificar Contacto} con los datos del Usuario seleccionado. 
+                        \UCpaso [\UCactor] Ingresa los datos  del Contacto\ref{dd:Contactos}.\label{paso:CU2ValidacionDatosEditarContactos}
+                       	\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.\Trayref{A}\label{PECU4}
+                        \UCpaso Valida de acuerdo a la regla de negocio \BRref{RN2}. \Trayref{B} 
+                        \UCpaso Valida de acuerdo al diccionario de datos. \Trayref{C}\ref{dd:Contactos}.
+                        \UCpaso Valida de acuerdo a la regla de negocio \BRref{RN1}. \Trayref{D}
+			\UCpaso Valida de acuerdo a la regla de negocio \BRref{RN26}.  \Trayref{E} 
+			\UCpaso Agrega el Contacto.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+                        \UCpaso Continúa en el paso \ref{paso:CU2BuscarContactos}.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El Administrador abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no agregar un nuevo Contacto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{PECU2} del \UCref{CU2}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{B}{Reglas de Negocio:RN2 el Administrador intentó agregar datos nulos}{Los datos ingresados infringe la regla de negocio \BRref{RN2}.}
+                        \UCpaso Muestra que el Administrador no ingresó todo los datos, manda el mensaje (MSG-1) indicando al Admimistrador que campos hace falta ingresar.\ref{MSG1}
+			\UCpaso[\UCactor] Ingresa los datos correspondientes.
+			\UCpaso Continúa en el paso \ref{PECU4} del \UCref{CU2.2}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{C}{Diccionario de datos: El Administrador intentó agregar datos que no corresponden con el diccionario de datos}{Los datos ingresados no concuerdan con el diccionario de datos}
+                        \UCpaso Muestra el mensaje (MSG-2) indicando que los datos no concuerdan con el diccionario de datos.\ref{MSG2}
+			\UCpaso[\UCactor] Ingresa los datos correspondientes.
+			\UCpaso Continúa en el paso \ref{PECU4} del \UCref{CU2.2}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{D}{Regla de negocio RN1: el Administrador intentó agregrar un contacto ya registrado}{El nombre del contacto ya existe}
+                        \UCpaso Muestra mensaje (MSG-3) indicando que el contacto ya esta registrado (incluso el contacto puede pertenecer a otro Usuario).\ref{MSG3}
+			\UCpaso[\UCactor] Ingresa otro contacto que no este registrado.
+			\UCpaso Continúa en el paso \ref{PECU5} del \UCref{CU2.1}.
+	\end{UCtrayectoriaA}
+
+        \begin{UCtrayectoriaA}{E}{Regla de Negocio N26: Intercambio de prioridad}{Contacto principal}
+                        \UCpaso Muestra que este Usuario ya tiene un Contacto principal del Tipo de Contacto seleccionado muestra un mensaje en pantalla que dice que el nuevo contacto será el principal, y que el principial pasará  a ser normal MSG-7A. \ref{MSG7A}
+			\UCpaso[\UCactor] Corrige la prioridad del Contacto
+			\UCpaso Continúa en el paso \ref{PECU4} del \UCref{CU2.2}.
+	\end{UCtrayectoriaA}
+
+
+%--------- Eliminar Contacto
+	\begin{UseCase}{CUA2.3}{Eliminar Contacto }{El Administrador decide eliminar el/los Contactos de un Usuario registrado.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador}
+			\UCitem{Propósito}{Eliminar el Contacto de un Usuario.}
+			\UCitem{Resumen}{El sistema despliega los Datos de los Contactos registrados de un Usuario y permite seleccionarlos  para eliminarlo.}
+			\UCitem{Entradas}{Identificador del Contacto seleccionado.}
+			\UCitem{Salidas}{Datos del contacto \ref{dd:Contactos}.}
+			\UCitem{Precondiciones}{Que exista el registro del Contacto que se desea eliminar.}
+			\UCitem{Postcondiciones}{El Contacto se elimina de los registros.}
+			%\UCitem{Autor}{Sáchez Pacheco Humberto.}
+			\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CU2}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.2]{images/icons/eliminar.png}} en la pantalla \IUref{IUGesContactos}{Gestionar Contactos}.
+			\UCpaso Muestra la pantalla \IUref{IUEliminarContacto}{Eliminar Contacto} con los datos del Contacto Seleccionado. 
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{A}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN29}. \Trayref{B}
+			\UCpaso El Contacto seleccionado se elimina.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CU2BuscarContactos}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El Administrador abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar el Contacto. \label{Datos_Asoc_Contactos}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{PECU2} del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+
+		\begin{UCtrayectoriaA}{B}{Datos Obligatorios: EL Administrador intenta eliminar un dato obligatorio}{El Contacto que se desea eliminar es obligatorio y no puede eliminarse.}
+			\UCpaso Muestra el mensaje (MSG-8A) indicando que no se puede eliminar porque son datos obligatorios para el usuario.\ref{MSG8A}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{PECU2} del \UCref{CU2}.
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

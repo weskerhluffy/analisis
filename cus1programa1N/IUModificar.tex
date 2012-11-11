@@ -1,0 +1,32 @@
+\subsection{Pantalla: Modificar Programa}
+
+\subsubsection{Objetivo}
+	Mantener actualizada la información de los Programas, ver Figura~\ref{IUModificarPrograma1N}. Viene de Gestionar Programas.
+
+\IUfig[0.6]{CUG1/ModificarPrograma1N.png}{IUModificarPrograma1N}{Modificar Programa.}
+
+\subsubsection{Salidas}
+	Se muestran los datos actuales del Programa que se desea modificar:
+\begin{itemize}
+	\item Siglas
+	\item Nombre
+	\item Duración
+	\item Fecha Inicio
+	\item Fecha Fin
+	\item Resumen
+\end{itemize}
+
+\subsubsection{Entradas}
+Datos nuevos del Programa:
+\begin{itemize}
+	\item Duración
+	\item Fecha Inicio
+	\item Fecha Fin
+	\item Resumen
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ 	\item \IUbutton{Aceptar}: Si los datos son correctos según las reglas de negocio \BRref{RN1} y \BRref{RN2} actualiza los datos del Programa y regresa a la pantalla \IUref{IUGestProgramas1N}{Gestionar Programa}. En caso contrario, muestra el mensaje MSG1 según sea el caso.
+ 	\item \IUbutton{Cancelar}: Cancela los cambios del registro seleccionado y regresa a la pantalla \IUref{IUGestProgramas1N}{Gestionar Programas} sin realizar cambios.
+\end{itemize}

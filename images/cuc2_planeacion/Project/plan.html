@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link href="styles/main.css" type="text/css" rel="stylesheet"/>
+    <link href="styles/project.css" media="screen" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="scripts/project.js"><!--
+    //--></script>
+	<title>Banco de Estudio y Seguimiento de Proyectos</title>
+  </head>
+  <body>
+	<div id="pageHeader">
+		<div class="banner"><img src="images/banner/sirs.png" /></div>
+	</div>
+	<div id="pageMain">
+		<div id="pageMenu">
+			<h3>Ayuda</h3>
+			<a class="reporte" href="as"> Manual de usuario</a><br />
+			<a class="planta"  href="as"> Preguntas frecuentes</a><br />
+			<h4>Soporte</h4>
+			<a class="cerrar"  href="as"> Reportar un problema</a><br />
+			<a class="cerrar"  href="as"> Solicitar cuenta</a><br />
+		</div>
+		<div id="pageContent">
+			<h2>Planeación</h2>
+			<h3>Gestión de acciones</h3>
+
+		<div>
+		<center>
+		<table>
+			<tr>
+				
+				<td><input type="button" value="Enviar proyecto">
+			</tr>
+		</table>
+		</center>
+		</div>
+		<div class="project"><div class="tbl">
+	
+			<table border="0" cellspacing="0" cellpadding="0" >
+		
+			<tr>
+				<th></th>
+				<th>Nombre</th>
+				<th>Inicia</th>
+				<th>Termina</th>
+				<th>Avance</th>
+				<th>Responsable</th>
+			</tr>
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div>
+				<img id="imgExpact_1" src="images/project/colapse.png" onclick="javascript:alert('Contraer')"/>
+				Supervisar proyecto</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+		</tr>			
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td>
+				<div><img src="images/project/vertt.png" /><img id="imgExpact_1" src="images/project/colapse.png" />Accion 1</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>			
+
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div title="Programa de contencion de mancha urbana">
+				<img src="images/project/vert.png" /><img src="images/project/vertt.png" /><img src="images/project/blank.png" />
+				Accion 2
+			</div></td><td>
+				34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+		</tr>				
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div>
+			<img src="images/project/vert.png" /><img src="images/project/ele.png" /><img src="images/project/blank.png" />
+		Accion 3</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>	
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div title="&nbsp;&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana.&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana">
+			<img src="images/project/vertt.png" /><img id="imgExpact_1" src="images/project/blank.png" />
+				Evaluar seguimiento</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>	
+		<tr id="${pref}">
+			<td><input name="tarea" type="radio"/></td>
+			<td><div title="&nbsp;&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana.&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana&nbsp;Programa&nbsp;de&nbsp;contencion&nbsp;de&nbsp;mancha&nbsp;urbana">
+			<img src="images/project/ele.png" /><img id="imgExpact_1" src="images/project/expand.png" />
+				Aprobar terminación</div>
+			</td><td>
+			34
+			</td><td>SOS</td>
+			<td>500</td>	
+			<td>3-ago</td>	
+			</tr>	
+		<tr class="resumen">
+			<td colspan="6">Total de proyectos: 7</td>	
+			</tr>	
+		</table>
+		</div><div class="gantt">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<th class="periodo">
+					<span class="hoy" style="left: 30px"></span>
+					<div>
+							<div>2008-2011</div>
+					</div>
+					
+				</th>
+			<tr>
+				<td class="ganttCell">
+					<span class="hoy"></span>
+					<div class="grupo atrasada" style="width:200px; left:0px">
+						<div class="avance" style="width:143px"></div>
+					</div>
+				</td>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<span class="hoy"></span>
+					<div class="tarea enTiempo" style="width:200px; left:0px">
+						<div class="avance" style="width:160px"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:100px;">
+					<div class="tarea atrasada" style="width:80px; left:0px">
+						<div class="avance" style="width:30px"></div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<div class="tarea cerrada" style="width:100px; left:20px">
+						<div class="avance" style="width:80px"></div>
+					</div>
+				</td>
+			<tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<div class="tarea desactualizada" style="width:130px; left:60px">
+						<div class="avance" style="width:80px"></div>
+					</div>
+				</td>
+			<tr>
+			<tr>
+				<td class="ganttCell"><div style="position:relative;left:0px;">
+					<div class="tarea cancelada" style="width:120px; left:40px">
+						<div class="avance" style="width:50px"></div>
+					</div>
+				</td>
+			<tr class="resumen">
+				<td>Proyectos en tiempo: 5, atrasados: 3 terminados: 2</td>
+			</tr>			
+		</table>		
+		</div>
+		</div>
+<br>
+<a href="/bespDone/catalogo-programa/2/edit"><img height="20" width="20" src="images/buttons/agregar.png"></a>
+<a href="/bespDone/catalogo-programa/2/edit"><img height="20" width="20" src="images/buttons/editar.png"></a>
+<a href="/bespDone/catalogo-programa/2/edit"><img height="20" width="20" src="images/buttons/eliminar.png"></a>
+<br>
+<input type="button" value="Gestion de indicadores físicos">
+			<br>		<br>		
+<center>				
+<div id="pageContent">
+			<h3>Gestión de presupuesto</h3>
+</div>
+</center>
+		<table border="1" bordercolor="#00BFFF" cellspacing="0" cellpadding="0" align="center" >
+			<tr>
+				<td colspan="3">Solicitudes</td>
+				<td colspan="2">Aprobaciones</td>
+				<td colspan="2">Eje</td></font>
+			</tr>
+			<tr>
+				<td>Fuente</td>
+				<td>Fecha</td>
+				<td>Monto</td>
+				<td>Fecha</td>
+				<td>Monto</td>
+				<td>Fecha</td>
+				<td>Monto</td>
+			</tr>
+			<tr>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+			</tr>
+			<tr>
+				<td align="left" colspan="5" rowspan="2" border="0">
+					<input type="button" value="Dictaminar">
+					<input type="button" value="Ejercer">
+					<input type="button" value="Eliminar">
+				</td>
+				<td>Total</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Resta</td>
+				<td></td>
+			<tr>
+			<tr>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+				<td WIDTH="100"HEIGHT="150"></td>
+			</tr>
+			<tr>
+				<td align="left" colspan="5" rowspan="2" border="0">
+					<input type="button" value="Dictaminar">
+					<input type="button" value="Ejercer">
+					<input type="button" value="Eliminar">
+				</td>
+				<td>Total</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Resta</td>
+				<td></td>
+			<tr>
+			<tr>
+				<td colspan="6">Total Ejercido</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="6">Presupuesto disponible</td>
+				<td></td>
+			</tr>
+		</table>
+		<br><br>
+		<input type="button" value="Agregar">
+		<input type="button" value="Aceptar">
+		<input type="button" value="Rechazar">
+		
+			<div id="pageFooter">
+				<h2>Secretaría del Medio Ambiente</h2>
+				<!--<h2>Dirección de ...</h2>-->
+				<p>Agricultura No. 21, Piso 3, Col. Escandón, C.P. 11800, Delegación Miguel Hidalgo<br />
+					Tel. 52 78 99 31 ext. 6384,6386 ó 6389.
+				</p>
+				e-mail: <a href="mailto:jhernandez@sma.df.gob.mx">jhernandez@sma.df.gob.mx</a>
+			</div>
+
+  </body>
+</html>
+</jsp:root>

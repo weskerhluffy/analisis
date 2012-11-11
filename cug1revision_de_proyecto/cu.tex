@@ -1,0 +1,34 @@
+%------------------------------------- Revision de un proyecto
+
+\begin{UseCase}{CUG1}{Revisar Proyectos}{Consiste en revisar un proyecto, de esto depende el poder cambiarlo de estado.Si el proyecto es aprobado proseguimos a cambiar su estado a ejecución, por el contrario, si el proyecto es rechazado el estado al que debe asignarse es edición.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Gerente.}
+		\UCitem{Propósito}{Revisar un proyecto para cambiar el estado a ejecución.}
+		\UCitem{Resumen}{Revisar y aprobar un proyecto para ejecución, de lo contrario regresarlo a edición.}
+		\UCitem{Entradas}{Identificador del proyecto seleccionado.}
+		\UCitem{Salidas}{Mensaje de confirmación de modificación del estado del proyecto a ejecución y edición.}
+		\UCitem{Precondiciones}{Existir el proyecto en edición.}
+		\UCitem{Postcondiciones}{El proyecto pasa al estado de ``Ejecución'' o ``Edición''.}
+		%\UCitem{Autor}{Itzel Medrano Carrasco}
+		\UCitem{Referencias}{SIDAM-BESP-P2}
+		\UCitem{Tipo}{Secundario. Viene de \UCref{CUC2.2}}
+		\UCitem{Módulo}{Gerencia}
+\end{UseCase}
+	
+	
+\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Revisar Proyecto} de la pestaña ``Editar proyecto''.
+		\UCpaso Muestra la pantalla \IUref{IURevisionProyectos}{Revisión de proyectos}.
+		\UCpaso Muestra los datos del proyecto \ref{dd:Proyecto}.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{A}
+		\UCpaso Cambia el proyecto del estado de ``Revisión'' al estado de ``Ejecución''.
+		\UCpaso Muestra el mensaje (MSG-g1) indicando que se ha cambiado el proyecto de estado.\ref{MSGg11}
+\end{UCtrayectoria}
+
+\begin{UCtrayectoriaA}{A}{Proyecto no aprobado }{El usuario no aprueba el proyecto.}
+			\UCpaso[\UCactor] Presiona el botón \IUbutton{Rechazar}.
+			\UCpaso Cambia el proeycto de estado de ``Revisión'' al estado de ``Edición''.
+			\UCpaso Muestra el mensaje (MSG-g1) indicando que se ha cambiado el proyecto de estado.\ref{MSGg12}
+\end{UCtrayectoriaA}
+
+

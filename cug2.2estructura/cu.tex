@@ -1,0 +1,198 @@
+
+	\begin{UseCase}{CUG2.2}{Gestionar Estructura}{Administra las estructuras con las opciones de agregar, modificar y eliminar.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Gerente.}
+		\UCitem{Propósito}{Contar con un mecanismo sencillo que ayude a definir la estructura de los programas de primer nivel (EP1N) registrados.}
+		\UCitem{Resumen}{Se muestra la estructura del programa asociado al Gerente con su diagrama de gantt con la 
+		posibilidad de agregar, modificar y eliminar elementos de estructura con base en los niveles definidos.}
+		\UCitem{Entradas}{No.}
+		\UCitem{Salidas}{Estructura y diagrama de gantt.}
+		\UCitem{Precondiciones}{
+			\begin{itemize}
+				\item Haber pasado por el CU0 y obtenido el perfil de Gerente.
+				\item Que exista al menos programa asociado al usuario y que los niveles de este último esten definidos.
+			\end{itemize}
+		 }
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Ernesto Alvarado.}
+		\UCitem{Referencias}{}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Gerencia}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Gestionar Estructuras} en el menú \IUref{IUMenuGerente}{Menú de gerente}.
+		\UCpaso Muestra la pantalla \IUref{IUEstructura}{Gestión de Estructura}
+		\UCpaso Busca el programas asociado al usuario.
+		\UCpaso Construye la gráfica de gantt con los elementos de primer nivel del programa. \Trayref{A} \Trayref{B}  \label{paso:CUG2.2gantt}
+		\UCpaso Presiona salir.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Expandir elemento.}{El usuario puede expandir cada elemento del diagrama que tenga elementos hijos asociados.}
+			\UCpaso[\UCactor] Solicita expandir un elemento.
+			\UCpaso Busca los elementos hijos del elemento seleccionado para expandir.
+			\UCpaso Actualiza el diagrama de gantt con los elementos hijos del elemento seleccionado.
+			\UCpaso Regresa al paso \ref{paso:CUG2.2gantt} de \UCref{CUG2.2}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Mostrar datos del elemento.}{El usuario puede seleccionar un elemento del diagrama de gantt para que el sistema muestre los datos del mismo.}
+			\UCpaso[\UCactor] Solicita ver los datos un elemento.
+			\UCpaso Busca el elemento seleccionado.
+			\UCpaso Muestra los datos del elemento seleccionado. Puntos de extension 1:\UCref{CUG2.2.1} 2:\UCref{CUG2.2.2} 3:\UCref{CUG2.2.3}.
+			\UCpaso Regresa al paso \ref{paso:CUG2.2gantt} de \UCref{CUG2.2}. 
+	\end{UCtrayectoriaA}
+	  
+	\begin{UseCase}{CUG2.1}{Agregar elemento de estructura}{Permite al usuario registrar un nuevo elemento estructura.}
+		\UCitem{Versión}{1.0}
+		\UCitem{Actor(es)}{Gerente.}
+		\UCitem{Propósito}{Agregar una nueva estructura.}
+		\UCitem{Resumen}{Se agrega una estructura registrando sus datos.}
+		\UCitem{Entradas}{Datos de la estructura \ref{dd:DatosEstructura}.}
+		\UCitem{Salidas}{Diagrama de gantt con la nueva estructura incluida.}
+		\UCitem{Precondiciones}{Haber pasado por el \UCref{CUG2.2} trayectoria \Trayref{B} .}
+		\UCitem{Postcondiciones}{Se registra la nueva estructura.}
+		%\UCitem{Autor}{Ernesto Alvarado Gaspar.}
+		\UCitem{Referencias}{SIDAM-BESP-P1}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CUG2.2}}
+		\UCitem{Módulo}{Gerencia}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Solicita agregar una nueva estructura.
+		\UCpaso Valida que se cumpla la  \BRref{RN48} \Trayref{F}.
+		\UCpaso Define como padre del nuevo elemento el seleccionado en el \UCref{CUG2.2} trayectoria \Trayref{B}. 
+		\UCpaso Define el nivel del nuevo elemento con base en el nivel del seleccionado.
+		\UCpaso Calcula el periodo definido o relativo que limita al del elemento nuevo.
+		\UCpaso Calcula el camino de migajas del elemento seleccionado.
+		\UCpaso Muestra la pantalla \IUref{IUAgregarEstructura}{Agregar estructura}
+		\UCpaso [\UCactor] Ingresa los datos de la estructura \ref{dd:DatosEstructura}. \ref{paso:CUG2.2.2editaEstructura}
+		\UCpaso [\UCactor] Solicita registrar el elemento. \Trayref{A} \Trayref{B}
+		\UCpaso Valida que el periodo cumpla con  \BRref{RN33} \Trayref{C}.
+		\UCpaso Valida la  \BRref{RN32} \Trayref{D}.
+		\UCpaso Valida que el periodo cumpla con  \BRref{RN7} \Trayref{E}.
+		\UCpaso Valida que el periodo cumpla con  \BRref{RN60} \Trayref{F}.
+		\UCpaso Registra la nueva estructura.
+		\UCpaso Regresa al paso \ref{paso:CUG2.2gantt}.
+		\UCpaso Muestra un mensaje (MSG-4) de registro exitoso.\ref{MSG4}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar}{No desea modificar la estructura seleccionada.}
+		\UCpaso[\UCactor] Indica que no desea continuar con el CU.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2gantt}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Datos erroneos}{Introduce datos erroneos.}
+		\UCpaso Muestra los campos que no estan debidamente llenados según el diccionario de datos \ref{dd:DatosEstructura}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.1editaEstructura}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Nombre repetido}{El nombre que se pretende dar a la nueva estructura ya esta siendo usado.}
+		\UCpaso Muestra el mensaje (MSG-3).\ref{MSG3}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2.2editaEstructura}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Periodo mal definido}{El periodo que se pretende dar a la nueva estructura no esta bien definido.}
+		\UCpaso Muestra el mensaje (MSG-RN-32).\ref{MSG_RN32}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2.2editaEstructura}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{Periodo invalido}{El periodo que se pretende dar a la nueva estructura es invalido.}
+		\UCpaso Muestra el mensaje (MSG-RN-7).\ref{MSG_RN7}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2.2editaEstructura}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{E}{Nivel de estructura no válido}{La estructura que desea agregar supera el maximo nivel definido para el programa.}
+		\UCpaso Regresa al paso 1 del \UCref{CUG2.2}.
+		\UCpaso Muestra el mensaje (MSG-RN-48).\ref{MSG_RN48}.
+	\end{UCtrayectoriaA}
+
+%-------------------------------------------------------
+	\begin{UseCase}{CUG2.2}{Modificar elemento de estructura}{El usuario selecciona una estructura para modificar sus datos.}
+			\UCitem{Versión}{1.0}
+			\UCitem{Actor(es)}{Gerente.}
+			\UCitem{Propósito}{Modificar los datos de una estructura y actualizar su registro en el sistema.}
+			\UCitem{Resumen}{El sistema muestra los datos de la estructura seleccionada para la modificación de sus datos.}
+			\UCitem{Entradas}{Nuevos datos para la estructura seleccionada \ref{dd:DatosEditablesEstructura}.}
+			\UCitem{Salidas}{Diagrama gantt con la estructura modificadas.}
+			\UCitem{Precondiciones}{Haber pasado por el \UCref{CUG2.2} trayectoria \Trayref{B}.}
+			\UCitem{Postcondiciones}{Se actualizan los datos de la estructura seleccionada.}
+			%\UCitem{Autor}{Ernesto Alvarado Gaspar.}
+			\UCitem{Referencias}{SIDAM-BESP-P1}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUG2.2}}
+			\UCitem{Módulo}{Gerencia}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Solicita modificar la estructura seleccionada.
+		\UCpaso Muestra los datos editables de la estructura para su edición como se definen en \ref{dd:DatosEditablesEstructura}. \label{paso:CUG2.2editaEstructura}
+		\UCpaso Calcula el periodo definido o relativo que limita al del elemento nuevo.
+		\UCpaso Calcula el camino de migajas del elemento seleccionado.
+		\UCpaso Muestra la pantalla \IUref{IUModificarEstructura}{Modificar estructura}
+		\UCpaso [\UCactor] Modifica los datos de la estructura.
+		\UCpaso [\UCactor] Solicita registrar los cambios. \Trayref{A}
+		\UCpaso Valida la \BRref{RN33} \Trayref{B}.
+		\UCpaso Valida la \BRref{RN32} \Trayref{D}. \Trayref{D}
+		\UCpaso Verifica que los periodos de este elemento y sus hijos cumplan con \BRref{RN7} \Trayref{C}.
+		\UCpaso Verifica que los periodos de este elemento y sus hijos cumplan con \BRref{RN60} \Trayref{C}.
+		\UCpaso Registra los cambios a los datos de la estructura.
+		\UCpaso Regresa al paso \ref{paso:CUG2.2gantt}.
+		\UCpaso Muestra un mensaje (MSG-4) de aviso de edición.\ref{MSG4}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar}{No desea modificar la estructura seleccionada.}
+		\UCpaso[\UCactor] Indica que no desea continuar con el CU.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2gantt}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Datos erroneos}{Introduce datos erroneos.}
+		\UCpaso Muestra los campos que no estan debidamente llenados según el diccionario de datos \ref{dd:DatosEditablesEstructura}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2editaEstructura}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Periodo invalido}{El periodo de la nueva estructura o de alguno de sus hijos es invalido.}
+		\UCpaso Muestra el mensaje (MSG-RN-7)\ref{MSG_RN7}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2.2editaEstructura}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Periodo mal definido}{El periodo que se pretende dar a la nueva estructura no esta bien definido.}
+		\UCpaso Muestra el mensaje (MSG-RN-32).\ref{MSG_RN32}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2.2editaEstructura}.
+	\end{UCtrayectoriaA}
+
+
+%--------- Eliminar Unidad
+	\begin{UseCase}{CUG2.3}{Eliminar elemento de estructura}{El usuario elimina una estructura registrada.}
+			\UCitem{Versión}{1.0}
+			\UCitem{Actor(es)}{Gerente.}
+			\UCitem{Propósito}{Eliminar la estructura seleccionada.}
+			\UCitem{Resumen}{El sistema muestra los datos de la estructura seleccionada para confirmar su eliminación.}
+			\UCitem{Entradas}{Identificador de la Estructura seleccionada.}
+			\UCitem{Salidas}{Datos de la estructura seleccionada \ref{dd:DatosEstructura}.}
+			\UCitem{Precondiciones}{Haber pasado por el \UCref{CUG2.2} trayectoria \Trayref{B}.}
+			\UCitem{Postcondiciones}{La estructura se elimina junto con sus descendientes de los registros.}
+			%\UCitem{Autor}{Ernesto Alvarado Gaspar.}
+			\UCitem{Referencias}{SIDAM-BESP-P1}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUG2.2}}
+			\UCitem{Módulo}{Gerencia}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Solicita eliminar la estructura seleccionada.
+		\UCpaso Muestra los datos de la estructura seleccionada. \label{paso:CUG2.3eliminarEstructura}
+		\UCpaso [\UCactor] Solicita eliminar la estructura. \Trayref{A}
+		\UCpaso Valida la \BRref{RN36}. \Trayref{B}
+		\UCpaso La estructura seleccionada se elimina.
+		\UCpaso Elimina la estructura y todos sus descendientes.
+		\UCpaso Regresa al paso \ref{paso:CUG2.2gantt}.
+		\UCpaso Muestra un mensaje (MSG-4) de aviso de eliminación.\ref{MSG4}
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar}{No desea eliminar una nueva estructura.}
+		\UCpaso[\UCactor] Indica que no desea continuar con el CU.
+		\UCpaso Continua en el paso \ref{paso:CUG2.2gantt}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Estructura ya alineada}{La estructura seleccionada ya tiene proyectos alineados a ella.}
+		\UCpaso Muestra el mensaje (MSG-RN-36).\ref{MSG_RN36}.
+		\UCpaso Continua en el paso \ref{paso:CUG2.3eliminarEstructura}.
+	\end{UCtrayectoriaA}

@@ -1,0 +1,32 @@
+\subsection{Pantalla: Agregar Presupuesto}
+
+\subsubsection{Objetivo}
+Permite al coordinador agregar un presupupuesto, ver figura~\ref{IUAgregarPresupuesto}.
+
+\IUfig[0.6]{cuc2-2-2presupuesto/agregarPresupuesto.png}{IUAgregarPresupuesto}{Agregar Presupuesto.}
+
+\subsubsection{Salidas}
+\begin{itemize}
+ \item Se muestra el mensaje de confirmación\ref{MSG4}.
+ \end{itemize}
+
+\subsubsection{Entradas}
+Datos Presupuesto \ref{dd:Presupuesto}.
+\begin{itemize}
+ \item Fuente.
+ \item Fecha de solicitud
+ \item Monto
+
+\end{itemize}
+
+\subsubsection{Controles}
+\begin{itemize}
+ \item \textit{DataField} para que el usuario pueda determinar la fecha a partir de un calendario
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Da de alta el registro del sistema siempre y cuando los datos sean correctos. De lo contrario el sistema mostrará los mensajes 
+ \item \IUbutton{Cancelar} Cancela la operación. Lleva a la pantalla \IUref{IUGestPresupuestos}{Gestionar Presupuestos}
+\end{itemize}
+

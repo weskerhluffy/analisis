@@ -1,0 +1,24 @@
+\subsection{Pantalla: Agregar Eje Temático}
+
+\subsubsection{Objetivo}
+Permitir dar de alta nuevos ejes temáticos dentro del sistema.  Vease Figura ~\ref{IUAgregarEjeTematico}, viene de Gestionar Ejes Temáticos.
+
+\IUfig[0.6]{CUG3/AgregarEjeTematico.PNG}{IUAgregarEjeTematico}{Agregar Eje Temático.}
+
+%\IUfig[0.6]{GestionArea.PNG}{IUPCAdmin}{Administrar Equipos.}
+
+\subsubsection{Entradas}
+Nombre y descripción del eje temático.
+
+\subsubsection{Salidas}
+Mostrará el MSG4 \ref{MSG4}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar} Guardar en el sistema los datos del eje temático que el usuario ha ingresado siempre y cuando sean correctos. Cuando los datos no  cumplan con la regla de negocios  \BRref{RN2}  mostrará el MSG1 \ref{MSG1}, si no cumple con el diccionario de datos \ref{dd:EjeTematico} mostrá el MSG2 \ref{MSG2}. El MSG3 lo mostrará cuando no cumpla con la regla de negocios \BRref{RN1}. 
+ \item \IUbutton{Cancelar}: Al presionar este botón cancela el proceso y regresa a la pantalla \IUref{IUGestEjesTematicos}{Gestionar Ejes Temáticos}.
+
+\end{itemize}
+
+
+

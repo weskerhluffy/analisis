@@ -1,0 +1,40 @@
+\subsection{Pantalla: Modificar Usuario}
+%IUModificarPerfil
+\subsubsection{Objetivo}
+Registrar un nuevo Usuario. Figura~\ref{IUModificarUsuario}. Viene de \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+
+
+\IUfig[0.4]{CU1/ModificarUsuarios.png}{IUModificarUsuario}{Pantalla: Modificar Usuario.}
+%\IUfig[0.6]{cu1/ModificarUsuarioOperacionExitosa.png}{IUModificarUsuarioOperacionExitosa}{Mensaje de operación exitosa.}
+
+\subsubsection{Salidas}
+Datos actuales pertenecientes al registro del Usuario que se pretende modificar\ref{dd:Usuario}:
+\begin{itemize}
+ \item Login
+ \item Contraseña
+ \item Nombre
+ \item Apellido Paterno
+ \item Apellio Materno
+ \item RFC
+ \item Cargo
+ \item Dirección
+\end{itemize}
+
+\subsubsection{Entradas}
+Datos nuevos del Usuario que se pretenden registrar en el sistema\ref{dd:Usuario}:
+\begin{itemize}
+ \item Login
+ \item Contraseña
+ \item Nombre
+ \item Apellido Paterno
+ \item Apellio Materno
+ \item RFC
+ \item Cargo
+ \item Dirección
+\end{itemize}
+
+\subsubsection{Comandos}
+\begin{itemize}
+ \item \IUbutton{Aceptar}: Registra los datos del Usuario y regresa a la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+ \item \IUbutton{Cancelar}: Regresa a la pantalla \IUref{IUGestUsuarios}{Géstionar Usuarios.}.
+\end{itemize}

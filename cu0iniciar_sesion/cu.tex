@@ -1,13 +1,13 @@
-  	\begin{UseCase}{CU0}{Iniciar Sesión}{Permite acceder al sistema.}
+  	\begin{UseCase}{CU0}{Iniciar Sesión}{Permite el acceso al sistema mediante un nombre de usuario registrado y una contraseña, además, proporciona la funcionalidad de Recuperar Contraseña.}
 		\UCitem{Versión}{1.0}
-		\UCitem{Actor(es)}{Administrador, Coordinador, Gerente y Director.}
-		\UCitem{Propósito}{Restringir el acceso al sistema a sólo personal autorizado.}
-		\UCitem{Resumen}{Autentica los usuarios registrados.}
+		\UCitem{Actor(es)}{Administrador, Coordinador, Director, Gerente y Secretario.}
+		\UCitem{Propósito}{Accesar al sistema de acuerdo a las necesidades de cada uno de los diferentes tipos de usuario.}
+		\UCitem{Resumen}{Otorga acceso a los usuarios registrados de acuerdo al perfil de usuario de cada uno de ellos.}
 		\UCitem{Entradas}{Nombre de login y Contraseña\ref{dd:Usuario}.}
 		\UCitem{Salidas}{Menú de la Sesión iniciada.}
-		\UCitem{Precondiciones}{Ninguna.}
-		\UCitem{Postcondiciones}{El actor inicia sesión.}
-		\UCitem{Autor}{Jessica Nayeli Ramos Gonzalez}
+		\UCitem{Precondiciones}{Debe existir al menos un usuario registrado.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Jessica Nayeli Ramos Gonzalez}
 		\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos.}
 		\UCitem{Tipo}{Primario.}
 		\UCitem{Módulo}{Control de acceso.}
@@ -17,7 +17,7 @@
 	\begin{UCtrayectoria}{Principal}
 		\UCpaso [\UCactor] Ingresa al Sistema.
 		\UCpaso Muestra la pantalla \IUref{IULoggueo}{Iniciar Sesión}. 
-		\UCpaso [\UCactor] Ingresa el login y contraseña.\label{paso:CU0ingresarDatos}
+		\UCpaso [\UCactor] Ingresa el login y contraseña.\label{paso:CU0ingresarDatos} \UCExtensionPoint{CU0.1}{Recuperar Contraseña.}
 		\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
 		\UCpaso Valida los datos ingresados.\Trayref{A}
 		\UCpaso Obtiene el perfil del usuario.
@@ -29,22 +29,17 @@
 			\UCpaso Continúa con el paso \ref{paso:CU0ingresarDatos}.
 		\end{UCtrayectoriaA}
 
-	\subsection{Puntos de Extensión}
-	\UCEPdef{Recuperar Contraseña}
-	{El actor ha olvidado su contraseña}
-	{\ref{paso:CU0ingresarDatos}}
-	{\UCref{CU0}}
 
-	\begin{UseCase}{CU0.1}{Recuperar Contraseña}{El actor decide recuperar su contraseña.}
+	\begin{UseCase}{CU0.1}{Recuperar Contraseña}{Se lleva a cabo cuando el actor hace una petición al sistema para recuperar su contraseña de acceso a éste.El proceso consiste en recibir un correo electrónico de parte del sistema a la dirección de correo principal otorgando al actor su nombre de usuario registrado y su contraseña.}
 			\UCitem{Versión}{1.0}
-			\UCitem{Actor(es)}{Administrador, Coordinador, Gerente y Director.}
-			\UCitem{Propósito}{Recuperar Contraseña.}
-			\UCitem{Resumen}{El sistema manda un correo electrónico a la dirección de correo principal proporcionando el usuario y password del usuario ingresado.}
+			\UCitem{Actor(es)}{Administrador, Coordinador, Director, Gerente y Secretario.}
+			\UCitem{Propósito}{Brindar al usuario su Contraseña.}
+			\UCitem{Resumen}{Proporcionar al usuario su contraseña mediante una petición al sistema de ésta.}
 			\UCitem{Entradas}{Login de Usuario.}
 			\UCitem{Salidas}{Mensaje de confirmación.}
 			\UCitem{Precondiciones}{Que el usuario tenga acceso al sistema.}
 			\UCitem{Postcondiciones}{Correo electrónico enviado.}
-			\UCitem{Autor}{Vargas Chávez Alejandro.}
+			%\UCitem{Autor}{Jessica Nayeli Ramos Gonzalez.}
 			\UCitem{Referencias}{SIDAM-BESP-P0-Especificación de Catálogos.}
 			\UCitem{Tipo}{Secundario. Viene del caso de uso \UCref{CU0}.}
 			\UCitem{Módulo}{Control de acceso.}
@@ -61,7 +56,7 @@
 	\end{UCtrayectoria}
 
 		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El actor decide ya no recuperar su contraseña}
-			\UCpaso[\UCactor] Oprime el botón \IUbutton{Regresar}.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{· Cancelar}.
 			\UCpaso Continúa en el paso \ref{paso:CU0ingresarDatos} del \UCref{CU0}.
 		\end{UCtrayectoriaA}
 

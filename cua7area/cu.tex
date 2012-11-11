@@ -1,0 +1,176 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+	\begin{UseCase}{CUA4}{Gestionar Direcciones}{Existen diversas áreas que ayudan a mejorar el control de los proyectos registrados en el sistema, ofrece un mecanismo de apoyo que nos permite añadir, modificar y eliminar cada una de las áreas registradas.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Estado}{Finalizado}
+		\UCitem{Actor(es)}{Administrador}
+		\UCitem{Propósito}{Contar con un mecanismo que ayude a manejar las áreas para el control de los proyectos.}
+		\UCitem{Resumen}{Se muestran las áreas registradas con la posibilidad de agregar, modificar y eliminar.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Lista de las áreas registradas.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Hermosillo García Karen Adriana }
+		%\UCitem{Revisa}{Jaime Lopez.}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Administración.}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Gestión de Direcciones} de la pantalla \IUref{IUMenuAdministrador}{Menú del Administrador}.
+		\UCpaso Busca las áreas registradas. \Trayref{A}\label{paso:CUA4buscarAreas}
+		\UCpaso Muestra en la pantalla \IUref{IUGestAreas}{Gestión de Direcciones} los datos de las direacciones registradas ordenadas por nombre y las opciones para Agregar, Modificar o Eliminar un Área.\UCExtensionPoint{CUA4.1}{Agregar Dirección} \UCExtensionPoint{CUA4.2}{Modificar Dirección} \UCExtensionPoint{CUA4.3}{Eliminar Direción}
+		\UCpaso Vuelve a la pantalla anterior. 
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Resultado de busqueda vacía}{No se encuentra ninguna Dirección.}
+		\UCpaso Muestra mensaje (MSG-5) indicando que no se encontraron Direcciones.\ref{MSG5}
+	\end{UCtrayectoriaA}
+
+%--------- Agregar área
+	\begin{UseCase}{CUA4.1}{Agregar Dirección}{El Administrador registra una nueva Dirección con sus respectivos datos, posteriormente el sistema se actualiza mostrando el registro nuevo de dirección.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Estado}{Finalizado}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Permitir agregar nuevas áreas.}
+			\UCitem{Resumen}{Se ingresan los datos correspondientes y se agrega la nueva área.}
+			\UCitem{Entradas}{Datos de la Dirección \ref{dd:Area}.}
+			\UCitem{Salidas}{Mensaje que indica que la nueva Dirección ha sido agregado de forma correcta.}
+			\UCitem{Precondiciones}{Ninguna.}
+			\UCitem{Postcondiciones}{Dirección registrada. }
+			%\UCitem{Autor}{Hermosillo García Karen Adriana }
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA4}}
+			\UCitem{Módulo}{Administración.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.2]{images/icons/agregar.png}} en la página \IUref{IUGestAreas}{Gestión de Direcciones}.
+			\UCpaso Muestra la pantalla \IUref{IUAgregarArea}{Agregar Dirección} 
+			\UCpaso [\UCactor] Ingresa los datos de la Dirección. \Trayref{A} \label{paso:CUA4.1ingresarDatos}.
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Revisa que los datos cumplan la regla de negocios \BRref{2}. \Trayref{B}
+			\UCpaso Revisa los datos de acuerdo al diccionario \ref{dd:Area} \Trayref{C}
+			\UCpaso Verifica que se cumpla la regla de negocios \BRref{1}. \Trayref{D} 
+			\UCpaso Agrega la Dirección.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+	\end{UCtrayectoria}
+	\newpage
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide no Agregar la Dirección.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+	\end{UCtrayectoriaA}
+		
+	\begin{UCtrayectoriaA}{B}{Datos nulos}{Los datos ingresados por el usuario  no cumplen con la regla de negocios \BRref{2}.}
+			\UCpaso Muestra el mensaje (MSG-1).\ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUA4.1ingresarDatos} del \UCref{CUA4.1}.
+	\end{UCtrayectoriaA}
+	\begin{UCtrayectoriaA}{C}{Datos incorrectos}{Los datos ingresados por el usuario  no cumplen con los datos de la Dirección \ref{dd:Area}.}
+			\UCpaso Muestra el mensaje (MSG-2).\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUA4.1ingresarDatos} del \UCref{CUA4.1}.
+	\end{UCtrayectoriaA}
+
+
+	\begin{UCtrayectoriaA}{D}{Dirección repetida}{El nombre de la Dirección ya se encuentra registrada \BRref{1}.}
+		\UCpaso Muestram el mensaje (MSG-3). \ref{MSG3}
+		\UCpaso Continúa en el paso \ref{paso:CUA4.1ingresarDatos} del \UCref{CUA4.1}.
+	\end{UCtrayectoriaA}
+
+%--------- Modificar Área
+	\begin{UseCase}{CUA4.2}{Modificar Dirección}{El Administrador selecciona y modifica los datos de una Dirección registrada. Aparece en el sistema los datos actualizados para cada dirección modificada.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Estado}{Finalizado}
+			\UCitem{Actor}{Administrador.}
+			\UCitem{Propósito}{Modificar los datos de una Dirección y actualizar el registro en el sistema.}
+			\UCitem{Resumen}{El sistema despliega los Datos de las Direcciones registradas y permite seleccionar un Direacción para modificar sus datos, guardando los cambios.}
+			\UCitem{Entradas}{Identificador de la Dirección seleccionada y datos a modificar \ref{dd:Area}.}
+			\UCitem{Salidas}{Datos de la Dirección seleccionada \ref{dd:Area} y mensaje de operación exitosa.}
+			\UCitem{Precondiciones}{Que exista el registro de la Dirección que se desea modificar.}
+			\UCitem{Postcondiciones}{La Direccióná seleccionada se actualiza.}
+			%\UCitem{Autor}{Hermosillo García Karen Adriana }
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA4}}
+			\UCitem{Módulo}{Administración}
+			\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} de la Dirección que desea modificar 	\UCpaso Muestra la pantalla \IUref{IUModificarArea}{Modificar Dirección} con los datos de la Dirección seleccionada 
+			\UCpaso [\UCactor] Ingresa los datos de la Dirección.\label{paso:CUA4.2ingresarDatos}\Trayref{A}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Revisa que se cumpla regla de negocios \BRref{2}. \Trayref{B}
+			\UCpaso Revisa los datos de acuerdo al diccionario de datos \ref{dd:Area} \Trayref{C}
+			\UCpaso Actualiza los datos de la Dirección.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+	\end{UCtrayectoria}
+	\newpage
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no modificar los datos de la Dirección.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+		\end{UCtrayectoriaA}
+		
+		 \begin{UCtrayectoriaA}{B}{Datos nulos}{Existen campos nulos en el formulario de registro.}
+			\UCpaso Muestra MSG1 \ref{MSG1}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4.2ingresarDatos} del \UCref{CUA4.2}.
+		\end{UCtrayectoriaA}
+		 \begin{UCtrayectoriaA}{C}{Datos incorrectos}{Los datos de la Dirección no cumplen con lo especificado en el diccionario de datos \ref{dd:Area}}
+			\UCpaso Muestra MSG2 \ref{MSG2}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4.2ingresarDatos} del \UCref{CUA4.2}.
+		\end{UCtrayectoriaA}
+
+
+
+%--------- Eliminar Área
+	\begin{UseCase}{CUA4.3}{Eliminar Dirección}{Una de las Direcciones existentes no es necesaria y el Administrador desea eliminarla.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Estado}{Finalizado}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Permitir al usuario eliminar una Dirección cuando esta no sea necesaria.}
+			\UCitem{Resumen}{El sistema despliega los Datos de las Direcciones registradas y permite seleccionar un área para eliminarla.}
+			\UCitem{Entradas}{Identificador de la Dirección seleccionada.}
+			\UCitem{Salidas}{Datos de la Dirección seleccionada \ref{dd:Area} y mensaje de operación exitosa.}
+			\UCitem{Precondiciones}{Que exista el registro de la Dirección que se desea eliminar.}
+			\UCitem{Postcondiciones}{La dirección se elimina de los registros.}
+			%\UCitem{Autor}{Hermosillo García Karen Adriana }
+			%\UCitem{Revisa}{Jaime López.}
+			\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA4}}
+			\UCitem{Módulo}{Administración.}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/eliminar.png}} de la Dirección que desea eliminar.
+			\UCpaso Muestra la pantalla \IUref{IUEliminarArea}{Eliminar Dirección} con los datos de la Dirección seleccionada \Trayref{A} 
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que cumpla con la regla de negocio \BRref{RN50}. \Trayref{B} 
+			\UCpaso LA dirección seleccionada se elimina.
+			\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] El usuario ya no desea eliminar la Dirección seleccionada.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+		\end{UCtrayectoriaA}
+
+		 \begin{UCtrayectoriaA}{B}{Datos asociados}{Existen usuarios que se encuentran registrados dentro de esta Dirección, y no se puede eliminar porque está asociada.}
+			\UCpaso Muestra el mensaje (MSG-6A7).\ref{MSG-6A7}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarAreas} del \UCref{CUA4}.
+		\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

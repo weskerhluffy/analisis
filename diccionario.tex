@@ -1714,3 +1714,45 @@ Caracter + 1{Caracter}254\end{lstlisting}}\end{description}
 \end{lstlisting}}\end{description}
 
 \end{itemize}
+
+
+\subsection{Acción}
+\label{dd:accion}
+\begin{lstlisting}
+	Acción = @(idAccion+idProyecto) + idPeriodo + nbAccion + txObjetivo +  dsAccion;
+  
+\end{lstlisting}
+ \begin{itemize}
+
+     \item \textbf{@(idAccion+idProyecto)}
+      \begin{description}
+        \item [Significado:] Identificador de la acción e identificador del proyecto al que pertenece.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3+1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{idPeriodo}
+      \begin{description}
+        \item [Significado:] Identificador del periodo que le fue asignado a la acción actual.
+        \item [Valores:]{\begin{lstlisting}
+	1{Dígito}3\end{lstlisting}}\end{description}
+
+    \item \textbf{nbAccion}
+      \begin{description}
+        \item [Significado:] Nombre asignado a la acción.
+        \item [Valores:]{\begin{lstlisting}
+	1{Caracter}255\end{lstlisting}}\end{description}
+
+    \item \textbf{txObjetivo}
+      \begin{description}
+        \item [Significado:] Objetivo por el cual se crea la acción.
+        \item [Valores:]{\begin{lstlisting}
+	1{Caracter}500\end{lstlisting}}\end{description}
+
+    \item \textbf{dsAccion}
+      \begin{description}
+        \item [Significado:] Es una reseña sobre la acción.
+        \item [Valores:]{\begin{lstlisting}
+	1{Caracter}500\end{lstlisting}}\end{description}
+
+\end{itemize}
+

@@ -1,0 +1,56 @@
+% Descripción: Describe la funcionalidad ofrecida por el CU
+% Propósito: Describe el objetivo o razón de ser del CU
+% Resumen: Describe brevemente lo que hace el CU
+
+
+\begin{UseCase}{CUE2}{Consultar Estudios}{Ofrece un mecanismo que muestra los diferentes estudios registrados y ofrece la funcionalidad de consulta de éstos, ya sea por tema transversal o por eje temático.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Ciudadano.}
+		\UCitem{Propósito}{Contar con un mecanismo que permita consultar los estudios de los proyectos.}
+		\UCitem{Resumen}{Mecanismo para consultar los diferentes {\bf Estudios} registrados para consultarlos por eje transversal o por eje temático.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Lista con los estudios registrados.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Vázquez Flores Jorge Aarón. Méndez Monroy Luis Enrique.}
+		\UCitem{Referencias}{Ninguna.}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Consulta Ciudadana.}
+	\end{UseCase}
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona la opción \IUbutton{Consulta Estudio} en el menú \IUref{IUMenuCiudadano}{Menú del Ciudadano}.
+		\UCpaso Busca los registros por Tema Transversal o Eje Tematico.\Trayref{A}\label{Paso:CUE2BuscaEstudios}
+		\UCpaso Muestra en la pantalla \IUref{IUConsultaGeneral}{Consulta General.} los registros por Tema Transversal o por Eje Temático con la opción de Descargar.\UCExtensionPoint{CUE2.1}{Consultar Estudios por Tema Transversal o por Eje Temático} 
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{No hay proyectos registrados.}{No se encuentran estudios registrados.}
+			\UCpaso Se muestra el mensaje (MSG5)\ref{MSG5} notificando al usuario que no se encontraron registros.
+	\end{UCtrayectoriaA}
+
+
+%--------------------------------------------------------- Consultar Estudio por Tema Transversal o eje Temático.
+	
+	\begin{UseCase}{CUE2.1}{Consultar Estudio por Tema Transversal o Eje Temático}{El ciudadano selecciona un estudio por Eje Transversal o por Eje Temático, y se muestra la información registrada acerca de dicho estudio para su consulta.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Ciudadano.}
+		\UCitem{Propósito}{Consultar el estudio seleccionado por Eje Transversal o Eje Temático.}
+                \UCitem{Resumen}{Se muestra la informacion del estudio seleccionado por Eje Transversal o Eje Temático.}	
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Lista de estudios del tema ó eje seleccionado.}
+		\UCitem{Precondiciones}{Debe existir almenos un estudio registrado.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Vázquez Flores Jorge Aarón.}
+		\UCitem{Referencias}{Ninguna.}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CUE2}.}
+		\UCitem{Módulo}{Consulta Ciudadana.}
+	\end{UseCase}
+
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Selecciona el tema transversal o eje temático de la pantalla \IUref{IUConsultaGeneral}{Consulta General.}			
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Buscar}
+		\UCpaso Continua en el paso \ref{Paso:CUE2BuscaEstudios} de \UCref{CUE2}.
+	\end{UCtrayectoria}
+	
+%

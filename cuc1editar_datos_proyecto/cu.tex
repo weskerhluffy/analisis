@@ -1,0 +1,113 @@
+%-------------------------Registrar Proyecto
+	\begin{UseCase}{CUC1}{Editar datos de Proyecto}{Se muestran los datos del Proyecto que pueden ser sujetos a edición, permite asociar Ejes Tematicos y Temas Transversales, además, alinearlo a un programa y/o con el programa sectorial.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Coordinador}
+		\UCitem{Propósito}{Someter los datos del registro de alguno de los proyectos existentes a edición y establecer su alineación.}
+		\UCitem{Resumen}{Editar los datos de un Proyecto registrado asociado a un Coordinador.}
+		\UCitem{Entradas}{
+			\begin{itemize}
+				\item Datos editables de Proyecto \ref{dd:DatosEditablesProyecto}.
+				\item Seleccion de estructuras del programa sectorial.
+				\item Seleccion de estructuras de un programa.
+				\item Seleccion de ejes tematicos.
+				\item Seleccion de temas transversales.
+			\end{itemize}
+		}
+		\UCitem{Salidas}{Mensaje \ref{MSGCUC1}.}
+		\UCitem{Precondiciones}{Se presentan las siguientes precondiciones
+		  \begin{itemize}
+		    \item Que existan programas registrados.
+		    \item Que existan estructuras definidas para los programas.
+		    \item Que existan Ejes Temáticos registrados.
+		    \item Que existan Temas Transversales registrados.
+		    \item Que exista al menos un Proyecto registrado.
+		  \end{itemize}}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Adrian Martinez. Ernesto Alvarado Gaspar}
+		\UCitem{Referencias}{Ninguna}
+		\UCitem{Tipo}{Secundario. Viene del caso de uso \UCref{CU2.1.1}}
+		\UCitem{Módulo}{Coordinación}	
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Asociar proyecto} de la pantalla \IUref{IURevisarInformacionProyecto}{Revisar Informacion de Proyecto}.
+			\UCpaso Obtiene los datos del usuario.\label{paso:CUC1_ObtieneDatosUsuario}
+			\UCpaso Obtiene los datos del proyecto que se ha seleccionado.
+			\UCpaso Obtiene los Ejes Temáticos disponibles.
+			\UCpaso Obtiene los Temas Transversales disponibles.
+			\UCpaso Obtiene los programas sectoriales de la Agenda Ambiental disponibles.
+			\UCpaso Obtiene otros programas diponibles con los que se pueda alinear el proyecto.
+			\UCpaso Muestra la pantalla \IUref{IUEditarDatosProyecto}{Editar Datos de Proyecto}.
+			\UCpaso [\UCactor] Edita los datos del proyecto y los de su alineacion.\label{paso:CUC1_IngresaDatosProyecto} \Trayref{A}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.\label{paso:CUC1_OprimeAceptar}
+			\UCpaso Revisa que los datos correspondan con la Definición de Datos. \Trayref{B} \Trayref{C}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN32}.\Trayref{D}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN33}.\Trayref{E}
+			\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN40}.\Trayref{F}
+			\UCpaso Valida que el periodo cumpla con  \BRref{RN60} \Trayref{G}.
+			\UCpaso Valida que el periodo cumpla con  \BRref{RN7} \Trayref{G}.
+			\UCpaso Registra el Proyecto.
+			\UCpaso Muestra el mensaje de operación exitosa. \ref{MSG4}
+			\UCpaso Regresa a la pantalla \IUref{IURevisarInformacionProyecto}{Revisar Informacion de Proyecto}, mostrando las actualizaciónes hechas.
+	\end{UCtrayectoria}
+
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no editar los datos de un Proyecto.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Regresa a la pantalla \IUref{IURevisarInformacionProyecto}{Revisar Informacion de Proyecto}.
+	\end{UCtrayectoriaA}
+
+
+	\begin{UCtrayectoriaA}{B}{Datos del Proyecto Incompletos}{Los datos de Proyecto proporcionados estan incompletos.}
+			\UCpaso Muestra el mensaje (MSG-1) indicando que los datos ingresados estan incompletos. \ref{MSG1}
+			\UCpaso Continúa en el paso \ref{paso:CUC1_IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos del proyecto Incorrectos}{Los datos del Proyecto no corresponden con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2) indicando los valores que son incorrectos. \ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUC1_IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Periodo mal definido}{El periodo del Proyecto que se desea registrar no está bien definido.}
+			\UCpaso Muestra el mensaje (MSG-RN-32).\ref{MSG_RN32}
+			\UCpaso Continúa en el paso \ref{paso:CUC1_IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+
+	\begin{UCtrayectoriaA}{E}{El nombre del Proyecto repetido}{El Nombre del Proyecto ya se encuentra registrado.}
+			\UCpaso Muestra el mensaje (MSG-3) \ref{MSG3}
+			\UCpaso Continúa en el paso \ref{paso:CUC1_IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+	
+	\begin{UCtrayectoriaA}{F}{Las siglas del Proyecto repetidas}{Las siglas del Proyecto ya se encuentran registradas.}
+			\UCpaso Muestra el mensaje (MSG-3) \ref{MSG3}
+			\UCpaso Continúa en el paso \ref{paso:CUC1_IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{G}{Periodo invalido}{El periodo que se pretende dar a la nueva estructura es invalido.}
+		\UCpaso Muestra el mensaje (MSG-RN-7).\ref{MSG_RN7}.
+		\UCpaso Continua en el paso \ref{paso:CUC1_IngresaDatosProyecto}.
+	\end{UCtrayectoriaA}
+
+
+
+
+%-------------------------------------- TERMINA descripción del caso de uso.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+-%------------------------------------- CUDG1 Consultar proyectos
+
+  \begin{UseCase}{CUDG1}{Consultar proyectos}{Despliega una lista con los proyectos registrados que se encuentran actualmente en el sistema, con la finalidad de conocer y consultar cada uno de ellos.}
+    \UCitem{Versión}{2.0}
+    \UCitem{Actor(es)}{Director general.}
+    \UCitem{Propósito}{Consultar los proyectos que se encuentran actualmente en el sistema.}
+    \UCitem{Resumen}{Enlista los proyectos registrados para su consulta.}
+    \UCitem{Entradas}{Ninguna.}
+    \UCitem{Salidas}{Lista con los proyectos.}
+    \UCitem{Precondiciones}{Al menos debe haber un proyecto registrado.}
+    \UCitem{Postcondiciones}{Ninguna.}
+    %\UCitem{Autor}{Pedro Hernandez.}
+    \UCitem{Referencias}{SIDAM-BESP-P1}
+    \UCitem{Tipo}{Primario.}
+    \UCitem{Módulo}{Dirección general.}
+  \end{UseCase}
+  
+  \begin{UCtrayectoria}{Principal}
+    \UCpaso[\UCactor] Selecciona la opción \IUbutton{Consultar proyectos} de la pantalla \IUref{IUMenuDirector}{Menú de Dirección General}.
+    \UCpaso Busca la lista de Programas, Ejes Temáticos, Temas Transversales y Direcciones para ser mostradas en la pantalla.
+    \UCpaso Muestra la pantalla \IUref{IUConsultarProyecto}{Consultar proyecto} donde se muestran opciones para buscar proyecto por ``Programa'', ``Eje Temático'', ``Tema Transversal'' o ``Dirección''. los proyectos y la opción de Revisar el proyecto.
+    \UCpaso[\UCactor] Selecciona el ``Programa'', ``Eje Temático'', ``Tema Transversal'' o ``Dirección'' que desea buscar.
+    \UCpaso Busca los Proyectos actuales.\Trayref{A}
+    \UCpaso Se despliegan en la parte inferior de la pantalla actual los proyectos disponibles con la opción de \textit{Revisar}. \UCExtensionPoint{CU2.1}{Revisión de Proyecto.} 
+  \end{UCtrayectoria}
+
+  \begin{UCtrayectoriaA}{A}{No hay proyectos registrados}{No se encontraron registros.}
+    \UCpaso Muestra mensaje (MSG-5) indicando que no se encontraron Proyectos.\ref{MSG5}
+  \end{UCtrayectoriaA}
+
+  

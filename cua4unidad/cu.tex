@@ -1,0 +1,189 @@
+
+	\begin{UseCase}{CUA3}{Gestionar Unidades}{Facilita la administración de un catálogo de Unidades registradas en el sistema con la finalidad de poder realizar  Altas, Bajas y Cambios en las mismas para una mejor organización de la información.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Administrador.}
+		\UCitem{Propósito}{Mantener organizada la información con respecto a las Unidades así como visualizar las Unidades registradas.}
+		\UCitem{Resumen}{Se muestran las Unidades registradas con la posibilidad de agregar, modificar y eliminar una Unidad.}
+		\UCitem{Entradas}{Ninguna.}
+		\UCitem{Salidas}{Despliegue de las Unidades registradas.}
+		\UCitem{Precondiciones}{Ninguna.}
+		\UCitem{Postcondiciones}{Ninguna.}
+		%\UCitem{Autor}{Aquino Carrillo Héctor Hyacinth.}
+		\UCitem{Referencias}{SIDAM-BESP-P2-Especificación de Catálogos}
+		\UCitem{Tipo}{Primario.}
+		\UCitem{Módulo}{Administración}
+	\end{UseCase}
+	
+	% 1.- escriba solo una trayectoria principal
+	% 2.- El actor es quien siempre inicia un CU
+	% 3.- evite usar ``si ... entonces ...'' o ``mientras ...'' o ``para cada ...''
+	% 4.- No olvide mencionar todas las verificaciones y cálculos realizados por el sistema
+	% 5.- Evite mencionar palabras como: Tabla, BD, conexión, etc.
+	
+	
+	
+	
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Gestionar Unidades} en el menú \IUref{IUMenuAdministrador}{Menú de Administrador}.
+		\UCpaso Busca las Unidades registradas.\Trayref{A} \label{paso:CUA4buscarUnidades}
+		\UCpaso Muestra la pantalla \IUref{IUGestUnidades}{Gestionar Unidades} donde se muestran los datos de las Unidades registradas y las opciones para Agregar, Modificar y Eliminar Unidades.\UCExtensionPoint{CUA3.1}{Agregar unidad} \UCExtensionPoint{CUA3.2}{Modificar unidad} \UCExtensionPoint{CUA3.3}{Eliminar unidad}
+	\end{UCtrayectoria}
+	  
+	\begin{UCtrayectoriaA}{A}{No existen datos de la unidad}{No se encontraron unidades registradas}
+			\UCpaso[\UCactor] Muestra el mensaje (MSG-5) indicando que no se encontrarón unidades registradas.\ref{MSG5}
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+	\end{UCtrayectoriaA}
+%--------- Agregar Unidad
+	\begin{UseCase}{CUA3.1}{Agregar Unidad}{El usuario registra una nueva Unidad con sus respectivos datos.}
+		\UCitem{Versión}{2.0}
+		\UCitem{Actor(es)}{Administrador.}
+		\UCitem{Propósito}{Agregar una nueva Unidad.}
+		\UCitem{Resumen}{Se agrega una Unidad registrando sus datos correspondientes.}
+		\UCitem{Entradas}{Datos de la Unidad \ref{dd:Unidad}.}
+		\UCitem{Salidas}{Mensaje de operacion exitosa\ref{MSG4}.}
+		\UCitem{Precondiciones}{Que exista al menos un tipo de unidad registrado.}
+		\UCitem{Postcondiciones}{Nueva Unidad registrada. La Unidad está disponible para ser utilizada.}
+		%\UCitem{Autor}{Aquino Carrillo Héctor Hyacinth.}
+		\UCitem{Referencias}{SIDAM-BESP-P2-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CUA3}}
+		\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Nueva unidad} en la página \IUref{IUGestUnidades}{Gestionar Unidades}.
+		\UCpaso Busca los Tipos de unidad registrados \label{paso:CUA4.1buscaTiposUnidad}
+		\UCpaso Muestra la pantalla \IUref{IUAgregarUnidad}{Agregar Unidad}.
+		\UCpaso Ingresa Datos de la Unidad. \Trayref{A}\label{paso:CUA4.1ingresaDatosUnidad}
+		\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+		\UCpaso Verifica que los datos correspondan con la definición en el diccionario de datos \ref{dd:Unidad}. \Trayref{B}
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}\Trayref{C}
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN1}\Trayref{D}
+ 		\UCpaso Registra la Unidad.
+		\UCpaso Muestra el mensaje (MSG-4) indicando que se ha agregado correctamente la unidad.\ref{MSG4}
+		\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+	\end{UCtrayectoria}
+		
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+		\UCpaso[\UCactor] Decide ya no agregar una nueva Unidad.
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+	\end{UCtrayectoriaA}
+	\begin{UCtrayectoriaA}{B}{Datos Incorrectos de la Unidad }{Los datos de la Unidad no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2).\ref{MSG2} 
+			\UCpaso Continúa en el paso \ref{paso:CUA4.1ingresaDatosUnidad} del \UCref{CUA3.1}.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{C}{Datos de unidad incompletos}{Algunos datos de la unidad no han sido capturados}
+		\UCpaso Muestra el mensage (MSG-1).\ref{MSG1}
+		\UCpaso Continúa en el paso \ref{paso:CUA4.1ingresaDatosUnidad} del \UCref{CUA3.1}	
+
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{D}{Datos de la Unidad ya existen}{No cumple con la regla de negocio\BRref{RN1}}
+			\UCpaso Muestra el mensaje (MSG-3) \ref{MSG3}	
+			\UCpaso Continúa en el paso \ref{paso:CUA4.1ingresaDatosUnidad} del \UCref{CUA3.1}
+	\end{UCtrayectoriaA}	
+
+
+
+
+
+
+%--------- Modificar Unidad
+	\begin{UseCase}{CUA3.2}{Modificar Unidad}{El usuario selecciona una Unidad registrada para modificar sus datos, y actualizar el registro en el sistema.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Modificar los datos de una Unidad y actualizar su registro en el sistema.}
+			\UCitem{Resumen}{El sistema muestra los datos de una Unidad seleccionada para la modificación de sus datos.}
+			\UCitem{Entradas}{Datos modificados de la Unidad seleccionada \ref{dd:Unidad}.}
+			\UCitem{Salidas}{Datos actuales de la Unidad. Mensaje de operación exitosa \ref{MSG4}.}
+			\UCitem{Precondiciones}{Que exista al menos una unidad registrada.}
+			\UCitem{Postcondiciones}{Se actualizan los datos de la Unidad seleccionada.}
+			%\UCitem{Autor}{Aquino Carrillo Héctor Hyacinth.}
+			\UCitem{Referencias}{SIDAM-BESP-P2-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA3}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/editar.png}} de la pantalla \IUref{IUGestUnidades}{Gestionar Unidades}.
+			\UCpaso Muestra la pantalla \IUref{IUModificarUnidad}{Modificar Unidad} con los datos de la Unidad seleccionada.
+			\UCpaso Muestra el campo Tipo para solo lectura.
+			\UCpaso [\UCactor] Ingresa los datos de la Unidad.\label{paso:CUA4.2ingresaDatosUnidad}\Trayref{A}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}.
+			\UCpaso Verifica que los datos esté de acuerdo al diccionario de datos \ref{dd:Unidad}. \Trayref{B} 
+			\UCpaso Verifica la regla de negocio \BRref{RN2}\Trayref{C}
+			\UCpaso Actualiza el registro de la Unidad.
+			\UCpaso Muestra el mensaje (MSG-4) indicando que se ha modificado correctamente la unidad.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+	\end{UCtrayectoria}
+
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no modificar los datos de la Unidad.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+		\end{UCtrayectoriaA}
+		\begin{UCtrayectoriaA}{B}{Los datos ingresados de la Unidad son incorrectos}{Los datos de la Unidad no cumplen con lo especificado en el diccionario de datos.}
+			\UCpaso Muestra el mensaje (MSG-2).\ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUA4.2ingresaDatosUnidad} del \UCref{CUA3.2}.
+		\end{UCtrayectoriaA}
+		
+		\begin{UCtrayectoriaA}{C}{Datos de la Unidad incompletos}{Algunos de los datos de la unidad hacen falta}
+		 	\UCpaso Muestra el mensaje (MSG-1)\ref{MSG1}
+			\UCpaso Continúa en el paso\ref{paso:CUA4.2ingresaDatosUnidad} del \UCref{CUA3.2}
+		\end{UCtrayectoriaA}
+
+
+
+
+
+
+%--------- Eliminar Unidad
+	\begin{UseCase}{CUA3.3}{Eliminar Unidad}{El Administrador selecciona una unidad registrada y la elimina permanentemente del sistema.}
+			\UCitem{Versión}{2.0}
+			\UCitem{Actor(es)}{Administrador.}
+			\UCitem{Propósito}{Eliminar una Unidad.}
+			\UCitem{Resumen}{El sistema muestra las Unidades registradas y permite seleccionar una Unidad para eliminarla.}
+			\UCitem{Entradas}{Ninguna}
+			\UCitem{Salidas}{Datos de la unidad bloqueados \ref{dd:Unidad}. Mensaje de operación exitosa \ref{MSG4}.}
+			\UCitem{Precondiciones}{Que exista al menos una unidad registrada.}
+			\UCitem{Postcondiciones}{La Unidad se elimina de los registros.}
+			%\UCitem{Autor}{Aquino Carrillo Héctor Hyacinth.}
+			\UCitem{Referencias}{SIDAM-BESP-P2-Especificación de Catálogos}
+			\UCitem{Tipo}{Secundario. Viene del \UCref{CUA3}}
+			\UCitem{Módulo}{Administración}
+	\end{UseCase}
+
+	\begin{UCtrayectoria}{Principal}
+ 			
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{\includegraphics[scale=0.1]{images/icons/eliminar.png}} de la pantalla \IUref{IUGestUnidades}{Gestionar Unidades}.
+			\UCpaso Muestra la pantalla \IUref{IUEliminarUnidad}{Eliminar Unidad} con los datos de la Unidad seleccionada.\label{paso:CUA4.3muestraUnidad}
+			\UCpaso [\UCactor] Oprime el botón \IUbutton{Aceptar}. \Trayref{A}
+			\UCpaso Verifica la regla de negocio \BRref{RN29}\Trayref{B}
+			\UCpaso La Unidad seleccionado se elimina.
+			\UCpaso Muestra el mensaje (MSG-4) indicando que se ha eliminado correctamente la unidad.\ref{MSG4}
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+	\end{UCtrayectoria}
+
+		
+		\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no eliminar la Unidad. \label{Datos_Asoc_Equipo}
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Continúa en el paso \ref{paso:CUA4buscarUnidades} del \UCref{CUA3}.
+		\end{UCtrayectoriaA}
+	
+	
+		\begin{UCtrayectoriaA}{B}{Datos Asociados}{La Unidad tiene Datos Asociados}
+		 	\UCpaso El sistema lista las descripciones de los indicadores asociados
+			\UCpaso El sistema muestra el mensaje (MSG-6B)\ref{MSG6B}
+			\UCpaso [\UCactor] selecciona la unidad equivalente 
+			\UCpaso Continúa en el paso \ref{paso:CUA4.3muestraUnidad} del \UCref{CUA3.3}			
+		\end{UCtrayectoriaA}
+		
+
+		%\begin{UCtrayectoriaA}{B}{Datos Asociados}{El Equipo que se desea eliminar tiene datos que están asociados.}
+		%	\UCpaso Muestra un mensaje indicando que no se puede eliminar porque tiene datos asociados.
+		%	\UCpaso [\UCactor] Oprime el botón \IUbutton{Cancelar}.
+		%	\UCpaso Continúa en el paso \ref{PECU14} del \UCref{CU14}.
+		%\end{UCtrayectoriaA}
+%-------------------------------------- TERMINA descripción del caso de uso.

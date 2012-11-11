@@ -1,0 +1,43 @@
+
+%======================================================= Subir evidencia
+	\begin{UseCase}{CUC7}{Subir evidencia.}{Permite subir una nueva evidencia a la acción seleccionada.}
+		\UCitem{Versión}{1.5}
+		\UCitem{Actor(es)}{Coordinador.}
+		\UCitem{Propósito}{Agregar una evidencia a la acción de un proyecto.}
+		\UCitem{Resumen}{El Gerente podrá agregar una evidencia al proyecto.}
+ 		\UCitem{Entradas}{Datos de la evidencia \ref{dd:Evidencia}.}
+		\UCitem{Salidas}{Ninguna.}
+		\UCitem{Precondiciones}{Deberá estar seleccionada una acción.}
+		\UCitem{Postcondiciones}{Se agrega una evidencia a la acción del proyecto.}
+		%\UCitem{Autor}{Itzel Medrano Carrasco}
+		\UCitem{Referencias}{SIDAM-BESP-P1-Especificación de Catálogos}
+		\UCitem{Tipo}{Secundario. Viene del \UCref{CU2.1.2.1}.}
+		\UCitem{Módulo}{Coordinación.}
+	\end{UseCase}
+		
+	\begin{UCtrayectoria}{Principal}
+		\UCpaso[\UCactor] Da clic en la opción \IUbutton{Agregar Evidencia} en la pantalla \IUref{IURevisarReportesAvance}{Revisar Reportes de Avance}.
+		\UCpaso Muestra la pantalla \IUref{IUSubirEvidencia}{Subir Evidencia}
+		\UCpaso [\UCactor] Ingresa los datos de la evidencia \ref{dd:Evidencia}\label{paso:CUC7ingresarDatos}.
+		\UCpaso [\UCactor] Da clic en la opción \IUbutton{Agregar}\Trayref{A}
+		\UCpaso Verifica que se cumpla la regla de negocio \BRref{RN2}. \Trayref{B}
+		\UCpaso Verifica que los datos ingresados correspondan  con la definición del diccionario de datos \ref{dd:Evidencia}. \Trayref{C}
+		\UCpaso Obtiene la fecha del sistema para la evidencia y registra la evidencia.
+		\UCpaso Muestra el mensaje (MSG-4) de operación exitosa.\ref{MSG4}
+		\
+	\end{UCtrayectoria}
+		
+	\begin{UCtrayectoriaA}{A}{Cancelar operación}{El usuario abandona el Caso de Uso.}
+			\UCpaso[\UCactor] Decide ya no registrar la evidencia.
+			\UCpaso[\UCactor] Oprime el botón \IUbutton{Cancelar}.
+			\UCpaso Actualiza la pantalla removiendo el campo de atención y no la registra.
+	\end{UCtrayectoriaA}
+
+	\begin{UCtrayectoriaA}{B}{Datos nulos}{Los datos ingresados por el usuario  no cumplen con la regla de negocios \BRref{RN2}.}
+			\UCpaso Muestra el mensaje de datos nulos \ref{MSG1}.
+			\UCpaso Continúa en el paso \ref{paso:CUC7ingresarDatos} del \UCref{CUC7}.
+	\end{UCtrayectoriaA}
+	\begin{UCtrayectoriaA}{C}{Datos incorrectos}{Los datos ingresados por el usuario  estan incorrectos \ref{dd:Evidencia}.}
+			\UCpaso Muestra el mensaje de datos incorrectos. \ref{MSG2}
+			\UCpaso Continúa en el paso \ref{paso:CUC7ingresarDatos} del \UCref{CUC4}.
+	\end{UCtrayectoriaA}
